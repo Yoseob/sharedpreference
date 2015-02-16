@@ -6,7 +6,7 @@ var router = express.Router();
 var dbConnector = require('../dataBaseInterface.js');
 var db = dbConnector.getDataBase();
 var ObjectId = require('mongodb').ObjectID;
-
+var Resmodule = require('../responeseModule');
 
 router.route('/chatting').post(function (req, res) {
 
@@ -34,7 +34,7 @@ router.route('/chated').post(function (req, res) {
             result.result = 410;
             data = {};
         }
-        res.send(result);
+        Resmodule._response(res ,result);
     });
 });
 
@@ -51,7 +51,9 @@ function recvChattingMessage(chatData, res) {
         }, function (err, ret) {
             if (err) throw  err;
 
-            if (ret)  res.send({result: 200, tsmp: new Date, data: {}});
+            if (ret)
+                Resmodule._response(res ,{result: 200, tsmp: new Date, data: {}});
+
             console.log(ret);
         });
 

@@ -9,6 +9,7 @@ var router = express.Router();
 var dbConnector = require('../dataBaseInterface.js');
 var db = dbConnector.getDataBase();
 var ObjectId = require('mongodb').ObjectID;
+var Resmodule = require('../responeseModule');
 
 
 router.route('/createorjoin').post(function (req, res) {
@@ -26,10 +27,11 @@ router.route('/member.list').post(function (req, res) {
         findMemberListWithGroupId(req.body.group_id, function (members) {
             console.log(members);
             result.data = {memberlist: members};
-            res.send(result);
+
+            Resmodule._response(res ,result);
         });
     } else {
-        res.send(result);
+        Resmodule._response(res ,result)
     }
 
 
@@ -42,7 +44,7 @@ router.route('/join').post(function (req, res) {
     if (req.body.ownerId !== undefined && req.body.sp_id !== undefined) {
         updateMembersWithGroupOwnerId(req.body.sp_id, req.body.ownerId, function (ret) {
 
-            res.send({result: 200, tsmp: new Date(), data: ret});
+            Resmodule._response(res ,{result: 200, tsmp: new Date(), data: ret})
         });
     }
 });
@@ -73,7 +75,7 @@ function findGroupOnwerWhoThisId(curruntUserInfo, res) {
                     updateMembersWithGroupOwnerId(curruntUserInfo.sp_id, item.ownerId);
                 }
                 data.result = 200;
-                res.send(data);
+                Resmodule._response(res ,data);
             } else {
                 data.result = 200;
                 //채팅룸 먼저 만들고 채팅 아이디를 전달한다.
@@ -92,7 +94,7 @@ function findGroupOnwerWhoThisId(curruntUserInfo, res) {
                         console.log('createGroupWith');
                         console.log(result);
                         data.data = result[0];
-                        res.send(data);
+                        Resmodule._response(res ,data);
 
                     });
                 });

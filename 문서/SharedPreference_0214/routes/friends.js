@@ -9,6 +9,7 @@ var router = express.Router();
 var dbConnector = require('../dataBaseInterface.js');
 var db = dbConnector.getDataBase();
 var ObjectId = require('mongodb').ObjectID;
+var Resmodule = require('../responeseModule');
 
 
 router.route('/friendlist').post(function (req, res) {
@@ -21,10 +22,10 @@ router.route('/friendlist').post(function (req, res) {
         findFriendsListWithAccount(req.body.sp_id, function (item) {
             result.data = item;
             result.result = 200;
-            res.send(result);
+            Resmodule._response(res ,result);
         });
     } else {
-        res.send(result);
+        Resmodule._response(res ,result);
 
     }
 });
