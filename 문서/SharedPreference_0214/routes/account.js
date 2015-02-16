@@ -10,6 +10,8 @@ var router = express.Router();
 
 var dbConnector = require('../dataBaseInterface.js');
 var db = dbConnector.getDataBase();
+var Resmodule = require('../responeseModule');
+
 var ObjectId = require('mongodb').ObjectID;
 
 var graph = require('fbgraph');
@@ -42,11 +44,12 @@ router.route('/detail').post(function (req, res) {
             } else {
                 result.result = 403;
             }
-            res.send(result);
+            Resmodule._response(res ,result);
         });
     } else {
         result.result = 410;
-        res.send(result);
+        Resmodule._response(res ,result);
+
     }
 });
 
@@ -67,11 +70,14 @@ function prepareFaceBookGraph(accessToken, fbId, appSecret) {
     graph
         .setOptions(options)
         .get("me?fields=friends", function (err, res) {
+            console.log(res);
             var tempfriends = res.friends.data;
 
             for (var i = 0; i < tempfriends.length; i++) {
                 var friendid = tempfriends[i].id;
                 graph.get(friendid + "?fields=picture,name ", function (err, res) {
+
+                    if(err) throw  err ;
                     console.log(res);
                     var user = {};
                     user.url = res.picture.data.url;
@@ -119,7 +125,8 @@ function ckeckOverLapBeforeInsert(req, res, callback) {
                     callback(req, res);
                 } else {
                     //중복 username 이 중복된다.
-                    res.send({result: 409, tsmp: new Date(), data: item});
+
+                    Resmodule._response(res , {result: 409, tsmp: new Date(), data: item});
                 }
             });
         }
@@ -148,7 +155,8 @@ function sendLoginAccountInfo(req, res) {
             resData.tsmp = new Date();
             resData.data = item[0];
             console.log('before resData');
-            res.send(resData);
+            Resmodule._response(res , resData);
+
         });
 
     });
