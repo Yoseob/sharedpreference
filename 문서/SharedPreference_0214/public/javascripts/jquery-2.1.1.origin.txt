@@ -1,0 +1,3 @@
+Uri: http://www.themeon.net/nifty/wb/v2.1/js/jquery-2.1.1.min.js
+File Name: C:\Users\GwangYeolRyu\Desktop\webcopy\www.themeon.net\nifty\wb\v2.1\js\jquery-2.1.1.js
+Content Type: text/javascript

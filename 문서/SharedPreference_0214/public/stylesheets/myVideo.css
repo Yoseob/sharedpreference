@@ -1,0 +1,268 @@
+body {
+    background-color: #333;
+    font-family: 'Roboto', 'Open Sans', 'Lucida Grande', sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    color: #fff;
+}
+
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    min-height: 100%;
+    position: relative;
+}
+
+#container #footer {
+    position: absolute;
+    bottom: 0;
+    /*width: 95%;*/
+    width: calc(100% - 50px);
+    height: 30%;
+    margin-left: 50px;
+}
+
+#bgvid {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    background-size: cover;
+}
+
+#Wvideos {
+    font-size: 0; /* to fix whitespace/scrollbars problem */
+    height: 100%;
+    pointer-events: none;
+    position: absolute; /* 초기 : absolute*/
+    transition: all 1s;
+    width: 100%;
+    z-index: -9999;
+}
+
+#local-video {
+    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover; /* no letterboxing */
+    transition: opacity 1s;
+    -moz-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+    width: 100%;
+    z-index: -100;
+    /*position : absolute;*/
+}
+
+#tt {
+
+}
+
+.remoteVideo {
+    position: relative;
+
+    width: 100%;
+    height: auto;
+
+    border-radius: 15px;
+}
+
+#test {
+    bottom: auto;
+
+    padding: 0;
+}
+
+#test_2 {
+    bottom: -500px;
+    padding: 0;
+}
+
+#pic {
+
+    height: 40px;
+}
+
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+@media (max-width: 991px) {
+    #container #footer {
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - 50px);
+        height: 30%;
+    }
+}
+
+@media (max-width: 961px) {
+    #container #footer {
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - 50px);
+        height: 290px;
+    }
+}
+
+@media (max-width: 931px) {
+    #container #footer {
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - 50px);
+        height: 280px;
+    }
+}
+
+@media (max-width: 900px) {
+    #container #footer {
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - 50px);
+        height: 260px;
+    }
+}
+
+@media (max-width: 850px) {
+    #container #footer {
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - 50px);
+        height: 240px;
+    }
+}
+
+@media (max-width: 767px) {
+    #container #footer {
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - 50px);
+        height: 290px;
+    }
+
+}
+
+@media (max-width: 747px) {
+    #container #footer {
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - 50px);
+        height: 270px;
+    }
+
+}
+
+@media (max-width: 717px) {
+    #container #footer {
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - 50px);
+        height: 250px;
+    }
+
+}
+
+@media (max-width: 617px) {
+    #container #footer {
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - 50px);
+        height: 220px;
+    }
+
+}
+
+@media (max-width: 580px) {
+    #container #footer {
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - 50px);
+        height: 200px;
+    }
+
+}
+
+@media (max-width: 491px) {
+    #container #footer {
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - 50px);
+        height: 190px;
+    }
+}
+
+@media (max-width: 471px) {
+    #container #footer {
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - 50px);
+        height: 180px;
+    }
+}
+
+@media (max-width: 451px) {
+    #container #footer {
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - 50px);
+        height: 180px;
+    }
+}
+
+@media (max-width: 421px) {
+    #container #footer {
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - 50px);
+        height: 160px;
+    }
+}
+
+@media (max-width: 401px) {
+    #container #footer {
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - 50px);
+        height: 170px;
+    }
+}
+
+@media (max-width: 371px) {
+    #container #footer {
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - 50px);
+        height: 160px;
+    }
+}
+
+@media (max-width: 341px) {
+    #container #footer {
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - 50px);
+        height: 150px;
+    }
+}
+
+@media (max-width: 308px) {
+    #container #footer {
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - 50px);
+        height: 140px;
+    }
+}

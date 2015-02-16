@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title><%= title %>></title>
+
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/stylesheets/simple-sidebar.css" rel="stylesheet">
+    <link href="/stylesheets/myVideo.css" rel="stylesheet">
+    <link type="text/css" href="/stylesheets/chatStyle.css" rel="stylesheet">
+    <script src="/javascripts/webrtc.io.js"></script>
+
+
+</head>
+<body onload="init()">
+<div id="info">
+    <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
+        microphone settings</a>
+
+    <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
+    </a>
+
+    <p id="info_upgrade"><a href="//www.google.com/chrome"></a>
+    </p>
+</div>
+<div id="container">
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+
+            <div id="sidebar-friends-list">
+                <ul class="sidebar-friends">
+                </ul>
+            </div>
+
+
+            <div id='sidebar-nav'>
+                <table id='sidebar-table'>
+                    <tr>
+                        <td><a href="#" id="glyphicon-record" class="glyphicon glyphicon-facetime-video"></a></td>
+                        <td><a href="#" id="glyphicon-comment" class="glyphicon glyphicon-comment"></a></td>
+                        <td><a href="#" id="glyphicon-sharescreen" class="glyphicon glyphicon-screenshot"></a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#" id="glyphicon-repeat" class="glyphicon glyphicon-repeat"></a></td>
+                        <td><a href="#" id="glyphicon-logout" class="glyphicon glyphicon-log-out"></a></td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+
+        <div id="guidemsg">
+
+        </div>
+
+
+        <div id="chatting-space"> <!-- chatStyle.css-->
+            <div id="chat-top">
+                <div id="right">
+                    <div id="start_button" onclick="startButton(event)">
+                        <img id="start_img" src="/images/mic.gif" alt="Start">
+                    </div>
+                </div>
+            </div>
+            <div id="results">
+                <span id="final_span" class="final"></span> <!-- sst.js-->
+                <span id="interim_span" class="interim"></span> <!-- sst.js-->
+                <p>
+            </div>
+            <div id="chatinput-space">
+                <input id="chatinput" type="text" placeholder="Message:"/>
+            </div>
+            <div id="hideShowMessages" class="button">toggle chat</div>
+        </div>
+
+
+        <div id="Wvideos">
+            <video id="local-video" autoplay>
+            </video>
+        </div>
+
+        <div id="div_language">
+            <select id="select_language" onchange="updateCountry()"></select>
+            &nbsp;&nbsp;
+            <select id="select_dialect"></select>
+        </div>
+
+        <div id="footer">
+
+        </div>
+    </div>
+</div>
+
+<script src="/javascripts/jquery.js"></script>
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<script src="/javascripts/tjNetworkConnector.js"></script>
+<script src="/javascripts/defaultUserinfo.js"></script>
+
+<script src="/javascripts/stt.js"></script>
+<script src="/javascripts/sonOfScript.js"></script>
+<script src="/javascripts/script.js"></script>
+
+
+<!-- Bootstrap core JavaScript -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+<div class="buttonBox">
+    <!--<div id="fullscreen" class="button">Enter Full Screen</div>-->
+    <!--<div id="newRoom" class="button">Create A New Room</div>-->
+</div>
+
+<script type="text/javascript">
+    function OnMouseIn(elem) {
+        elem.style.border = "2px solid #0064CD";
+    }
+    function OnMouseOut(elem) {
+        elem.style.border = "";
+    }
+</script>
+<!-- Put this into a custom JavaScript file to make things more organized -->
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("active");
+    });
+</script>
+
+</body>
+</html>
+
