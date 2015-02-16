@@ -1,6 +1,8 @@
 /**
  * Created by leeyoseob on 15. 2. 17.
  */
+
+    console.log('sty');
 var friends = [];
 //화면크기 조절을 감지하여 footer의 높이를 조절해주는 함수
 window.onresize = function resizeFooterHeight() {
