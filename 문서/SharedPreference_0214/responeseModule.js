@@ -5,4 +5,13 @@
 
 function responseModule(){}
 
-responseModule.prototype = {};
+responseModule.prototype = {
+
+    _response : function(res , data){
+        res.header("Access-Control-Allow-Origin" , "*");
+        res.send(data);
+
+    }
+};
+
+module.exports  = new responseModule();
