@@ -1,9 +1,9 @@
 /**
  * Created by KimSangYun on 2015-02-17.
  */
-    console.log('CommitTest');
+    //console.log('CommitTest');
 var friends = [];
-
+/*
 $('#glyphicon-sharescreen').click(function(){
     var nc = new TjNetworkConnector();
 
@@ -20,7 +20,7 @@ $('#glyphicon-sharescreen').click(function(){
     });
 
 
-});
+});*/
 
 
 //화면크기 조절을 감지하여 footer의 높이를 조절해주는 함수
