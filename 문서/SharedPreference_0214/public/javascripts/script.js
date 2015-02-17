@@ -74,11 +74,11 @@ function cloneVideo(domId, socketId) {
 
     videos.push(clone);
 
-    $('#footer').append(span);
+    $('#minivideos').append(span);
 
     if (videos.length >= 5) {
-        $('#footer>*').css('height', '45%');
-        $('#footer>*').css('margin-bottom', '2px');
+        $('#minivideos>*').css('height', '45%');
+        $('#minivideos>*').css('margin-bottom', '2px');
     }
 
     //미니 Video 누르면 큰 화면의 Video랑 바뀌는 함수

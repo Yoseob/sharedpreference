@@ -1,7 +1,6 @@
 /**
  * Created by KimSangYun on 2015-02-17.
  */
-    //console.log('CommitTest');
 var friends = [];
 /*
 $('#glyphicon-sharescreen').click(function(){
@@ -59,8 +58,9 @@ function wheel(event){
     } else if (event.detail) delta = -event.detail/3;
     if (delta) handle(delta);
 }
-
 /*친구목록에 마우스휨이 동작하게 하는 부분*/
+
+
 $(document).ready(function() {
     $('#sidebar-wrapper').mouseenter(function(){
         if($('#sidebar-wrapper').hover()){
@@ -137,26 +137,29 @@ $(document).ready(function() {
 
 //채팅 버튼 눌렀을 때 채팅창 뜨게 하는 함수  - 태양
 $(document).ready(function(){
+    var chat
     $('#glyphicon-comment').click(function(){
         //채팅창이 없었을 경우 클릭시 if문 수행
         if ($('#chatting-space').css("display") === 'none') {
-
-            $('#footer').css('margin-left', 'calc(20% + 70px)');
-            $('#footer').css('width', 'calc(75% - 70px)');
+            $('#chatting-space').css('display', 'block');
+            $('#chatting-space').css('-webkit-transform', 'translate(570px, 0px)');
+            /*$('#footer').css('margin-left', 'calc(20% + 70px)');
+            $('#footer').css('width', 'calc(75% - 70px)');*/
             $('#Wvideos').css('width', 'calc(80% - 70px)');
             $('#Wvideos').css('margin-left', 'calc(20% + 70px)');
-            $('#chatting-space').slideToggle('slow');
         }
         //채팅창이 있었을 경우 클릭시 else문 수행
         else {
             $('#Wvideos').css('margin-left', '70px');
             $('#Wvideos').css('width', 'calc(100% - 70px)');
-            $('#chatting-space').slideToggle('slow');
+            $('#chatting-space').css('-webkit-transform', 'translate(-570px, 0px)');
+            //$('#chatting-space').slideToggle('slow');
 
-            setTimeout(function(){
+            /*setTimeout(function(){
                 $('#footer').css('margin-left', '70px');
                 $('#footer').css('width', '95%');
-            },500);
+            },500);*/
+            $('#chatting-space').css('display', 'none');
         }
     });
 });
@@ -164,25 +167,21 @@ $(document).ready(function(){
 //녹화목록보기 버튼 눌렀을 때 목록 뜨게 하는 함수  - 태양
 $(document).ready(function(){
     $('#glyphicon-repeat').click(function(){
-        //채팅창이 없었을 경우 클릭시 if문 수행
-        if ($('#Recoreded-List-container').css("display") === 'none') {
-
-            $('#footer').css('margin-left', 'calc(20% + 70px)');
-            $('#footer').css('width', 'calc(75% - 70px)');
+        //녹화리스트가 화면에 없었을 경우 클릭시 if문 수행
+        if ($('#Recorded-List-container').css('display') === 'none') {
+            $('#Recorded-List-container').css('display', 'block');
+            $('#Recorded-List-container').css('-webkit-transform', 'translate(570px, 0px)');
             $('#Wvideos').css('width', 'calc(80% - 70px)');
             $('#Wvideos').css('margin-left', 'calc(20% + 70px)');
-            $('#Recoreded-List-container').slideToggle('slow');
+
         }
-        //채팅창이 있었을 경우 클릭시 else문 수행
+        //녹화리스트가 화면에  있었을 경우 클릭시 else문 수행
         else {
             $('#Wvideos').css('margin-left', '70px');
             $('#Wvideos').css('width', 'calc(100% - 70px)');
-            $('#Recoreded-List-container').slideToggle('slow');
+            $('#Recorded-List-container').css('-webkit-transform', 'translate(-570px, 0px)');
+            $('#Recorded-List-container').css('display', 'none');
 
-            setTimeout(function(){
-                $('#footer').css('margin-left', '70px');
-                $('#footer').css('width', '95%');
-            },500);
         }
     });
 });
@@ -381,7 +380,7 @@ $('#glyphicon-record').click(function() {
 
         });
 
-        $('.Recoreded-list').append(_li);
+        $('.Recorded-list').append(_li);
         //}
 
 
