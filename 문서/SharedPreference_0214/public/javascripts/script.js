@@ -1,8 +1,13 @@
 var videos = [];
+var MediaStreams = [];
 var PeerConnection = window.PeerConnection || window.webkitPeerConnection00 || window.webkitRTCPeerConnection || window.mozRTCPeerConnection || window.RTCPeerConnection;
 var CurrentVideo = {};
 var userinfo = new DefaultUserinfo();
 
+//태양 - 추가한함수. 여기서 발생한 Stream을 SunofScript로 가져가기위해 불가피하게 추가했어요..
+function getMediaStreams(){
+    return MediaStreams;
+}
 
 function swapVideo(cVideo, tVideo) {
     var tempVideoSrc;
@@ -238,6 +243,7 @@ function init() {
             var BigVideo = {};
             BigVideo = rtc.attachStream(stream, 'local-video');
             CurrentVideo = BigVideo;
+            MediaStreams.push(stream);
 
             var sendData = {};
             sendData.ownerId = window.location.hash.slice(1);
@@ -269,10 +275,12 @@ function init() {
         //document.getElementById(clone.id).setAttribute("class", "");
         var Trashvideo = {};
         Trashvideo = rtc.attachStream(stream, clone.id);
+        MediaStreams.push(stream);
     });
     rtc.on('disconnect stream', function (data) {
         console.log('remove ' + data);
         removeVideo(data);
+        MediaStreams.pop();
     });
     //initFullScreen();
     //initNewRoom();

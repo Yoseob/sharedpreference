@@ -13,6 +13,7 @@
     <link href="/stylesheets/myVideo.css" rel="stylesheet">
     <link type="text/css" href="/stylesheets/chatStyle.css" rel="stylesheet">
     <script src="/javascripts/webrtc.io.js"></script>
+    <script src="/javascripts/RecordRTC.js"></script>
 
 
 </head>
@@ -29,6 +30,7 @@
 </div>
 <div id="container">
     <div id="wrapper">
+        <img id="recordimg" src="/images/recordimg.jpg">
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
 
@@ -79,6 +81,22 @@
             <div id="hideShowMessages" class="button">toggle chat</div>
         </div>
 
+
+        <!-- 녹화된 목록을 보여주는 List -->
+        <div id="Recoreded-List-container">
+            <div id="Recoreded-List-Top">
+                <p>Recorded List</p>
+            </div>
+            <ul class="Recoreded-list">
+
+            </ul>
+        </div>
+
+
+        <div id="Recoreded-Video-container">
+            <div id="Recoreded-Videos">
+            </div>
+        </div>
 
         <div id="Wvideos">
             <video id="local-video" autoplay>
