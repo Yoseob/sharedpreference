@@ -1,6 +1,7 @@
 /**
  * Created by KimSangYun on 2015-02-17.
  */
+    console.log('CommitTest');
 var friends = [];
 
 $('#glyphicon-sharescreen').click(function(){
