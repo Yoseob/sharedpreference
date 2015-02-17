@@ -31,14 +31,15 @@ html{
 }
 
 #container #footer #minivideos{
-    position: absolute;
     top: 0;
     width:100%;
     height:95%;
 }
-#container #footer #minivideos>*{
+#container #footer #minivideos > span{
+    height:100%;
     bottom: 3px;
 }
+
 
 #bgvid{
     position:absolute;
@@ -56,7 +57,7 @@ html{
     height: 100%;
     pointer-events: none;
     position: absolute; /* 초기 : absolute*/
-    transition: all 1s;
+    transition: all 0.5s;
     width: calc(100% - 70px);
     margins-left:70px;
     z-index: -9998;
@@ -69,9 +70,6 @@ html{
     max-width: 100%;
     object-fit: cover;  /* no letterboxing */
     transition: opacity 1s;
-    -moz-transform: scale(-1, 1);
-    -ms-transform: scale(-1, 1);
-    -o-transform: scale(-1, 1);
     -webkit-transform: scale(-1, 1);
     transform: scale(-1, 1);
     width: 100%;

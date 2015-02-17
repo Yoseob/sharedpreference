@@ -147,11 +147,15 @@ $(document).ready(function(){
             $('#footer').css('width', 'calc(75% - 70px)');*/
             $('#Wvideos').css('width', 'calc(80% - 70px)');
             $('#Wvideos').css('margin-left', 'calc(20% + 70px)');
+            $('#Recorded-Video-container').css('width', 'calc(80% - 70px)');
+            $('#Recorded-Video-container').css('margin-left', 'calc(20% + 70px)');
         }
         //채팅창이 있었을 경우 클릭시 else문 수행
         else {
             $('#Wvideos').css('margin-left', '70px');
             $('#Wvideos').css('width', 'calc(100% - 70px)');
+            $('#Recorded-Video-container').css('margin-left', '70px');
+            $('#Recorded-Video-container').css('width', 'calc(100% - 70px)');
             $('#chatting-space').css('-webkit-transform', 'translate(-570px, 0px)');
             //$('#chatting-space').slideToggle('slow');
 
@@ -173,12 +177,16 @@ $(document).ready(function(){
             $('#Recorded-List-container').css('-webkit-transform', 'translate(570px, 0px)');
             $('#Wvideos').css('width', 'calc(80% - 70px)');
             $('#Wvideos').css('margin-left', 'calc(20% + 70px)');
+            $('#Recorded-Video-container').css('width', 'calc(80% - 70px)');
+            $('#Recorded-Video-container').css('margin-left', 'calc(20% + 70px)');
 
         }
         //녹화리스트가 화면에  있었을 경우 클릭시 else문 수행
         else {
             $('#Wvideos').css('margin-left', '70px');
             $('#Wvideos').css('width', 'calc(100% - 70px)');
+            $('#Recorded-Video-container').css('margin-left', '70px');
+            $('#Recorded-Video-container').css('width', 'calc(100% - 70px)');
             $('#Recorded-List-container').css('-webkit-transform', 'translate(-570px, 0px)');
             $('#Recorded-List-container').css('display', 'none');
 
@@ -354,12 +362,16 @@ $('#glyphicon-record').click(function() {
 
         // _li.textContent = RecDates[i];
         _li.textContent = RecDate;
-        _li.onclick= function(){
+        /*_li.onclick= function(){
+
+
             //alert('ID: '+this.id+"\n이름: "+this.textContent+".");
+            //$('#Wvideos').css('display','none');
 
 
+        };*/
 
-        };
+
         _li.onmouseover= function(){
             this.setAttribute('style', 'background-color:#EEEEEE');
         };
@@ -368,17 +380,6 @@ $('#glyphicon-record').click(function() {
         };
 
 
-        _li.click(function(){
-
-
-
-
-
-
-
-
-
-        });
 
         $('.Recorded-list').append(_li);
         //}

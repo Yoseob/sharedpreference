@@ -5,8 +5,16 @@
     position: absolute; /* 초기 : absolute*/
     transition: all 1s;
     width: calc(100% - 70px);
-    width: 100%;
     margin-left:70px;
-    z-index: -9998;
+    backround-color: #222;
+    z-index: 0;
+}
+
+#Recorded-Videos{
+    margin-left: 25%;
+    margin-top: 10%;
+    width: 50%;
+    height: 50%;
+    backround-color: red;
 }
 
