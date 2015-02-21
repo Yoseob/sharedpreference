@@ -1,8 +1,14 @@
 var videos = [];
+var MediaStreams = [];
 var PeerConnection = window.PeerConnection || window.webkitPeerConnection00 || window.webkitRTCPeerConnection || window.mozRTCPeerConnection || window.RTCPeerConnection;
 var CurrentVideo = {};
 var userinfo = new DefaultUserinfo();
 
+//태양 - 추가부분. 여기서 발생한 Stream을 Sun of Script로 가져가기위해 추가.
+function getMediaStreams(){
+    return MediaStreams;
+}
+//태양 - 추가부분. 여기서 발생한 Stream을 Sun of Script로 가져가기위해 추가.
 
 function swapVideo(cVideo, tVideo) {
     var tempVideoSrc;
@@ -69,12 +75,13 @@ function cloneVideo(domId, socketId) {
 
     videos.push(clone);
 
-    $('#footer').append(span);
-
+    $('#minivideos').append(span);
+    /*태양 추가부분 - footer 비디오 5개 이상되면 비디오 사이즈 재조정*/
     if (videos.length >= 5) {
-        $('#footer>*').css('height', '45%');
-        $('#footer>*').css('margin-bottom', '2px');
+        $('#minivideos>*').css('height', '45%');
+        $('#minivideos>*').css('margin-bottom', '2px');
     }
+    /*태양 추가부분 - footer 비디오 5개 이상되면 비디오 사이즈 재조정*/
 
     //미니 Video 누르면 큰 화면의 Video랑 바뀌는 함수
     clone.onclick = function () {
@@ -223,6 +230,15 @@ function initChat() {
     });
 }
 
+function sharescreen(strema){
+   CurrentVideo.attachStream(stream , CurrentVideo.id);
+}
+function windowShareInit(){
+
+    $("#glyphicon-sharescreen").click(function(){
+        chrome.tabCapture.capture({audio :  true , video : true } , sharescreen);
+    });
+}
 
 function init() {
 
@@ -238,6 +254,7 @@ function init() {
             var BigVideo = {};
             BigVideo = rtc.attachStream(stream, 'local-video');
             CurrentVideo = BigVideo;
+            MediaStreams.push(stream);
 
             var sendData = {};
             sendData.ownerId = window.location.hash.slice(1);
@@ -250,8 +267,8 @@ function init() {
                 //채팅을 하기위해선 리턴 받은 방의 아이디를 저장한후 사용한다.
                 userinfo.setCurrentChattingRoom(result.data.chattingId);
 
-
-            })
+            });
+            windowShareInit();
 
         });
     } else {
@@ -269,10 +286,20 @@ function init() {
         //document.getElementById(clone.id).setAttribute("class", "");
         var Trashvideo = {};
         Trashvideo = rtc.attachStream(stream, clone.id);
+        MediaStreams.push(stream);
     });
     rtc.on('disconnect stream', function (data) {
         console.log('remove ' + data);
         removeVideo(data);
+
+        /* 태양 추가부분 ,  footer 비디오 5개 이상에서 4개 이하가 될시에 footer 비디오 사이즈 재조정*/
+        if (videos.length <= 4) {
+            $('#minivideos>*').css('height', '95%');
+            $('#minivideos>*').css('margin-bottom', '0px');
+        }
+        MediaStreams.pop();
+        /*태양 추가부분 footer 비디오 5개 이상에서 4개 이하가 될시에 footer 비디오 사이즈 재조정*/
+
     });
     //initFullScreen();
     //initNewRoom();

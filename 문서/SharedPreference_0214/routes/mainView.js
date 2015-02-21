@@ -8,7 +8,7 @@ var db = dbConnector.getDataBase();
 var ObjectId = require('mongodb').ObjectID;
 /* GET home page. */
 router.get('/', function (req, res) {
-    console.log(req);
+    console.log(req.body);
 
     res.render('mainView', {title: 'shared Pre'});
 });
