@@ -1,3 +1,0 @@
-Uri: http://ironsummitmedia.github.io/startbootstrap-simple-sidebar/js/jquery.js
-File Name: C:\Users\GwangYeolRyu\Desktop\webcopy\ironsummitmedia.github.io\startbootstrap-simple-sidebar\js\jquery.js
-Content Type: application/javascript
