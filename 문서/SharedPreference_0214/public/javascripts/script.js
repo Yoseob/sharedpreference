@@ -230,6 +230,15 @@ function initChat() {
     });
 }
 
+function sharescreen(strema){
+   CurrentVideo.attachStream(stream , CurrentVideo.id);
+}
+function windowShareInit(){
+
+    $("#glyphicon-sharescreen").click(function(){
+        chrome.tabCapture.capture({audio :  true , video : true } , sharescreen);
+    });
+}
 
 function init() {
 
@@ -258,8 +267,8 @@ function init() {
                 //채팅을 하기위해선 리턴 받은 방의 아이디를 저장한후 사용한다.
                 userinfo.setCurrentChattingRoom(result.data.chattingId);
 
-
-            })
+            });
+            windowShareInit();
 
         });
     } else {
