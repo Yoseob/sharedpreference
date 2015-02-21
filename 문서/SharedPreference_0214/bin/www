@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 var fs = require('fs');
 var app = require('../app');
 var debug = require('debug')('SharedPreference:server');
@@ -26,8 +25,8 @@ bs.on('connection', function(client){
         }
         var file = fs.createWriteStream(__dirname+ '/'+ meta.groupname+'/'  + meta.filename);
         stream.pipe(file);
-        //
-        // Send progress back
+
+
         stream.on('data', function(data){
             stream.write({rx: data.length / meta.size});
         });
