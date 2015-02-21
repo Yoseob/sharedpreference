@@ -110,6 +110,7 @@ function ckeckOverLapBeforeInsert(req, res, callback) {
 
 
     db.collection('accounts', {safe: true}, function (err, collection) {
+        if(err) throw err;
         if (!err) {
 
             var tReq = req.body;
