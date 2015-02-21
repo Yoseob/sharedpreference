@@ -51,6 +51,9 @@
     height: 50%;
     background-color: red;
 }
+#Recorded-Videos-controlbar{
+    background-color: #222;
+}
 
 #backhome{
     position: absolute;

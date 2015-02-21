@@ -1,6 +1,7 @@
 /**
  * Created by KimSangYun on 2015-02-17.
  */
+var RecDate;
 var friends = [];
 
 $('#glyphicon-sharescreen').click(function(){
@@ -371,7 +372,6 @@ $('#glyphicon-record').click(function() {
         recorflag = 0;
 
         var d = new Date();
-        var RecDate;
         //녹화가 완료된 시점의 년월일시분초. RecDate 변수에 저장하여 목록 이름으로 사용할 것임.- 태양
         RecDate = d.getFullYear()+'-'+(d.getMonth() + 1)+'-'+d.getDate()+', '+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds();
         //RecDates.push(RecDate);
@@ -435,7 +435,7 @@ $('#glyphicon-record').click(function() {
             var AudioLink = document.createElement('a');
             console.log('AudioRecorder.blob : ' + AudioRecorder.blob);
             AudioLink.href = window.URL.createObjectURL(AudioRecorder.blob);
-            AudioLink.download = 'RecARst.mp3';
+            AudioLink.download = RecDate+'Audio.mp3';
             //AudioLink.click();
         });
 
@@ -443,15 +443,27 @@ $('#glyphicon-record').click(function() {
             var VideoLink = document.createElement('a');
             console.log('VideoRecorder0 : ' + VideoRecorder0.blob);
             VideoLink.href = window.URL.createObjectURL(VideoRecorder0.blob);
-            VideoLink.download = 'RecVRst' + 0 + '.mp4';
+            VideoLink.download = RecDate+'video' + 0 + '.mp4';
             //VideoLink.click();
+
+
+
+
+
+
+
+
+
+
+
+
         });
         if(MediaStreamLength === 1) return;
         VideoRecorder1.stopRecording(function(){
             var VideoLink = document.createElement('a');
             console.log('VideoRecorder1 : ' + VideoRecorder1.blob);
             VideoLink.href = window.URL.createObjectURL(VideoRecorder1.blob);
-            VideoLink.download = 'RecVRst' + 1 + '.mp4';
+            VideoLink.download = RecDate+'video' + 1 + '.mp4';
             //VideoLink.click();
         });
         if(MediaStreamLength === 2) return;
@@ -459,7 +471,7 @@ $('#glyphicon-record').click(function() {
             var VideoLink = document.createElement('a');
             console.log('VideoRecorder2 : ' + VideoRecorder2.blob);
             VideoLink.href = window.URL.createObjectURL(VideoRecorder2.blob);
-            VideoLink.download = 'RecVRst' + 2 + '.mp4';
+            VideoLink.download = RecDate+'video' + 2 + '.mp4';
             //VideoLink.click();
         });
         if(MediaStreamLength === 3) return;
@@ -467,7 +479,7 @@ $('#glyphicon-record').click(function() {
             var VideoLink = document.createElement('a');
             console.log('VideoRecorder0 : ' + VideoRecorder3.blob);
             VideoLink.href = window.URL.createObjectURL(VideoRecorder3.blob);
-            VideoLink.download = 'RecVRst' + 3 + '.mp4';
+            VideoLink.download = RecDate+'video' + 3 + '.mp4';
             //VideoLink.click();
         });
         if(MediaStreamLength === 4) return;
@@ -475,7 +487,7 @@ $('#glyphicon-record').click(function() {
             var VideoLink = document.createElement('a');
             console.log('VideoRecorder4 : ' + VideoRecorder4.blob);
             VideoLink.href = window.URL.createObjectURL(VideoRecorder4.blob);
-            VideoLink.download = 'RecVRst' + 4 + '.mp4';
+            VideoLink.download = RecDate+'video' + 4 + '.mp4';
             // VideoLink.click();
         });
         if(MediaStreamLength === 5) return;
@@ -483,7 +495,7 @@ $('#glyphicon-record').click(function() {
             var VideoLink = document.createElement('a');
             console.log('VideoRecorder5 : ' + VideoRecorder5.blob);
             VideoLink.href = window.URL.createObjectURL(VideoRecorder5.blob);
-            VideoLink.download = 'RecVRst' + 5 + '.mp4';
+            VideoLink.download = RecDate+'video' + 5 + '.mp4';
             //VideoLink.click();
         });
         if(MediaStreamLength === 6) return;
@@ -491,7 +503,7 @@ $('#glyphicon-record').click(function() {
             var VideoLink = document.createElement('a');
             console.log('VideoRecorder6 : ' + VideoRecorder6.blob);
             VideoLink.href = window.URL.createObjectURL(VideoRecorder6.blob);
-            VideoLink.download = 'RecVRst' + 6 + '.mp4';
+            VideoLink.download = RecDate+'video' + 6 + '.mp4';
             //VideoLink.click();
         });
         if(MediaStreamLength === 7) return;
@@ -499,7 +511,7 @@ $('#glyphicon-record').click(function() {
             var VideoLink = document.createElement('a');
             console.log('VideoRecorder7 : ' + VideoRecorder7.blob);
             VideoLink.href = window.URL.createObjectURL(VideoRecorder7.blob);
-            VideoLink.download = 'RecVRst' + 7 + '.mp4';
+            VideoLink.download = RecDate+'video' + 7 + '.mp4';
             //VideoLink.click();
         });
         if(MediaStreamLength === 8) return;
@@ -507,7 +519,7 @@ $('#glyphicon-record').click(function() {
             var VideoLink = document.createElement('a');
             console.log('VideoRecorder8 : ' + VideoRecorder8.blob);
             VideoLink.href = window.URL.createObjectURL(VideoRecorder8.blob);
-            VideoLink.download = 'RecVRst' + 8 + '.mp4';
+            VideoLink.download = RecDate+'video' + 8 + '.mp4';
             //VideoLink.click();
         });
         return;
