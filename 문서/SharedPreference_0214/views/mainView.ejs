@@ -31,7 +31,6 @@
 </div>
 <div id="container">
     <div id="wrapper">
-        <div id="box" style="background: #eee; font-size: 26px; width: 400px; height: 300px;line-height: 300px; margin: 0 auto; text-align: center;"></div>
         <img id="recordimg" src="/images/recordimg.jpg">
         <img id="backhome" src="/images/home.jpg">
         <!-- Sidebar -->
@@ -163,38 +162,6 @@
         e.preventDefault();
         $("#wrapper").toggleClass("active");
     });
-    var client = new BinaryClient('ws://210.118.64.172:8000');
-
-    // Wait for connection to BinaryJS server
-    client.on('open', function(){
-        var box = $('#box');
-        box.on('dragenter', doNothing);
-        box.on('dragover', doNothing);
-        box.text('Drag files here');
-        box.on('drop', function(e){
-            e.originalEvent.preventDefault();
-            var file = e.originalEvent.dataTransfer.files[0];
-
-            // Add to list of uploaded files
-            $('<div align="center"></div>').append($('<a></a>').text(file.name).prop('href', '/'+file.name)).appendTo('body');
-
-            // `client.send` is a helper function that creates a stream with the
-            // given metadata, and then chunks up and streams the data.
-            var stream = client.send(file, {name: file.name, size: file.size});
-
-            // Print progress
-            var tx = 0;
-            stream.on('data', function(data){
-                $('#progress').text(Math.round(tx+=data.rx*100) + '% complete');
-            });
-        });
-    });
-
-    // Deal with DOM quirks
-    function doNothing (e){
-        e.preventDefault();
-        e.stopPropagation();
-    }
 </script>
 
 </body>
