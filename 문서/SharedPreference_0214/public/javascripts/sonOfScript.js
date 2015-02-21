@@ -447,6 +447,8 @@ $('#glyphicon-record').click(function() {
             //VideoLink.click();
 
 
+           //var file = FileReader.readAsBinaryString(VideoRecorder0.blob);
+            //console.log('file : ' + file);
 
 
 

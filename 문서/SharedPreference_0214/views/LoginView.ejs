@@ -1,16 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
+
+
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!--<link rel="shortcut icon" href="../../assets/ico/favicon.png">-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Landing Sumo is a site with a collection of landing pages created using the awesome Bootstrap 3 framework.">
+    <meta name="author" content="Carlos Alvarez">
 
     <title><%= title %></title>
 
     <!-- Bootstrap core CSS -->
     <link href="/stylesheets/bootstrap.css" rel="stylesheet">
+    <link href="/stylesheets/superslides.css" rel="stylesheet">
+    <link href="/stylesheets/ionicons.css" rel="stylesheet">
+    <link href="/stylesheets/styleLogin.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/javascripts/ie10-viewport-bug-workaround.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -20,51 +28,9 @@
 
     <!--[endif]-->
 
-    <!-- Custom styles for this template -->
-
-    <style>
-        .imgHeight {
-            height: 500px !important;
-        }
-
-        .bottomMagin {
-            padding-bottom: 60px;
-        }
-
-        .midSort {
-            text-align: center;
-        }
-
-        .marketing {
-            text-align: center;
-        }
-
-        .featurette-divider {
-            margin: 80px 0;
-        }
-
-        .featurette {
-            padding-top: 120px;
-            overflow: hidden;
-        }
-
-        .featurette-image {
-            margin-top: -120px;
-        }
-
-        .featurette-image.pull-left {
-            margin-right: 40px;
-        }
-
-        .featurette-image.pull-right {
-            margin-left: 40px;
-        }
-
-    </style>
 </head>
-<!-- NAVBAR
-================================================== -->
-<body>
+
+<body data-spy="scroll" data-offset="0" data-target="#theMenu">
 <script>
 
 
@@ -72,41 +38,61 @@
     var IsUsername = '';
     var USER_NAME = 'username';
 
+    /*
+     // This is called with the results from from FB.getLoginStatus().
+     function statusChangeCallback(response) {
+     console.log('statusChangeCallback');
+     console.log(response);
+     // The response object is returned with a status field that lets the
+     // app know the current login status of the person.
+     // Full docs on the response object can be found in the documentation
+     // for FB.getLoginStatus().
+     if (response.status === 'connected') {
+     // Logged into your app and Facebook.
+     console.log(response);
+     var accessToeken = response.authResponse.accessToken;
+     requetMyFacebookInfo(accessToeken);
+     testAPI();
+     } else if (response.status === 'not_authorized') {
+     // The person is logged into Facebook, but not your app.
+     document.getElementById('status').innerHTML = 'Please log ' +
+     'into this app.';
+     } else {
+     // The person is not logged into Facebook, so we're not sure if
+     // they are logged into this app or not.
+     document.getElementById('status').innerHTML = 'Please log ' +
+     'into Facebook.';
+     }
+     }
 
-    // This is called with the results from from FB.getLoginStatus().
-    function statusChangeCallback(response) {
-        console.log('statusChangeCallback');
-        console.log(response);
-        // The response object is returned with a status field that lets the
-        // app know the current login status of the person.
-        // Full docs on the response object can be found in the documentation
-        // for FB.getLoginStatus().
-        if (response.status === 'connected') {
-            // Logged into your app and Facebook.
-            console.log(response);
-            var accessToeken = response.authResponse.accessToken;
-            requetMyFacebookInfo(accessToeken);
-            testAPI();
-        } else if (response.status === 'not_authorized') {
-            // The person is logged into Facebook, but not your app.
-            document.getElementById('status').innerHTML = 'Please log ' +
-            'into this app.';
-        } else {
-            // The person is not logged into Facebook, so we're not sure if
-            // they are logged into this app or not.
-            document.getElementById('status').innerHTML = 'Please log ' +
-            'into Facebook.';
-        }
-    }
+     */
+    function fb_login(){
+        FB.login(function(response) {
 
-    // This function is called when someone finishes with the Login
-    // Button.  See the onlogin handler attached to it in the sample
-    // code below.
-    function checkLoginState() {
-        FB.getLoginStatus(function (response) {
-            statusChangeCallback(response);
+            if (response.authResponse) {
+                console.log('Welcome!  Fetching your information.... ');
+                //console.log(response); // dump complete info
+                access_token = response.authResponse.accessToken; //get access token
+                user_id = response.authResponse.userID; //get FB UID
+
+                requetMyFacebookInfo(access_token);
+                testAPI();
+            } else {
+                //user hit cancel button
+                console.log('User cancelled login or did not fully authorize.');
+
+            }
+        }, {
+            scope: 'publish_stream,email,public_profile,user_friends'
         });
     }
+
+    function checkLoginState() {
+        FB.getLoginStatus(function (response) {
+            fb_login(response);
+        });
+    }
+
 
     window.fbAsyncInit = function () {
         FB.init({
@@ -120,31 +106,17 @@
             document.location.reload();
         });
 
-        // Now that we've initialized the JavaScript SDK, we call
-        // FB.getLoginStatus().  This function gets the state of the
-        // person visiting this page and can return one of three states to
-        // the callback you provide.  They can be:
-        //
-        // 1. Logged into your app ('connected')
-        // 2. Logged into Facebook, but not your app ('not_authorized')
-        // 3. Not logged into Facebook and can't tell if they are logged into
-        //    your app or not.
-        //
-        // These three cases are handled in the callback function.
-
         FB.getLoginStatus(function (response) {
-            statusChangeCallback(response);
+            fb_login(response);
         });
 
     };
-
 
     function requetMyFacebookInfo(accessToken) {
         //서버로 전송할 데이터
         // 내이름
         // acesstoken
         // facebookid
-
 
         FB.api('/me', function (response) {
             console.log('facebook api');
@@ -161,7 +133,6 @@
 
                 var nc = new TjNetworkConnector();
 
-
                 console.log('start');
                 console.log(data);
 
@@ -175,10 +146,8 @@
 
                 });
             }
-
         });
     }
-
     // Load the SDK asynchronously
     (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
@@ -189,197 +158,87 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
-    // Here we run a very simple test of the Graph API after login is
-    // successful.  See statusChangeCallback() for when this call is made.
     function testAPI() {
         console.log('Welcome!  Fetching your information.... ');
         FB.api('/me?', function (response) {
-            console.log(response);
-            console.log('Successful login for: ' + response.name);
-            document.getElementById('status').innerHTML =
-                    'Thanks for logging in, ' + response.name + '!';
+
         });
         $('#flgBnt').removeAttr("disabled");
     }
 
 </script>
-<!--<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>-->
-<a href="#" onclick="FB.logout();">[Logout]</a><br>
 
 <div id="status">
 </div>
 
 <!-- Carousel
 ================================================== -->
-<div id="myCarousel" class="carousel slide">
-    <!-- Indicators -->
 
-    <div class="carousel-inner">
-        <div class="item active">
-            <img src="/images/wide6.jpg" class="imgHeight"
-                 data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:First slide" alt="First slide">
+<a id="menuToggle" href="#" onclick="FB.logout();">Logout</a>
+<!-- ********** SLIDES ********** -->
+<section id="home" name="home"></section>
+<section id="slides">
+    <ul class="slides-container">
+        <li>
+            <img src="images/bg005.jpg" alt="">
+        </li>
+        <li>
+            <img src="images/bg006.jpg" alt="">
+        </li>
+    </ul>
+    <div id="bannertext">
+        <h1>Shared Preference</h1>
+        <hr class="aligncenter">
+        <h3><bold>Web Conference System</bold><br>Based on WebRTC</h3>
+        <p><a href="#intro" onclick="checkLoginState();" class="btn btn-lg btn-clear btn-design smoothScroll">Facebook Login</a>
+            <button id="flgBnt" disabled="disabled" data-toggle="modal" data-target="#myModal" class="btn btn-lg btn-y btn-design smoothScroll">Start SharedPreference</button>
 
-            <div class="container">
-                <div class="carousel-caption">
-                    <div class="bottomMagin">
-                        <h1>SharedPreference</h1>
-                        <h4><p style="color:white">WebRTC를 이용한 화상회의 및 기록 서비스입니다. 언제 어디서든 간편하게 화상 회의를 할 수 있습니다.</p></h4>
-                        <p>
-                            <fb:login-button scope="public_profile,email,user_friends" onlogin="checkLoginState();">
-                            </fb:login-button>
-                            <button id="flgBnt" class="btn btn-primary btn-lg" data-toggle="modal"
-                                    data-target="#myModal">
-                                Start SharedPreference
-                            </button>
-                        </p>
-                    </div>
-                </div>
+        </p>
+    </div>
+    <!-- end:Banner text -->
+    <nav class="slides-navigation"> </nav>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">SharedPreference</h4>
+            </div>
+            <div class="modal-body">
+                <p style="text-align:center">회의 Room을 생성합니다.</p>
+                <button type="button" class="btn btn-success btn pull-right" onclick="createConference()">Create
+                    Room
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
+        <!-- /.modal-content -->
     </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title">SharedPreference</h4>
-                </div>
-                <div class="modal-body">
-                    <p>회의 Room을 만들거나 Room에 들어갈 수 있습니다.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success btn pull-left" onclick="createConference()">Create
-                        Room
-                    </button>
-                    <button type="button" class="btn btn-info btn pull-left">Join to Room</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <!--<button type="button" class="btn btn-primary">Facebook Login</button>-->
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
+    <!-- /.modal-dialog -->
 </div>
-<!-- /.carousel -->
-
+<!-- /.modal -->
 
 <!-- Marketing messaging and featurettes
 ================================================== -->
 <!-- Wrap the rest of the page in another container to center all the content. -->
 
-<div class="container marketing">
-
-    <!-- Three columns of text below the carousel -->
-    <div class="row">
-        <div class="col-lg-4">
-
-            <img class="img-circle" src="/images/meeting.jpg" data-src="holder.js/140x140"
-                 alt="Generic placeholder image">
-
-            <h2 class="midSort">Meeting</h2>
-
-            <p class="midSort">지금부터는 같은 공간에 있지 않아도 저희 서비스를 이용하면 언제 어디서든 편리하게 회의를 할 수 있습니다. 별도의 설치 필요없이 실시간으로 화상 대화가
-                가능합니다.</p>
-            <!--<p><a class="btn btn-default" href="#">View details &raquo;</a></p>-->
-        </div>
-        <!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-            <img class="img-circle" src="/images/meeting2.jpg" data-src="holder.js/140x140"
-                 alt="Generic placeholder image">
-
-            <h2>Web Conference</h2>
-
-            <p>WebRTC기반으로 실시간 화상 회의가 가능합니다. 장소에 구애받지 않고 여러 사람과 실시간으로 화상회의를 할 수 있습니다. </p>
-            <!--<p><a class="btn btn-default" href="#">View details &raquo;</a></p>-->
-        </div>
-        <!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-            <img class="img-circle" src="/images/meeting3.jpg" data-src="holder.js/140x140"
-                 alt="Generic placeholder image">
-
-            <h2>Voice Recognition</h2>
-
-            <p>음성 인식을 지원합니다. 기본적인 텍스트 채팅뿐만 아니라 음성 인식을 통해 상대방과 채팅이 가능합니다. 이를 통해 사용자는 여러 상대와 편리하게 대화할 수 있습니다.</p>
-            <!--<p><a class="btn btn-default" href="#">View details &raquo;</a></p>-->
-        </div>
-        <!-- /.col-lg-4 -->
-    </div>
-    <!-- /.row -->
-
-
-    <!-- START THE FEATURETTES -->
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h2 class="featurette-heading">여러 사용자와 화상 대화가 가능합니다.<span class="text-muted">체험해보세요</span></h2>
-
-            <p class="lead">저희 서비스의 장점은 별도의 플러그인 설치 필요없이 언제 어디서든 브라우저만 있다면 접속이 가능합니다. 또한 1대1이 아닌 1대N 화상 대화를 실시간으로
-                제공합니다.</p>
-        </div>
-        <div class="col-md-5">
-            <img id="dp" class="featurette-image img-responsive" src="/images/network.jpg"
-                 data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-        <div class="col-md-5">
-            <img id="dp" class="featurette-image img-responsive" src="/images/chat.jpg"
-                 data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-        <div class="col-md-7">
-            <h2 class="featurette-heading">회의내용을 기록할 수 있습니다.<span class="text-muted">기록과 요약이 가능합니다.</span></h2>
-
-            <p class="lead">회의가 길어지고 중요한 내용을 메모하다보면 회의에 집중하기 어려울 경우가 있습니다. 저희는 회의 시작부터 끝까지 회의 내용을 기록하고 요약합니다. 사용자는 나중에
-                원하는 부분만 다시 볼 수 있습니다.</p>
-        </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h2 class="featurette-heading">화면도 공유할 수 있습니다.<span class="text-muted">파일공유도 가능합니다.</span></h2>
-
-            <p class="lead">저희는 사용자간의 파일전송이 가능합니다. 손쉽게 Drag&Drop으로 전송가능할 뿐만 아니라 화면 공유를 통해서 사용자가 보고 있는 화면을 다른 사용자도 볼 수 있어
-                회의의 업무 효율을 극대화 할 수 있습니다. 또한 문서 공유가 가능합니다.</p>
-        </div>
-        <div class="col-md-5">
-            <img id="dp" class="featurette-image img-responsive" src="/images/database.jpg"
-                 data-src="holder.js/500x500/auto" alt="Generic placeholder image">
-        </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <!-- /END THE FEATURETTES -->
-
-
-    <!-- FOOTER -->
-    <footer>
-        <p class="pull-right"><a href="#">Back to top</a></p>
-
-        <p>&copy; 2015 Samsung Software Membership, GwangYeol Ryu. &middot; <a href="#">Privacy</a> &middot; <a
-                    href="#">Terms</a></p>
-    </footer>
-
-</div>
 <!-- /.container -->
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 
-<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 <script src="/javascripts/bootstrap.min.js"></script>
+<script src="/javascripts/classie.js"></script>
+<script src="/javascripts/smoothscroll.js"></script>
+<script src="/javascripts/mainLogin.js"></script>
+<script src="/javascripts/retina-1.1.js"></script>
+<script src="/javascripts/jquery (1).js"></script>
+<script src="/javascripts/jquery.hammer.js"></script>
 <script src="/javascripts/tjNetworkConnector.js"></script>
 <script src="/javascripts/defaultUserinfo.js"></script>
 
@@ -405,7 +264,44 @@
         }
     }
 </script>
+<script>
+    //Superslides
+    $('#slides').superslides({
+        slide_easing: 'easeInOutCubic',
+        slide_speed: 800,
+        pagination: true,
+        hashchange: false,
+        scrollable: true,
+        animation: 'fade'
+    });
 
+    $('#slides').hammer().on('swipeleft', function () {
+        $(this).superslides('animate', 'next');
+    });
+
+    $('#slides').hammer().on('swiperight', function () {
+        $(this).superslides('animate', 'prev');
+    });
+</script>
+
+<script>
+    // Banner text add parallax efect and fade
+    function EasyPeasyParallax() {
+        scrollPos = $(this).scrollTop();
+        $('#slider').css({
+            'background-position': '50% ' + (-scrollPos / 4) + "px"
+        });
+        $('#bannertext').css({
+            'margin-top': (scrollPos / 4) + "px",
+            'opacity': 1 - (scrollPos / 250)
+        });
+    }
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            EasyPeasyParallax();
+        });
+    });
+</script>
 
 </body>
 </html>
