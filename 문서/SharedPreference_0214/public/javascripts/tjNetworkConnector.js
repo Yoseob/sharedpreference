@@ -8,6 +8,7 @@
 //console.log(db);
 function TjNetworkConnector() {
     this.servername = '';
+    this.post = 30;
 }
 
 
