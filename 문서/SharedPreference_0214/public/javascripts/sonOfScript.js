@@ -5,7 +5,7 @@ var RecDate;
 var friends = [];
 
 $('#glyphicon-sharescreen').click(function(){
-    var nc = new TjNetworkConnector();
+/*    var nc = new TjNetworkConnector();
 
     var data = {
         facebookId : '1538116369788042',
@@ -19,7 +19,7 @@ $('#glyphicon-sharescreen').click(function(){
         console.log('result.data : ' + result.facebookId);
     });
 
-
+*/
 });
 
 
@@ -638,44 +638,42 @@ function appendReviewVideos(){
 
 function resizeReviewVideos(){
     if(MediaStreamLength == 1){
-        $(".reviews").css('width','100%');
-        $(".reviews").css('height','100%');
+        $('.reviews').css('width','100%');
+        $('.reviews').css('height','100%');
     }
     else if(MediaStreamLength == 2){
-        $(".reviews").css('width','100%');
-        $(".reviews").css('height','50%');
+        $('.reviews').css('width','100%');
+        $('.reviews').css('height','50%');
     }
     else if(MediaStreamLength == 3){
-        $(".reviews").css('width','50%');
-        $(".reviews").css('height','50%');
+        $('.reviews').css('width','50%');
+        $('.reviews').css('height','50%');
     }
     else if(MediaStreamLength == 4){
-        $(".reviews").css('width','50%');
-        $(".reviews").css('height','50%');
+        $('.reviews').css('width','50%');
+        $('.reviews').css('height','50%');
     }
     else if(MediaStreamLength == 5){
-        $(".reviews").css('width','33%');
-        $(".reviews").css('height','50%');
+        $('.reviews').css('width','33%');
+        $('.reviews').css('height','50%');
     }
     else if(MediaStreamLength == 6){
-        $(".reviews").css('width','33%');
-        $(".reviews").css('height','50%');
+        $('.reviews').css('width','33%');
+        $('.reviews').css('height','50%');
     }
     else if(MediaStreamLength == 7){
-        $(".reviews").css('width','33%');
-        $(".reviews").css('height','33%');
+        $('.reviews').css('width','33%');
+        $('.reviews').css('height','33%');
     }
     else if(MediaStreamLength == 8){
-        $(".reviews").css('width','33%');
-        $(".reviews").css('height','33%');
+        $('.reviews').css('width','33%');
+        $('.reviews').css('height','33%');
     }
     else if(MediaStreamLength == 9){
-        $(".reviews").css('width','33%');
-        $(".reviews").css('height','33%');
+        $('.reviews').css('width','33%');
+        $('.reviews').css('height','33%');
     }
 }
-
-
 
 
 
