@@ -2,7 +2,7 @@
  * Created by KimSangYun on 2015-02-17.
  */
 var friends = [];
-/*
+
 $('#glyphicon-sharescreen').click(function(){
     var nc = new TjNetworkConnector();
 
@@ -19,7 +19,7 @@ $('#glyphicon-sharescreen').click(function(){
     });
 
 
-});*/
+});
 
 
 //화면크기 조절을 감지하여 footer의 높이를 조절해주는 함수
@@ -143,10 +143,10 @@ $(document).ready(function(){
         if ($('#chatting-space').css("display") === 'none') {
             $('#chatting-space').css('display', 'block');
             $('#chatting-space').css('-webkit-transform', 'translate(570px, 0px)');
-            /*$('#footer').css('margin-left', 'calc(20% + 70px)');
-            $('#footer').css('width', 'calc(75% - 70px)');*/
             $('#Wvideos').css('width', 'calc(80% - 70px)');
             $('#Wvideos').css('margin-left', 'calc(20% + 70px)');
+            $('#footer').css('width', 'calc(75% - 70px)');
+            $('#footer').css('margin-left', 'calc(25% + 70px)');
             $('#Recorded-Video-container').css('width', 'calc(80% - 70px)');
             $('#Recorded-Video-container').css('margin-left', 'calc(20% + 70px)');
         }
@@ -154,16 +154,14 @@ $(document).ready(function(){
         else {
             $('#Wvideos').css('margin-left', '70px');
             $('#Wvideos').css('width', 'calc(100% - 70px)');
+            $('#footer').css('width', 'calc(95% - 70px)');
+            $('#footer').css('margin-left', 'calc(5% + 70px)');
             $('#Recorded-Video-container').css('margin-left', '70px');
             $('#Recorded-Video-container').css('width', 'calc(100% - 70px)');
-            $('#chatting-space').css('-webkit-transform', 'translate(-570px, 0px)');
-            //$('#chatting-space').slideToggle('slow');
-
-            /*setTimeout(function(){
-                $('#footer').css('margin-left', '70px');
-                $('#footer').css('width', '95%');
-            },500);*/
-            $('#chatting-space').css('display', 'none');
+            setTimeout(function(){
+                $('#chatting-space').css('-webkit-transform', 'translate(-570px, 0px)');
+                $('#chatting-space').css('display', 'none');
+            },200);
         }
     });
 });
@@ -177,6 +175,8 @@ $(document).ready(function(){
             $('#Recorded-List-container').css('-webkit-transform', 'translate(570px, 0px)');
             $('#Wvideos').css('width', 'calc(80% - 70px)');
             $('#Wvideos').css('margin-left', 'calc(20% + 70px)');
+            $('#footer').css('width', 'calc(75% - 70px)');
+            $('#footer').css('margin-left', 'calc(25% + 70px)');
             $('#Recorded-Video-container').css('width', 'calc(80% - 70px)');
             $('#Recorded-Video-container').css('margin-left', 'calc(20% + 70px)');
 
@@ -185,10 +185,17 @@ $(document).ready(function(){
         else {
             $('#Wvideos').css('margin-left', '70px');
             $('#Wvideos').css('width', 'calc(100% - 70px)');
+            $('#footer').css('width', 'calc(95% - 70px)');
+            $('#footer').css('margin-left', 'calc(5% + 70px)');
             $('#Recorded-Video-container').css('margin-left', '70px');
             $('#Recorded-Video-container').css('width', 'calc(100% - 70px)');
-            $('#Recorded-List-container').css('-webkit-transform', 'translate(-570px, 0px)');
-            $('#Recorded-List-container').css('display', 'none');
+            //$('#chatting-space').slideToggle('slow');
+
+            setTimeout(function(){
+                $('#Recorded-List-container').css('-webkit-transform', 'translate(-570px, 0px)');
+                $('#Recorded-List-container').css('display', 'none');
+             },200);
+
 
         }
     });
@@ -273,7 +280,13 @@ $('#glyphicon-record').click(function() {
     MediaStreams = getMediaStreams();
     //녹화중이 아니었다면 녹화를 시작한다.
     if (recorflag === 0) {
-        alert('녹화를 시작합니다.');
+        $('#Alert-space-text').append("녹화가 시작됩니다.");
+        $('#Alert-space').css('-webkit-transform', 'translate(0px, 25%)');
+        setTimeout(function(){
+            $('#Alert-space').css('-webkit-transform', 'translate(0px, -25%)');
+            $('#Alert-space-text').empty();
+        },1500);
+        //alert('녹화를 시작합니다.');
         $('#recordimg').css('display','block');
         recorflag = 1;
         MediaStreamLength = MediaStreams.length;
@@ -347,7 +360,13 @@ $('#glyphicon-record').click(function() {
     }
     //이미 녹화중이었다면 종료한다.
     else{
-        alert('녹화를 종료합니다.');
+        $('#Alert-space-text').append("녹화가 종료됩니다.");
+        $('#Alert-space').css('-webkit-transform', 'translate(0px, 25%)');
+        setTimeout(function(){
+            $('#Alert-space').css('-webkit-transform', 'translate(0px, -25%)');
+            $('#Alert-space-text').empty();
+        },1500);
+        //alert('녹화를 종료합니다.');
         $('#recordimg').css('display','none');
         recorflag = 0;
 
@@ -362,14 +381,36 @@ $('#glyphicon-record').click(function() {
 
         // _li.textContent = RecDates[i];
         _li.textContent = RecDate;
-        /*_li.onclick= function(){
+        _li.onclick= function(){
+            $('#Recorded-Video-container').css('display', 'block');
+            $('#backhome').css('display', 'block');
+
+            //$('#Recorded-Video-container').css('-webkit-transform', 'translate(2000px, 0px)');
+            //$('#Wvideos').css('z-index', '-9999');
+            //$('#Wvideos').css('display', 'none');
+            //$('#Recorded-Video-container').css('-webkit-transform', 'translate(2000px, 0px)');
+            //$('#Wvideos').css('-webkit-transform', 'translate(2000px, 0px)');
+            //$('#Recorded-Video-container').css('-webkit-transform', 'translate(2000px, 0px)');
 
 
-            //alert('ID: '+this.id+"\n이름: "+this.textContent+".");
-            //$('#Wvideos').css('display','none');
+
+            //MediaStreamLength
+
+            //녹화된 내용을 다시 볼때의 화면에 video들을 추가해주는 함수
+            appendReviewVideos();
+            //다시볼 비디오들의 크기를 알맞게 재조정.
+            resizeReviewVideos();
+            //자동 재생
+            //$('.reviews').autoplay = true;
+            //$('.reviews').load();
 
 
-        };*/
+
+
+
+
+
+        };
 
 
         _li.onmouseover= function(){
@@ -507,4 +548,137 @@ $('#glyphicon-record').click(function() {
          }*/
     }
 
+});
+
+// Recorded-Videos 공간에 다시 볼 비디오의 갯수만큼 비디오태그를 만들어서 blob url 까지 넣어서 추가해주는 함수
+function appendReviewVideos(){
+
+    var audio = document.createElement('audio');
+    audio.src = window.URL.createObjectURL(AudioRecorder.blob);
+    audio.className = "reviews";
+    audio.autoplay = true;
+    $('#Recorded-Videos').append(audio);
+    var video = document.createElement('video');
+    video.src = window.URL.createObjectURL(VideoRecorder0.blob);
+    video.className = "reviews";
+    video.autoplay = true;
+    $('#Recorded-Videos').append(video);
+    if(MediaStreamLength === 1) return;
+    var video = document.createElement('video');
+    video.src = window.URL.createObjectURL(VideoRecorder1.blob);
+    video.className = "reviews";
+    video.autoplay = true;
+    $('#Recorded-Videos').append(video);
+    if(MediaStreamLength === 2) return;
+    var video = document.createElement('video');
+    video.src = window.URL.createObjectURL(VideoRecorder2.blob);
+    video.className = "reviews";
+    video.autoplay = true;
+    $('#Recorded-Videos').append(video);
+    if(MediaStreamLength === 3) return;
+    var video = document.createElement('video');
+    video.src = window.URL.createObjectURL(VideoRecorder3.blob);
+    video.className = "reviews";
+    video.autoplay = true;
+    $('#Recorded-Videos').append(video);
+    if(MediaStreamLength === 4) return;
+    var video = document.createElement('video');
+    video.src = window.URL.createObjectURL(VideoRecorder4.blob);
+    video.className = "reviews";
+    video.autoplay = true;
+    $('#Recorded-Videos').append(video);
+    if(MediaStreamLength === 5) return;
+    var video = document.createElement('video');
+    video.src = window.URL.createObjectURL(VideoRecorder5.blob);
+    video.className = "reviews";
+    video.autoplay = true;
+    $('#Recorded-Videos').append(video);
+    if(MediaStreamLength === 6) return;
+    var video = document.createElement('video');
+    video.src = window.URL.createObjectURL(VideoRecorder6.blob);
+    video.className = "reviews";
+    video.autoplay = true;
+    $('#Recorded-Videos').append(video);
+    if(MediaStreamLength === 7) return;
+    var video = document.createElement('video');
+    video.src = window.URL.createObjectURL(VideoRecorder7.blob);
+    video.className = "reviews";
+    video.autoplay = true;
+    $('#Recorded-Videos').append(video);
+    if(MediaStreamLength === 8) return;
+    var video = document.createElement('video');
+    video.src = window.URL.createObjectURL(VideoRecorder8.blob);
+    video.className = "reviews";
+    video.autoplay = true;
+    $('#Recorded-Videos').append(video);
+/*
+    for(var i=0;i<MediaStreamLength; i++){
+        var video = document.createElement('video');
+        video.src = window.URL.createObjectURL(VideoRecorder+i +'.blob');
+        video.className = "reviews";
+        video.autoplay = true;
+        video.controls = true;
+        $('#Recorded-Videos').append(video);
+    }*/
+}
+
+function resizeReviewVideos(){
+    if(MediaStreamLength == 1){
+        $(".reviews").css('width','100%');
+        $(".reviews").css('height','100%');
+    }
+    else if(MediaStreamLength == 2){
+        $(".reviews").css('width','100%');
+        $(".reviews").css('height','50%');
+    }
+    else if(MediaStreamLength == 3){
+        $(".reviews").css('width','50%');
+        $(".reviews").css('height','50%');
+    }
+    else if(MediaStreamLength == 4){
+        $(".reviews").css('width','50%');
+        $(".reviews").css('height','50%');
+    }
+    else if(MediaStreamLength == 5){
+        $(".reviews").css('width','33%');
+        $(".reviews").css('height','50%');
+    }
+    else if(MediaStreamLength == 6){
+        $(".reviews").css('width','33%');
+        $(".reviews").css('height','50%');
+    }
+    else if(MediaStreamLength == 7){
+        $(".reviews").css('width','33%');
+        $(".reviews").css('height','33%');
+    }
+    else if(MediaStreamLength == 8){
+        $(".reviews").css('width','33%');
+        $(".reviews").css('height','33%');
+    }
+    else if(MediaStreamLength == 9){
+        $(".reviews").css('width','33%');
+        $(".reviews").css('height','33%');
+    }
+}
+
+
+
+
+
+
+$(document).ready(function() {
+    $('#backhome').click(function () {
+        $('#backhome').css('display','none');
+        //$('#Wvideos').css('-webkit-transform', 'translate(-2000px, 0px)');
+        //$('#Recorded-Video-container').css('-webkit-transform', 'translate(-2000px, 0px)');
+        $('#Recorded-Video-container').css('display', 'none');
+
+    });
+
+    $('#backhome').mouseenter(function(){
+        $('#backhome').css('background-color', '#999');
+        });
+    $('#backhome').mouseleave(function(){
+        $('#backhome').css('background-color', '#222');
+    });
 });

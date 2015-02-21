@@ -4,10 +4,11 @@ var PeerConnection = window.PeerConnection || window.webkitPeerConnection00 || w
 var CurrentVideo = {};
 var userinfo = new DefaultUserinfo();
 
-//태양 - 추가한함수. 여기서 발생한 Stream을 SunofScript로 가져가기위해 불가피하게 추가했어요..
+//태양 - 추가부분. 여기서 발생한 Stream을 Sun of Script로 가져가기위해 추가.
 function getMediaStreams(){
     return MediaStreams;
 }
+//태양 - 추가부분. 여기서 발생한 Stream을 Sun of Script로 가져가기위해 추가.
 
 function swapVideo(cVideo, tVideo) {
     var tempVideoSrc;
@@ -75,11 +76,12 @@ function cloneVideo(domId, socketId) {
     videos.push(clone);
 
     $('#minivideos').append(span);
-
+    /*태양 추가부분 - footer 비디오 5개 이상되면 비디오 사이즈 재조정*/
     if (videos.length >= 5) {
         $('#minivideos>*').css('height', '45%');
         $('#minivideos>*').css('margin-bottom', '2px');
     }
+    /*태양 추가부분 - footer 비디오 5개 이상되면 비디오 사이즈 재조정*/
 
     //미니 Video 누르면 큰 화면의 Video랑 바뀌는 함수
     clone.onclick = function () {
@@ -280,7 +282,15 @@ function init() {
     rtc.on('disconnect stream', function (data) {
         console.log('remove ' + data);
         removeVideo(data);
+
+        /* 태양 추가부분 ,  footer 비디오 5개 이상에서 4개 이하가 될시에 footer 비디오 사이즈 재조정*/
+        if (videos.length <= 4) {
+            $('#minivideos>*').css('height', '95%');
+            $('#minivideos>*').css('margin-bottom', '0px');
+        }
         MediaStreams.pop();
+        /*태양 추가부분 footer 비디오 5개 이상에서 4개 이하가 될시에 footer 비디오 사이즈 재조정*/
+
     });
     //initFullScreen();
     //initNewRoom();
