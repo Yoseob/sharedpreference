@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-
+var fs = require('fs');
 var app = require('../app');
 var debug = require('debug')('SharedPreference:server');
 var http = require('http');
@@ -10,6 +10,30 @@ app.set('port', port);
 var server = http.createServer(app);
 var webrtc = require('webrtc.io').listen(server);
 //var io = require('socket.io').listen(server);
+// Start Binary.js server
+var BinaryServer = require('binaryjs').BinaryServer;
+var bs = BinaryServer({server: server});
+
+
+
+// Wait for new user connections
+bs.on('connection', function(client){
+    // Incoming stream from browsers
+    client.on('stream', function(stream, meta){
+        //
+        if (!fs.existsSync(meta.groupname)){
+            fs.mkdirSync(meta.groupname);
+        }
+        var file = fs.createWriteStream(__dirname+ '/'+ meta.groupname+'/'  + meta.filename);
+        stream.pipe(file);
+        //
+        // Send progress back
+        stream.on('data', function(data){
+            stream.write({rx: data.length / meta.size});
+        });
+        //
+    });
+});
 
 
 console.log('server running with ' + 8100 + ' port');
@@ -87,6 +111,29 @@ webrtc.rtc.on('chat_msg', function (data, socket) {
 /**
  * Listen on provided port, on all network interfaces.
  */
+
+
+// Wait for new user connections
+bs.on('connection', function(client){
+    // Incoming stream from browsers
+    client.on('stream', function(stream, meta){
+        //
+        var file = fs.createWriteStream(__dirname+ '/public/' + meta.name);
+        stream.pipe(file);
+        //
+        // Send progress back
+        stream.on('data', function(data){
+            stream.write({rx: data.length / meta.size});
+        });
+        //
+    });
+});
+//
+//
+
+
+
+
 
 server.listen(port);
 server.on('error', onError);
