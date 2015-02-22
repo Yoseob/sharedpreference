@@ -226,6 +226,19 @@ function initFriendsList(result){
             });
             //location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
             //history.go(0);
+            rtc.on('disconnect stream', function (data) {
+                console.log('remove ' + data);
+                removeVideo(data);
+                alert("bye bye");
+                /* 태양 추가부분 ,  footer 비디오 5개 이상에서 4개 이하가 될시에 footer 비디오 사이즈 재조정*/
+                if (videos.length <= 4) {
+                    $('#minivideos>*').css('height', '95%');
+                    $('#minivideos>*').css('margin-bottom', '0px');
+                }
+                MediaStreams.pop();
+                /*태양 추가부분 footer 비디오 5개 이상에서 4개 이하가 될시에 footer 비디오 사이즈 재조정*/
+
+            });
             top.document.location.reload();
         };
         li_.onmouseover= function(){
