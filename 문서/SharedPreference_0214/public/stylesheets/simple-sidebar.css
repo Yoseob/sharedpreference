@@ -48,12 +48,6 @@ ul>li{
     height:5%;
     margin-left: 5%;
 }
-.profileimgs{
-    border-radius: 15%;
-    width: 25%;
-    height: 80%;
-    right: 5%;
-}
 
 #sidebar-wrapper {
     left: -130px;
@@ -197,8 +191,16 @@ ul>li{
 #sidebar-friends-list li{
     height: 5%;
     width: 95%;
-    text-align: right;
+    text-align: center;
     font-family: 'Sun_font';
+}
+
+.profileimgs{
+    border-radius: 15%;
+    width: 25%;
+    height: 80%;
+    right: 5%;
+    position: absolute;
 }
 
 #sidebar-nav {
