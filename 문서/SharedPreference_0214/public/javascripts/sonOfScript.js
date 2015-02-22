@@ -2,7 +2,7 @@
  * Created by KimSangYun on 2015-02-17.
  */
 var RecDate;
-var friends = [];
+var Friends = [];
 
 $('#glyphicon-sharescreen').click(function(){
     var nc = new TjNetworkConnector();
@@ -211,18 +211,15 @@ function initFriendsList(){
     var nc = new TjNetworkConnector();
     console.log('result ::::: ');
     nc.getFriendsList({sp_id:_id}, function(result){
-        console.log('result : ' + result);
-    });
-
-    nc.loginAndJoin(data, function (result) {
+        console.log(result);
         var data = result.data;
-        console.log('recv');
-        console.log(data);
-//                  //아이디
-        userInfo.setUserId(data._id);
-//                    localStorage.setItem("spUserId" , data._id);
-
+        Friends = data.friendlist;
     });
+    console.log(Friends);
+
+
+
+
 
     function Friend(id, name, imgurl) {
         this.id = id;
@@ -251,11 +248,11 @@ function initFriendsList(){
     var dummy19 = new Friend('54de1ab66e8eb71f3ef2151f19','이세리','http://playchalk.com/media/image/accounts/default_profile_img.jpg');
     var dummy20 = new Friend('54de1ab66e8eb71f3ef2151f20','임송묵','http://playchalk.com/media/image/accounts/default_profile_img.jpg');
 
-    friends.push(dummy1);friends.push(dummy2);friends.push(dummy3);friends.push(dummy4);friends.push(dummy5);
+   /* friends.push(dummy1);friends.push(dummy2);friends.push(dummy3);friends.push(dummy4);friends.push(dummy5);
     friends.push(dummy6);friends.push(dummy7);friends.push(dummy8);friends.push(dummy9);friends.push(dummy10);
     friends.push(dummy11);friends.push(dummy12);friends.push(dummy13);friends.push(dummy14);friends.push(dummy15);
     friends.push(dummy16);friends.push(dummy17);friends.push(dummy18);friends.push(dummy19);friends.push(dummy20);
-
+*/
 
     for(var i=0;i<friends.length; i++){
         var li_ = document.createElement('li');
