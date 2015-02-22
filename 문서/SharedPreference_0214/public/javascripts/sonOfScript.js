@@ -202,19 +202,19 @@ $(document).ready(function(){
     });
 });
 
-function initFriendsList(){
-
-
+function setupfriendList(){
     var userInfo = new DefaultUserinfo();
     var _id = userInfo.getUserId();
 
     var nc = new TjNetworkConnector();
     console.log('result ::::: ');
-    nc.getFriendsList({sp_id:_id}, function(result){
-        console.log(result);
-        var data = result.data;
-        Friends = data.friendlist;
-    });
+    nc.getFriendsList({sp_id:_id}, initFriendsList);
+}
+function initFriendsList(result){
+
+    console.log(result);
+    var data = result.data;
+    Friends = data.friendlist;
     console.log(Friends);
 
 
@@ -261,7 +261,7 @@ function initFriendsList(){
         li_.id = friends[i].id;
         li_.textContent = friends[i].name;
         img_.className = "profileimgs";
-        img_.src = friends[i].imgurl;
+        img_.src = friends[i].url;
 
         li_.appendChild(img_);
 
