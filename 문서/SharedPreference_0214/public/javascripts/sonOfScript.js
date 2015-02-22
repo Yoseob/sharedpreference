@@ -229,7 +229,7 @@ function initFriendsList(result){
             //history.go(0);
             rtc.fire('disconnect stream');
 
-            location.href = 'http://210.118.64.172:8000';
+            //location.href = 'http://210.118.64.172:8000';
 
 
         };
