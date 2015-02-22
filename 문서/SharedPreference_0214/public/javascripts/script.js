@@ -152,10 +152,11 @@ function initFullScreen() {
     var targetuser = userinfo.getTargetUser();
 
 
+
     if (roomname !== null) {
         window.location.hash = roomname;
     }
-    if(targetuser !== null){
+    if(targetuser !== null  &&targetuser !== '' ){
         window.location.hash = targetuser;
     }
 
@@ -296,6 +297,7 @@ function init() {
         var Trashvideo = {};
         Trashvideo = rtc.attachStream(stream, clone.id);
         MediaStreams.push(stream);
+        userinfo.setTargetUser('');
     });
     rtc.on('disconnect stream', function (data) {
         console.log('remove ' + data);
@@ -308,7 +310,7 @@ function init() {
         }
         MediaStreams.pop();
         /*태양 추가부분 footer 비디오 5개 이상에서 4개 이하가 될시에 footer 비디오 사이즈 재조정*/
-        userinfo.setTargetUser('');
+
     });
     //initFullScreen();
     //initNewRoom();
