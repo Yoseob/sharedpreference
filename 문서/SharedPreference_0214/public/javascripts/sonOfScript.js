@@ -3,7 +3,7 @@
  */
 var RecDate;
 var Friends = [];
-
+var userInfo = new DefaultUserinfo();
 $('#glyphicon-sharescreen').click(function(){
 
 
@@ -190,11 +190,9 @@ $(document).ready(function(){
 });
 
 function setupfriendList(){
-    var userInfo = new DefaultUserinfo();
     var _id = userInfo.getUserId();
 
     var nc = new TjNetworkConnector();
-    console.log('result ::::: ');
     nc.getFriendsList({sp_id:_id}, initFriendsList);
 }
 
@@ -221,7 +219,8 @@ function initFriendsList(result){
         li_.appendChild(img_);
 
         li_.onclick= function(){
-            alert('ID: '+this.id+"\n이름: "+this.textContent+".");
+            userInfo.setTargetUser(p_.textContent);
+            initNewRoom();
         };
         li_.onmouseover= function(){
             this.setAttribute('style', 'background-color:#999');

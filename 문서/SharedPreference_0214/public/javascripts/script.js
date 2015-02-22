@@ -156,8 +156,9 @@ function initFullScreen() {
     if (roomname !== null) {
         window.location.hash = roomname;
     }
-    if(targetuser !== null  &&targetuser !== '' ){
+    if(targetuser !== null  && targetuser !== '' ){
         window.location.hash = targetuser;
+        init();
     }
 
 
