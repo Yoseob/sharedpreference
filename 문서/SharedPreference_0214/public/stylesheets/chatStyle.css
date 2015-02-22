@@ -110,14 +110,14 @@ body {
     /* margin-left:50px;*/
     /* background:#f3961c;*/
     /*background: linear-gradient(#f7f9cf, #f2f300);*/
-    background: #f9f9f5;
+    background: gold;
 }
 
 .triangle-isosceles.left.col {
     /* margin-left:50px;*/
     /* background:#f3961c;*/
     /*background: linear-gradient(#dff9cf, #70f33e);*/
-    background: #f2f300;
+    background: #ffffff;
 }
 
 .triangle-isosceles.right {
@@ -235,7 +235,7 @@ a:hover {
     height: 90%;
     width: 100%;
     overflow: scroll;
-    background-color:lightskyblue ;
+    background-color:dimgray ;
 }
 
 #chat-top {
