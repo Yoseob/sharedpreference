@@ -27,7 +27,7 @@ TjNetworkConnector.prototype = {
 
     },
     getFriendsList: function(sendData, callback){
-        this.requestMessage('friends/friendlist', sendData, callback);
+        this.requestMessage('/friends/friendlist', sendData, callback);
     },
     loginAndJoin: function (sendData, callback) {
         this.requestMessage('/account/login.facebook', sendData, callback);
