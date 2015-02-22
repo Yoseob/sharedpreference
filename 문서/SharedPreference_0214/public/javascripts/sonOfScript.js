@@ -229,8 +229,8 @@ function initFriendsList(result){
             //location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
 
             rtc.fire('disconnect stream');
-            history.go(0);
-            //location.href = 'http://210.118.64.172:8000';
+            //history.go(0);
+            location.href = 'http://210.118.64.172:8000';
 
 
         };
