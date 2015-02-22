@@ -219,13 +219,15 @@ function initFriendsList(result){
         li_.appendChild(img_);
 
         li_.onclick= function(){
-            userInfo.setTargetUser(p_.textContent);
+            //userInfo.setTargetUser(p_.textContent);
             //window.location.reload();
             //location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
             //history.go(0);
             //top.document.location.reload();
-            history.go(-1);
-            location.href = 'http://210.118.64.172:8000';
+            //history.go(-1);
+            //location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
+            //history.go(0);
+            //location.href = 'http://210.118.64.172:8000';
         };
         li_.onmouseover= function(){
             this.setAttribute('style', 'background-color:#999');
