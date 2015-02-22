@@ -16,7 +16,7 @@ TjNetworkConnector.prototype = {
     requestMessage: function (url, sendData, callback) {
         console.log(sendData);
         $.ajax({
-            url: 'http://210.118.64.172:8100' + url,
+            url: 'http://210.118.64.172:8000' + url,
             dataType: 'json',
             data: sendData,
             type: 'POST',
@@ -25,6 +25,9 @@ TjNetworkConnector.prototype = {
             }
         });
 
+    },
+    getFriendsList: function(sendData, callback){
+        this.requestMessage('friends/friendlist', sendData, callback);
     },
     loginAndJoin: function (sendData, callback) {
         this.requestMessage('/account/login.facebook', sendData, callback);

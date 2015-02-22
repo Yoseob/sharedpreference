@@ -5,7 +5,7 @@ var RecDate;
 var friends = [];
 
 $('#glyphicon-sharescreen').click(function(){
-/*    var nc = new TjNetworkConnector();
+    var nc = new TjNetworkConnector();
 
     var data = {
         facebookId : '1538116369788042',
@@ -19,7 +19,7 @@ $('#glyphicon-sharescreen').click(function(){
         console.log('result.data : ' + result.facebookId);
     });
 
-*/
+
 });
 
 
@@ -203,6 +203,26 @@ $(document).ready(function(){
 });
 
 function initFriendsList(){
+
+
+    var userInfo = new DefaultUserinfo();
+    var _id = userInfo.getUserId();
+
+    var nc = new TjNetworkConnector();
+    console.log('result ::::: ');
+    nc.getFriendsList({sp_id:_id}, function(result){
+        console.log('result : ' + result);
+    });
+
+    nc.loginAndJoin(data, function (result) {
+        var data = result.data;
+        console.log('recv');
+        console.log(data);
+//                  //아이디
+        userInfo.setUserId(data._id);
+//                    localStorage.setItem("spUserId" , data._id);
+
+    });
 
     function Friend(id, name, imgurl) {
         this.id = id;
