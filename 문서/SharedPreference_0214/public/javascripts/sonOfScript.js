@@ -219,7 +219,7 @@ function initFriendsList(result){
         li_.appendChild(img_);
 
         //li_.onclick = changeRoom(this.id);
-        li_.onmousedown = function(){
+        /*li_.onmousedown = function(){
             userInfo.setTargetUser(this.p.textContent);
             //window.location.reload();
             //location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
@@ -233,7 +233,7 @@ function initFriendsList(result){
             location.href = 'http://210.118.64.172:8000';
 
 
-        };
+        };*/
         li_.onmouseover= function(){
             this.setAttribute('style', 'background-color:#999');
         };
@@ -243,6 +243,15 @@ function initFriendsList(result){
         $('.sidebar-friends').append(li_);
     }
 }
+
+$(document).ready(function()
+{
+    $('ul.sidebar-friends li').click(function(e)
+    {
+        alert($(this).find("p").text());
+    });
+});
+
 /*
 $('.sidebar-friends').onclick = function(event){
     var target = getEventTarget(event);
