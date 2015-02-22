@@ -218,7 +218,7 @@ function initFriendsList(result){
         li_.appendChild(p_);
         li_.appendChild(img_);
 
-        li_.onclick = changeRoom(this.id);
+        //li_.onclick = changeRoom(this.id);
         /*function(){
             userInfo.setTargetUser(p_.textContent);
             //window.location.reload();
@@ -244,7 +244,7 @@ function initFriendsList(result){
     }
 }
 
-function changeRoom(selectedListId){
+$('.sidebar-friends').onclick = function(selectedListId){
     userInfo.setTargetUser(selectedListId);
     rtc.fire('disconnect stream');
     location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
