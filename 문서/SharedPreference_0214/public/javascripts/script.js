@@ -250,6 +250,7 @@ function windowShareInit(){
 
 function init() {
 
+    console.log('222222!!!!');
     console.log('init');
     if (PeerConnection) {
         rtc.createStream({
