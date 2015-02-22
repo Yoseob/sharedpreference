@@ -220,7 +220,7 @@ function initFriendsList(result){
 
         //li_.onclick = changeRoom(this.id);
         li_.onmousedown = function(){
-            userInfo.setTargetUser(p_.textContent);
+            userInfo.setTargetUser(this.id);
             //window.location.reload();
             //location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
             //history.go(0);
