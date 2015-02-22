@@ -194,6 +194,13 @@ ul>li{
     transition: background 0.5s linear;
 }
 
+#sidebar-friends-list li{
+    height: 5%;
+    width: 95%;
+    text-align: center;
+    font-family: 'Sun_font';
+}
+
 #sidebar-nav {
     height:10%;
     /*list-style: none;*/
