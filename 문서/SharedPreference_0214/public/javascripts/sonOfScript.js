@@ -244,8 +244,9 @@ function initFriendsList(result){
     }
 }
 
-$('.sidebar-friends').onclick = function(selectedListId){
-    userInfo.setTargetUser(selectedListId);
+$('.sidebar-friends').onclick = function(event){
+    var target = getEventTarget(event);
+    userInfo.setTargetUser(target.id);
     rtc.fire('disconnect stream');
     location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
     //history.go(0);
