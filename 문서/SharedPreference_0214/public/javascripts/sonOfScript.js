@@ -219,49 +219,14 @@ function initFriendsList(result){
 
 
 
-
-
-    function Friend(id, name, imgurl) {
-        this.id = id;
-        this.name = name;
-        this.imgurl = imgurl;
-    }
-
-    var dummy1 = new Friend('54de1ab66e8eb71f3ef2151f1','송태양','http://playchalk.com/media/image/accounts/default_profile_img.jpg');
-    var dummy2 = new Friend('54de1ab66e8eb71f3ef2151f2','이요섭','http://playchalk.com/media/image/accounts/default_profile_img.jpg');
-    var dummy3 = new Friend('54de1ab66e8eb71f3ef2151f3','유광열','http://playchalk.com/media/image/accounts/default_profile_img.jpg');
-    var dummy4 = new Friend('54de1ab66e8eb71f3ef2151f4','남두현','http://playchalk.com/media/image/accounts/default_profile_img.jpg');
-    var dummy5 = new Friend('54de1ab66e8eb71f3ef2151f5','정재현','http://playchalk.com/media/image/accounts/default_profile_img.jpg');
-    var dummy6 = new Friend('54de1ab66e8eb71f3ef2151f6','김수지','http://playchalk.com/media/image/accounts/default_profile_img.jpg');
-    var dummy7 = new Friend('54de1ab66e8eb71f3ef2151f7','박태현','http://playchalk.com/media/image/accounts/default_profile_img.jpg');
-    var dummy8 = new Friend('54de1ab66e8eb71f3ef2151f8','임용규','http://playchalk.com/media/image/accounts/default_profile_img.jpg');
-    var dummy9 = new Friend('54de1ab66e8eb71f3ef2151f9','윤필립','http://playchalk.com/media/image/accounts/default_profile_img.jpg');
-    var dummy10 = new Friend('54de1ab66e8eb71f3ef2151f0','손승하','http://playchalk.com/media/image/accounts/default_profile_img.jpg');
-    var dummy11 = new Friend('54de1ab66e8eb71f3ef2151f11','손진오','http://playchalk.com/media/image/accounts/default_profile_img.jpg');
-    var dummy12 = new Friend('54de1ab66e8eb71f3ef2151f12','김민수','http://playchalk.com/media/image/accounts/default_profile_img.jpg');
-    var dummy13 = new Friend('54de1ab66e8eb71f3ef2151f13','김상윤','http://playchalk.com/media/image/accounts/default_profile_img.jpg');
-    var dummy14 = new Friend('54de1ab66e8eb71f3ef2151f14','김은민','http://playchalk.com/media/image/accounts/default_profile_img.jpg');
-    var dummy15 = new Friend('54de1ab66e8eb71f3ef2151f15','권용훈','http://playchalk.com/media/image/accounts/default_profile_img.jpg');
-    var dummy16 = new Friend('54de1ab66e8eb71f3ef2151f16','이정우','http://playchalk.com/media/image/accounts/default_profile_img.jpg');
-    var dummy17 = new Friend('54de1ab66e8eb71f3ef2151f17','이정훈','http://playchalk.com/media/image/accounts/default_profile_img.jpg');
-    var dummy18 = new Friend('54de1ab66e8eb71f3ef2151f18','최한솔','http://playchalk.com/media/image/accounts/default_profile_img.jpg');
-    var dummy19 = new Friend('54de1ab66e8eb71f3ef2151f19','이세리','http://playchalk.com/media/image/accounts/default_profile_img.jpg');
-    var dummy20 = new Friend('54de1ab66e8eb71f3ef2151f20','임송묵','http://playchalk.com/media/image/accounts/default_profile_img.jpg');
-
-   /* friends.push(dummy1);friends.push(dummy2);friends.push(dummy3);friends.push(dummy4);friends.push(dummy5);
-    friends.push(dummy6);friends.push(dummy7);friends.push(dummy8);friends.push(dummy9);friends.push(dummy10);
-    friends.push(dummy11);friends.push(dummy12);friends.push(dummy13);friends.push(dummy14);friends.push(dummy15);
-    friends.push(dummy16);friends.push(dummy17);friends.push(dummy18);friends.push(dummy19);friends.push(dummy20);
-*/
-
-    for(var i=0;i<friends.length; i++){
+    for(var i=0;i<Friends.length; i++){
         var li_ = document.createElement('li');
         var img_ = document.createElement('img');
 
-        li_.id = friends[i].id;
-        li_.textContent = friends[i].name;
+        li_.id = Friends[i].id;
+        li_.textContent = Friends[i].name;
         img_.className = "profileimgs";
-        img_.src = friends[i].url;
+        img_.src = Friends[i].url;
 
         li_.appendChild(img_);
 
