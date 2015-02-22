@@ -221,8 +221,11 @@ function initFriendsList(result){
         li_.onclick= function(){
             userInfo.setTargetUser(p_.textContent);
             //window.location.reload();
+            rtc.on('disconnect stream', function (data) {
+                MediaStreams.pop();
+            });
             location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
-            window.location.reload();
+            history.go(-1);
         };
         li_.onmouseover= function(){
             this.setAttribute('style', 'background-color:#999');
