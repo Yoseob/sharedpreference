@@ -221,7 +221,7 @@ function initFriendsList(result){
         li_.onclick= function(){
             userInfo.setTargetUser(p_.textContent);
             //window.location.reload();
-            window.location.replace('mainView.ejs');
+            location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
         };
         li_.onmouseover= function(){
             this.setAttribute('style', 'background-color:#999');
