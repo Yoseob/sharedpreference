@@ -227,10 +227,10 @@ function initFriendsList(result){
             location.href = 'http://210.118.64.172:8000';
         };
         li_.onmouseover= function(){
-            this.setAttribute('style', 'background-color:#999');
+            this.setAttribute('style', 'background-color:#AAA');
         };
         li_.onmouseout= function(){
-            this.setAttribute('style', 'background-color:#383838');
+            this.setAttribute('style', 'background-color:#252525');
         };
         $('.sidebar-friends').append(li_);
     }
@@ -354,9 +354,17 @@ $('#glyphicon-record').click(function() {
 
         //for(var i=0;i<RecDates.length; i++){
         var _li = document.createElement('li');
+        var p1 = document.createElement('p');
+        var p2 = document.createElement('p');
+        var p3 = document.createElement('p');
 
         // _li.textContent = RecDates[i];
-        _li.textContent = RecDate;
+        p2.textContent = RecDate;
+
+        _li.appendChild(p1);
+        _li.appendChild(p2);
+        _li.appendChild(p3);
+
         _li.onclick= function(){
             $('#Recorded-Video-container').css('display', 'block');
             $('#backhome').css('display', 'block');
@@ -390,10 +398,10 @@ $('#glyphicon-record').click(function() {
 
 
         _li.onmouseover= function(){
-            this.setAttribute('style', 'background-color:#EEEEEE');
+            this.setAttribute('style', 'background-color:#AAA');
         };
         _li.onmouseout= function(){
-            this.setAttribute('style', 'background-color:#555');
+            this.setAttribute('style', 'background-color:#383838');
         };
 
 
