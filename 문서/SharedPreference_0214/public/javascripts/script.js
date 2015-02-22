@@ -144,13 +144,19 @@ function initFullScreen() {
 
 (function initNewRoom() {
 
+
     for (var tRoomname in rtc.rooms) {
         console.log(tRoomname);
     }
     var roomname = userinfo.getUserName();
+    var targetuser = userinfo.getTargetUser();
+
 
     if (roomname !== null) {
         window.location.hash = roomname;
+    }
+    if(targetuser !== null){
+        window.location.hash = targetuser;
     }
 
 
@@ -268,6 +274,8 @@ function init() {
                 userinfo.setCurrentChattingRoom(result.data.chattingId);
 
             });
+
+
             windowShareInit();
 
         });
@@ -280,6 +288,7 @@ function init() {
 
     rtc.connect("ws:" + window.location.href.substring(window.location.protocol.length).split('#')[0], room);
 
+
     rtc.on('add remote stream', function (stream, socketId) {
         console.log("ADDING REMOTE STREAM...");
         var clone = cloneVideo('local-video', socketId);
@@ -291,7 +300,7 @@ function init() {
     rtc.on('disconnect stream', function (data) {
         console.log('remove ' + data);
         removeVideo(data);
-
+        alert("bye bye");
         /* 태양 추가부분 ,  footer 비디오 5개 이상에서 4개 이하가 될시에 footer 비디오 사이즈 재조정*/
         if (videos.length <= 4) {
             $('#minivideos>*').css('height', '95%');
@@ -299,7 +308,7 @@ function init() {
         }
         MediaStreams.pop();
         /*태양 추가부분 footer 비디오 5개 이상에서 4개 이하가 될시에 footer 비디오 사이즈 재조정*/
-
+        userinfo.setTargetUser('');
     });
     //initFullScreen();
     //initNewRoom();
