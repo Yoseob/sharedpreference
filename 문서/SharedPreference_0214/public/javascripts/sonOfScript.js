@@ -219,7 +219,7 @@ function initFriendsList(result){
         li_.appendChild(img_);
 
         //li_.onclick = changeRoom(this.id);
-        /*function(){
+        li_.onmousedown = function(){
             userInfo.setTargetUser(p_.textContent);
             //window.location.reload();
             //location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
@@ -233,7 +233,7 @@ function initFriendsList(result){
             //location.href = 'http://210.118.64.172:8000';
 
 
-        };*/
+        };
         li_.onmouseover= function(){
             this.setAttribute('style', 'background-color:#999');
         };
@@ -243,7 +243,7 @@ function initFriendsList(result){
         $('.sidebar-friends').append(li_);
     }
 }
-
+/*
 $('.sidebar-friends').onclick = function(event){
     var target = getEventTarget(event);
     userInfo.setTargetUser(target.id);
@@ -251,7 +251,7 @@ $('.sidebar-friends').onclick = function(event){
     location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
     //history.go(0);
 }
-
+*/
 
 
 var recorflag = 0;
