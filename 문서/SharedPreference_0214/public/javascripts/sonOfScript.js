@@ -220,7 +220,7 @@ function initFriendsList(result){
 
         li_.onclick= function(){
             userInfo.setTargetUser(p_.textContent);
-            initNewRoom();
+            window.location.reload();
         };
         li_.onmouseover= function(){
             this.setAttribute('style', 'background-color:#999');
