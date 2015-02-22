@@ -206,10 +206,10 @@ ul>li{
 
 #sidebar-friends-list li .profileimgs{
     border-radius: 15%;
-    width: 22%;
+    width: 25%;
     height: 80%;
     top:10%;
-    right: 6.8%;
+    right: 5%;
     position: absolute;
 }
 
