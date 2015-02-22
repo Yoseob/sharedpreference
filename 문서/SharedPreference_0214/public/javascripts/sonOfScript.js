@@ -197,10 +197,10 @@ function setupfriendList(){
 }
 
 function initFriendsList(result){
-    console.log(result);
+    //console.log(result);
     var data = result.data;
     Friends = data.friendlist;
-    console.log(Friends);
+    //console.log(Friends);
 
 
     for(var i=0;i<Friends.length; i++){
@@ -228,8 +228,9 @@ function initFriendsList(result){
             //history.go(-1);
             //location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
 
-            console.log('111111!!!!');
-            rtc.fire('disconnect stream');
+            var da = new Date();
+            console.log('111111!!!! '+da.getHours()+':'+da.getMinutes()+':'+da.getSeconds());
+            //rtc.fire('disconnect stream');
             //history.go(0);
             location.href = 'http://210.118.64.172:8000';
 
@@ -247,9 +248,9 @@ function initFriendsList(result){
 /*
 $(document).ready(function()
 {
-    $('ul.sidebar-friends li').click(function(e)
+    $('.sidebar-friends').children('li').click(function(e)
     {
-        alert($(this).find("p").text());
+        alert($(this).children('p').text());
     });
 });
 */
