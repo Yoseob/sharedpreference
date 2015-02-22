@@ -243,7 +243,7 @@ function initFriendsList(result){
         $('.sidebar-friends').append(li_);
     }
 }
-
+/*
 $(document).ready(function()
 {
     $('ul.sidebar-friends li').click(function(e)
@@ -251,7 +251,7 @@ $(document).ready(function()
         alert($(this).find("p").text());
     });
 });
-
+*/
 /*
 $('.sidebar-friends').onclick = function(event){
     var target = getEventTarget(event);
