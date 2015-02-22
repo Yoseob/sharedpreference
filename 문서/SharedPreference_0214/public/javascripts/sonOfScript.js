@@ -227,7 +227,7 @@ function initFriendsList(result){
             //history.go(-1);
             //location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
             //history.go(0);
-            location.href = 'http://www.naver.com';
+            location.href = 'http://210.118.64.172:8000/login';
             location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
         };
         li_.onmouseover= function(){
