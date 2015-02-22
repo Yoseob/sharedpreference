@@ -5,19 +5,6 @@ var RecDate;
 var Friends = [];
 
 $('#glyphicon-sharescreen').click(function(){
-    var nc = new TjNetworkConnector();
-
-    var data = {
-        facebookId : '1538116369788042',
-        username: 'LeeYoseob',
-        accessToken: 'CAAE76xiPpRABACFZB8QZB8C40IXHWzV6CBWyKU9fhVBjBco1039JOp4rB5c2LJSiIaLptSnh8Wqz4a316UcKivF6sKgDGavu87zCVQDp3CevAmjEfeDYHWcynhwAKrUIbcX9EWkZC0ZBU5NvA5pdxAZBPfOdXGWRQHZBLIKjMSN30FDrsIZAXO1o4cZBIdMxSq7cWmpmY2ZA4lW21di3cQiyzfjNjZC4iQnTgZD'
-    }
-    nc.loginAndJoin( data , function(result){
-        //처리 부분
-        console.log('result.type : ' + result.username);
-        console.log('result.url : ' + result.status);
-        console.log('result.data : ' + result.facebookId);
-    });
 
 
 });
@@ -33,7 +20,7 @@ window.onresize = function resizeFooterHeight() {
     }else{
         $('#footer').css('height',ClientHeight/4+'px');
     }
-}
+};
 
 /*친구목록에 마우스휨이 동작하게 하는 부분*/
 if (window.addEventListener)
@@ -138,7 +125,7 @@ $(document).ready(function() {
 
 //채팅 버튼 눌렀을 때 채팅창 뜨게 하는 함수  - 태양
 $(document).ready(function(){
-    var chat
+    var chat;
     $('#glyphicon-comment').click(function(){
         //채팅창이 없었을 경우 클릭시 if문 수행
         if ($('#chatting-space').css("display") === 'none') {
@@ -241,10 +228,7 @@ function initFriendsList(result){
         };
         $('.sidebar-friends').append(li_);
     }
-};
-
-
-
+}
 var recorflag = 0;
 var AudioRecorder;
 var MediaStreams = [];
@@ -322,7 +306,7 @@ $('#glyphicon-record').click(function() {
             type: 'video'
         });
         VideoRecorder8.startRecording();
-        return;
+
 
 
         /*for (var i=0;i<MediaStreams.length;i++) {
@@ -506,7 +490,7 @@ $('#glyphicon-record').click(function() {
             VideoLink.download = RecDate+'video' + 8 + '.mp4';
             //VideoLink.click();
         });
-        return;
+
 
 
 

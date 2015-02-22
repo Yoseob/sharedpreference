@@ -11,6 +11,14 @@ DefaultUserinfo.prototype = {
     _username: 'username',
     _id: 'spUserId',
     _chattingRoom: 'chattingRoomId',
+    _targetUser : 'target',
+
+    setTargetUser : function (targetUserName){
+        localStorage.setItem(this._targetUser, targetUserName);
+    },
+    getTargetUser : function(){
+        return localStorage.getItem(this._targetUser);
+    },
 
 
     setUserName: function (username) {

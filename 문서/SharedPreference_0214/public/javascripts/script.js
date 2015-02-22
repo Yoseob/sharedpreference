@@ -148,9 +148,14 @@ function initFullScreen() {
         console.log(tRoomname);
     }
     var roomname = userinfo.getUserName();
+    var targetuser = userinfo.getTargetUser();
+
 
     if (roomname !== null) {
         window.location.hash = roomname;
+    }
+    if(targetuser !== null){
+        window.location.hash = targetuser;
     }
 
 
@@ -291,7 +296,7 @@ function init() {
     rtc.on('disconnect stream', function (data) {
         console.log('remove ' + data);
         removeVideo(data);
-
+        alert("bye bye");
         /* 태양 추가부분 ,  footer 비디오 5개 이상에서 4개 이하가 될시에 footer 비디오 사이즈 재조정*/
         if (videos.length <= 4) {
             $('#minivideos>*').css('height', '95%');
