@@ -193,6 +193,7 @@ ul>li{
     width: 95%;
     text-align: center;
     font-family: 'Sun_font';
+    position: relative;
 }
 
 .profileimgs{
