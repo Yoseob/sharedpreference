@@ -219,7 +219,7 @@ function initFriendsList(result){
         li_.appendChild(img_);
 
         li_.onclick= function(){
-            //userInfo.setTargetUser(p_.textContent);
+            userInfo.setTargetUser(p_.textContent);
             //window.location.reload();
             //location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
             //history.go(0);
@@ -228,7 +228,7 @@ function initFriendsList(result){
             //location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
             //history.go(0);
             location.href = 'http://www.naver.com';
-            location.href = 'http://210.118.64.172:8000';
+            location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
         };
         li_.onmouseover= function(){
             this.setAttribute('style', 'background-color:#999');
