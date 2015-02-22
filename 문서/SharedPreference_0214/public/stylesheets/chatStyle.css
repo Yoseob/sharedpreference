@@ -42,7 +42,7 @@ body {
 }
 
 #chatinput {
-    background: #F9F9F9;
+    background: #ffffff;
     height: 100%;
     width: 100%;
     color: black;
@@ -109,13 +109,15 @@ body {
 .triangle-isosceles.left {
     /* margin-left:50px;*/
     /* background:#f3961c;*/
-    background: linear-gradient(#f7f9cf, #f2f300);
+    /*background: linear-gradient(#f7f9cf, #f2f300);*/
+    background: #f9f9f5;
 }
 
 .triangle-isosceles.left.col {
     /* margin-left:50px;*/
     /* background:#f3961c;*/
-    background: linear-gradient(#dff9cf, #70f33e);
+    /*background: linear-gradient(#dff9cf, #70f33e);*/
+    background: #f2f300;
 }
 
 .triangle-isosceles.right {
@@ -227,16 +229,18 @@ a:hover {
 #results {
     font-size: 14px;
     font-weight: bold;
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd;*/
     padding: 15px;
     text-align: left;
     height: 90%;
     width: 100%;
     overflow: scroll;
+    background-color:lightskyblue ;
 }
 
 #chat-top {
     height: 5%;
+    background-color: #ffffff;
 }
 
 #start_button {

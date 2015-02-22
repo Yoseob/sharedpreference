@@ -37,6 +37,7 @@
     var secret = '3629858ea14fe0e8eb61e368a9839559';
     var IsUsername = '';
     var USER_NAME = 'username';
+    var access_token='';
 
     /*
      // This is called with the results from from FB.getLoginStatus().
@@ -64,7 +65,6 @@
      'into Facebook.';
      }
      }
-
      */
     function fb_login(){
         FB.login(function(response) {
@@ -79,6 +79,7 @@
                 testAPI();
             } else {
                 //user hit cancel button
+                requestLogout();
                 console.log('User cancelled login or did not fully authorize.');
 
             }
@@ -109,9 +110,35 @@
         FB.getLoginStatus(function (response) {
             fb_login(response);
         });
-
     };
+    function requestLogout(){
+        FB.api('/me', function (response) {
+            console.log('logoutTest');
+            var outdata='';
+            if (response) {
+                console.log(response);
 
+                outdata.account_id = response.id;
+
+                //$('.account_id').text(data.facebookId);
+
+                var userInfo = new DefaultUserinfo();
+                userInfo.setUserName(data.username);
+
+                var outnc = new TjNetworkConnector();
+
+                console.log('start');
+                console.log(outdata);
+
+                outnc.logoutFunc(outdata, function (result) {
+                    var data = result.data;
+                    console.log('recv');
+                    console.log(data);
+
+                });
+            }
+        });
+    }
     function requetMyFacebookInfo(accessToken) {
         //서버로 전송할 데이터
         // 내이름
@@ -125,6 +152,9 @@
                 console.log(response);
 
                 data.facebookId = response.id;
+
+                $('.account_id').text(data.facebookId);
+
                 data.username = response.last_name + response.first_name;
                 data.accessToken = accessToken;
 
@@ -148,6 +178,7 @@
             }
         });
     }
+
     // Load the SDK asynchronously
     (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
@@ -170,11 +201,11 @@
 
 <div id="status">
 </div>
-
+<textarea class="account_id" style="display:none;"></textarea>
 <!-- Carousel
 ================================================== -->
 
-<a id="menuToggle" href="#" onclick="FB.logout();">Logout</a>
+<a id="menuToggle" class="logout_test" href="#" onclick="FB.logout();">Logout</a>
 <!-- ********** SLIDES ********** -->
 <section id="home" name="home"></section>
 <section id="slides">
@@ -241,7 +272,29 @@
 <script src="/javascripts/jquery.hammer.js"></script>
 <script src="/javascripts/tjNetworkConnector.js"></script>
 <script src="/javascripts/defaultUserinfo.js"></script>
-
+<!--
+<script>
+    $(document).ready(function(){
+        $('.logout_test').click(function(){
+            var val=$('.account_id').val();
+            console.log("1");
+            console.log(val);
+            $.ajax({
+                url:'http://210.118.64.172:8000/account/leave',
+                dataType:'json',
+                data:val,
+                type:'POST',
+                success:function(result){
+                    console.log("success");
+                    console.log(result);
+                }
+            }).fail(function(){
+                console.log("fail");
+            });
+        });
+    });
+</script>
+-->
 <script>
     $('#myModal').modal(options);
     $('#myModal').modal({

@@ -194,7 +194,7 @@ function initChat() {
     var input = document.getElementById("chatinput");
     var toggleHideShow = document.getElementById("hideShowMessages");
     var room = window.location.hash.slice(1);
-    var color = "#" + ((1 << 24) * Math.random() | 0).toString(16);
+    var color = "#" + 000;
 
     toggleHideShow.addEventListener('click', function () {
         var element = document.getElementById("results");

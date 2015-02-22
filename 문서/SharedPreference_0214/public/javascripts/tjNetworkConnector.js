@@ -32,6 +32,9 @@ TjNetworkConnector.prototype = {
     loginAndJoin: function (sendData, callback) {
         this.requestMessage('/account/login.facebook', sendData, callback);
     },
+    logoutFunc:function(sendData,callback){
+        this.requestMessage('/account/leave', sendData, callback);
+    },
     createOrJoinRoom: function (ownerId, callback) {
         this.requestMessage('/createorjoin', ownerId, callback);
     },
