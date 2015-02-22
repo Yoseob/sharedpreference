@@ -303,6 +303,6 @@ function init() {
     });
     //initFullScreen();
     //initNewRoom();
-    initFriendsList();
+    setupfriendList();
     initChat();
 }
