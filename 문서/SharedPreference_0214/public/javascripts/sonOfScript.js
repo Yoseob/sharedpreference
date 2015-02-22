@@ -227,10 +227,10 @@ function initFriendsList(result){
             //history.go(-1);
             //location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
             //history.go(0);
-            location.href = 'http://210.118.64.172:8000/login';
-            setTimeout(function(){
-                location.href = 'http://210.118.64.172:8000';
-            },2000);
+            rtc.fire('disconnect stream');
+
+            location.href = 'http://210.118.64.172:8000';
+
 
         };
         li_.onmouseover= function(){
