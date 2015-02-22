@@ -222,6 +222,7 @@ function initFriendsList(result){
             userInfo.setTargetUser(p_.textContent);
             //window.location.reload();
             location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
+            window.location.reload();
         };
         li_.onmouseover= function(){
             this.setAttribute('style', 'background-color:#999');
