@@ -264,6 +264,7 @@ function init() {
             BigVideo = rtc.attachStream(stream, 'local-video');
             CurrentVideo = BigVideo;
             MediaStreams.push(stream);
+            userinfo.setTargetUser('');
 
             var sendData = {};
             sendData.ownerId = window.location.hash.slice(1);
@@ -299,7 +300,7 @@ function init() {
         var Trashvideo = {};
         Trashvideo = rtc.attachStream(stream, clone.id);
         MediaStreams.push(stream);
-        userinfo.setTargetUser('');
+        //userinfo.setTargetUser('');
     });
     rtc.on('disconnect stream', function (data) {
         console.log('remove ' + data);
