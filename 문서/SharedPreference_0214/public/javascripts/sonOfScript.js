@@ -5,19 +5,6 @@ var RecDate;
 var Friends = [];
 
 $('#glyphicon-sharescreen').click(function(){
-    var nc = new TjNetworkConnector();
-
-    var data = {
-        facebookId : '1538116369788042',
-        username: 'LeeYoseob',
-        accessToken: 'CAAE76xiPpRABACFZB8QZB8C40IXHWzV6CBWyKU9fhVBjBco1039JOp4rB5c2LJSiIaLptSnh8Wqz4a316UcKivF6sKgDGavu87zCVQDp3CevAmjEfeDYHWcynhwAKrUIbcX9EWkZC0ZBU5NvA5pdxAZBPfOdXGWRQHZBLIKjMSN30FDrsIZAXO1o4cZBIdMxSq7cWmpmY2ZA4lW21di3cQiyzfjNjZC4iQnTgZD'
-    }
-    nc.loginAndJoin( data , function(result){
-        //처리 부분
-        console.log('result.type : ' + result.username);
-        console.log('result.url : ' + result.status);
-        console.log('result.data : ' + result.facebookId);
-    });
 
 
 });
@@ -210,24 +197,27 @@ function setupfriendList(){
     console.log('result ::::: ');
     nc.getFriendsList({sp_id:_id}, initFriendsList);
 }
-function initFriendsList(result){
 
+function initFriendsList(result){
     console.log(result);
     var data = result.data;
     Friends = data.friendlist;
     console.log(Friends);
 
 
-
     for(var i=0;i<Friends.length; i++){
         var li_ = document.createElement('li');
         var img_ = document.createElement('img');
+        var p_ = document.createElement('p');
+
 
         li_.id = Friends[i].id;
-        li_.textContent = Friends[i].name;
+        p_.textContent = Friends[i].name;
+        //li_.textContent = Friends[i].name;
         img_.className = "profileimgs";
         img_.src = Friends[i].url;
 
+        li_.appendChild(p_);
         li_.appendChild(img_);
 
         li_.onclick= function(){
