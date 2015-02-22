@@ -129,6 +129,10 @@ $(document).ready(function(){
     $('#glyphicon-comment').click(function(){
         //채팅창이 없었을 경우 클릭시 if문 수행
         if ($('#chatting-space').css("display") === 'none') {
+            if ($('#Recorded-List-container').css('display') === 'block') {
+                $('#Recorded-List-container').css('-webkit-transform', 'translate(-570px, 0px)');
+                $('#Recorded-List-container').css('display', 'none');
+            }
             $('#chatting-space').css('display', 'block');
             $('#chatting-space').css('-webkit-transform', 'translate(570px, 0px)');
             $('#Wvideos').css('width', 'calc(80% - 70px)');
@@ -159,6 +163,10 @@ $(document).ready(function(){
     $('#glyphicon-repeat').click(function(){
         //녹화리스트가 화면에 없었을 경우 클릭시 if문 수행
         if ($('#Recorded-List-container').css('display') === 'none') {
+            if($('#chatting-space').css("display") === 'block'){
+                $('#chatting-space').css('-webkit-transform', 'translate(-570px, 0px)');
+                $('#chatting-space').css('display', 'none');
+            }
             $('#Recorded-List-container').css('display', 'block');
             $('#Recorded-List-container').css('-webkit-transform', 'translate(570px, 0px)');
             $('#Wvideos').css('width', 'calc(80% - 70px)');
