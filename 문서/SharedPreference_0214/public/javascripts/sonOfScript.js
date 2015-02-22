@@ -20,7 +20,7 @@ window.onresize = function resizeFooterHeight() {
     }else{
         $('#footer').css('height',ClientHeight/4+'px');
     }
-}
+};
 
 /*친구목록에 마우스휨이 동작하게 하는 부분*/
 if (window.addEventListener)
@@ -125,7 +125,7 @@ $(document).ready(function() {
 
 //채팅 버튼 눌렀을 때 채팅창 뜨게 하는 함수  - 태양
 $(document).ready(function(){
-    var chat
+    var chat;
     $('#glyphicon-comment').click(function(){
         //채팅창이 없었을 경우 클릭시 if문 수행
         if ($('#chatting-space').css("display") === 'none') {
@@ -231,10 +231,7 @@ function initFriendsList(result){
         };
         $('.sidebar-friends').append(li_);
     }
-};
-
-
-
+}
 var recorflag = 0;
 var AudioRecorder;
 var MediaStreams = [];
@@ -312,7 +309,7 @@ $('#glyphicon-record').click(function() {
             type: 'video'
         });
         VideoRecorder8.startRecording();
-        return;
+
 
 
         /*for (var i=0;i<MediaStreams.length;i++) {
@@ -496,7 +493,7 @@ $('#glyphicon-record').click(function() {
             VideoLink.download = RecDate+'video' + 8 + '.mp4';
             //VideoLink.click();
         });
-        return;
+
 
 
 
