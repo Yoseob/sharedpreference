@@ -177,7 +177,6 @@ $(document).ready(function(){
             $('#footer').css('margin-left', 'calc(5% + 70px)');
             $('#Recorded-Video-container').css('margin-left', '70px');
             $('#Recorded-Video-container').css('width', 'calc(100% - 70px)');
-            //$('#chatting-space').slideToggle('slow');
 
             setTimeout(function(){
                 $('#Recorded-List-container').css('-webkit-transform', 'translate(-570px, 0px)');
@@ -197,10 +196,8 @@ function setupfriendList(){
 }
 
 function initFriendsList(result){
-    //console.log(result);
     var data = result.data;
     Friends = data.friendlist;
-    //console.log(Friends);
 
 
     for(var i=0;i<Friends.length; i++){
@@ -211,30 +208,15 @@ function initFriendsList(result){
 
         li_.id = Friends[i].id;
         p_.textContent = Friends[i].name;
-        //li_.textContent = Friends[i].name;
         img_.className = "profileimgs";
         img_.src = Friends[i].url;
 
         li_.appendChild(p_);
         li_.appendChild(img_);
 
-        //li_.onclick = changeRoom(this.id);
         li_.onclick = function(){
             userInfo.setTargetUser($(this).find('p').text());
-            //window.location.reload();
-            //location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
-            //history.go(0);
-            //top.document.location.reload();
-            //history.go(-1);
-            //location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
-
-            var da = new Date();
-            console.log('111111!!!! '+da.getHours()+':'+da.getMinutes()+':'+da.getSeconds());
-            //rtc.fire('disconnect stream');
-            //history.go(0);
             location.href = 'http://210.118.64.172:8000';
-
-
         };
         li_.onmouseover= function(){
             this.setAttribute('style', 'background-color:#999');
@@ -245,24 +227,6 @@ function initFriendsList(result){
         $('.sidebar-friends').append(li_);
     }
 }
-/*
-$(document).ready(function()
-{
-    $('.sidebar-friends').children('li').click(function(e)
-    {
-        alert($(this).children('p').text());
-    });
-});
-*/
-/*
-$('.sidebar-friends').onclick = function(event){
-    var target = getEventTarget(event);
-    userInfo.setTargetUser(target.id);
-    rtc.fire('disconnect stream');
-    location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
-    //history.go(0);
-}
-*/
 
 
 var recorflag = 0;
