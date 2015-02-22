@@ -224,6 +224,7 @@ function initFriendsList(result){
             //location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
             //history.go(0);
             //top.document.location.reload();
+            history.go(-1);
             location.href = 'http://210.118.64.172:8000';
         };
         li_.onmouseover= function(){
