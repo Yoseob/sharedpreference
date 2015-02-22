@@ -225,7 +225,7 @@ function initFriendsList(result){
                 MediaStreams.pop();
             });
             //location.href = 'http://210.118.64.172:8000/#'+ userInfo.getTargetUser();
-            history.go(-1);
+            history.go(0);
         };
         li_.onmouseover= function(){
             this.setAttribute('style', 'background-color:#999');
