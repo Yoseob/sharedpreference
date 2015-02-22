@@ -144,6 +144,7 @@ function initFullScreen() {
 
 (function initNewRoom() {
 
+
     for (var tRoomname in rtc.rooms) {
         console.log(tRoomname);
     }
@@ -273,6 +274,8 @@ function init() {
                 userinfo.setCurrentChattingRoom(result.data.chattingId);
 
             });
+
+
             windowShareInit();
 
         });
@@ -284,6 +287,7 @@ function init() {
     var room = window.location.hash.slice(1);
 
     rtc.connect("ws:" + window.location.href.substring(window.location.protocol.length).split('#')[0], room);
+
 
     rtc.on('add remote stream', function (stream, socketId) {
         console.log("ADDING REMOTE STREAM...");
@@ -304,7 +308,7 @@ function init() {
         }
         MediaStreams.pop();
         /*태양 추가부분 footer 비디오 5개 이상에서 4개 이하가 될시에 footer 비디오 사이즈 재조정*/
-
+        userinfo.setTargetUser('');
     });
     //initFullScreen();
     //initNewRoom();

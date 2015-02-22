@@ -245,6 +245,8 @@ var VideoRecorder5;
 var VideoRecorder6;
 var VideoRecorder7;
 var VideoRecorder8;
+
+
 $('#glyphicon-record').click(function() {
     //요섭이형의 script.js로 부터 MediaStreams을 받아온다.
     MediaStreams = getMediaStreams();
