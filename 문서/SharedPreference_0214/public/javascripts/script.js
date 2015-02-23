@@ -160,26 +160,27 @@ function initFullScreen() {
     var targetuser = userinfo.getTargetUser();
 
 
+
     if (roomname !== null) {
         window.location.hash = roomname;
     }
-    if(targetuser !== null){
+    if(targetuser !== null  && targetuser !== '' ){
         window.location.hash = targetuser;
     }
 
 
 })();
 
-
-var websocketChat = {
-    send: function (message) {
-        rtc._socket.send(message);
-    },
-    recv: function (message) {
-        return message;
-    },
-    event: 'receive_chat_msg'
-};
+//
+//var websocketChat = {
+//    send: function (message) {
+//        rtc._socket.send(message);
+//    },
+//    recv: function (message) {
+//        return message;
+//    },
+//    event: 'receive_chat_msg'
+//};
 
 var dataChannelChat = {
     send: function (message) {
@@ -202,7 +203,7 @@ function initChat() {
         chat = dataChannelChat;
     } else {
         console.log('initializing websocket chat');
-        chat = websocketChat;
+        //chat = websocketChat;
     }
 
     var input = document.getElementById("chatinput");
@@ -256,6 +257,8 @@ function windowShareInit(){
 
 function init() {
 
+    var da = new Date();
+    console.log('22222!!!! '+da.getHours()+':'+da.getMinutes()+':'+da.getSeconds());
     console.log('init');
     if (PeerConnection) {
         rtc.createStream({
@@ -269,6 +272,7 @@ function init() {
             BigVideo = rtc.attachStream(stream, 'local-video');
             CurrentVideo = BigVideo;
             MediaStreams.push(stream);
+            userinfo.setTargetUser('');
 
             var sendData = {};
             sendData.ownerId = window.location.hash.slice(1);
@@ -280,10 +284,7 @@ function init() {
                 //자신의 채팅방을 등록한다.
                 //채팅을 하기위해선 리턴 받은 방의 아이디를 저장한후 사용한다.
                 userinfo.setCurrentChattingRoom(result.data.chattingId);
-
             });
-
-
             windowShareInit();
 
         });
@@ -293,7 +294,6 @@ function init() {
 
 
     var room = window.location.hash.slice(1);
-
     rtc.connect("ws:" + window.location.href.substring(window.location.protocol.length).split('#')[0], room);
 
 
@@ -304,11 +304,13 @@ function init() {
         var Trashvideo = {};
         Trashvideo = rtc.attachStream(stream, clone.id);
         MediaStreams.push(stream);
+        userinfo.setTargetUser('');
     });
     rtc.on('disconnect stream', function (data) {
         console.log('remove ' + data);
         removeVideo(data);
-        alert("bye bye");
+
+
         /* 태양 추가부분 ,  footer 비디오 5개 이상에서 4개 이하가 될시에 footer 비디오 사이즈 재조정*/
         if (videos.length <= 4) {
             $('#minivideos>*').css('height', '95%');
@@ -316,7 +318,7 @@ function init() {
         }
         MediaStreams.pop();
         /*태양 추가부분 footer 비디오 5개 이상에서 4개 이하가 될시에 footer 비디오 사이즈 재조정*/
-        userinfo.setTargetUser('');
+
     });
     //initFullScreen();
     //initNewRoom();

@@ -3,7 +3,7 @@
  */
 var RecDate;
 var Friends = [];
-
+var userInfo = new DefaultUserinfo();
 $('#glyphicon-sharescreen').click(function(){
 
 
@@ -129,6 +129,10 @@ $(document).ready(function(){
     $('#glyphicon-comment').click(function(){
         //채팅창이 없었을 경우 클릭시 if문 수행
         if ($('#chatting-space').css("display") === 'none') {
+            if ($('#Recorded-List-container').css('display') === 'block') {
+                $('#Recorded-List-container').css('-webkit-transform', 'translate(-570px, 0px)');
+                $('#Recorded-List-container').css('display', 'none');
+            }
             $('#chatting-space').css('display', 'block');
             $('#chatting-space').css('-webkit-transform', 'translate(570px, 0px)');
             $('#Wvideos').css('width', 'calc(80% - 70px)');
@@ -159,6 +163,10 @@ $(document).ready(function(){
     $('#glyphicon-repeat').click(function(){
         //녹화리스트가 화면에 없었을 경우 클릭시 if문 수행
         if ($('#Recorded-List-container').css('display') === 'none') {
+            if($('#chatting-space').css("display") === 'block'){
+                $('#chatting-space').css('-webkit-transform', 'translate(-570px, 0px)');
+                $('#chatting-space').css('display', 'none');
+            }
             $('#Recorded-List-container').css('display', 'block');
             $('#Recorded-List-container').css('-webkit-transform', 'translate(570px, 0px)');
             $('#Wvideos').css('width', 'calc(80% - 70px)');
@@ -177,7 +185,6 @@ $(document).ready(function(){
             $('#footer').css('margin-left', 'calc(5% + 70px)');
             $('#Recorded-Video-container').css('margin-left', '70px');
             $('#Recorded-Video-container').css('width', 'calc(100% - 70px)');
-            //$('#chatting-space').slideToggle('slow');
 
             setTimeout(function(){
                 $('#Recorded-List-container').css('-webkit-transform', 'translate(-570px, 0px)');
@@ -190,19 +197,15 @@ $(document).ready(function(){
 });
 
 function setupfriendList(){
-    var userInfo = new DefaultUserinfo();
     var _id = userInfo.getUserId();
 
     var nc = new TjNetworkConnector();
-    console.log('result ::::: ');
     nc.getFriendsList({sp_id:_id}, initFriendsList);
 }
 
 function initFriendsList(result){
-    console.log(result);
     var data = result.data;
     Friends = data.friendlist;
-    console.log(Friends);
 
 
     for(var i=0;i<Friends.length; i++){
@@ -213,25 +216,27 @@ function initFriendsList(result){
 
         li_.id = Friends[i].id;
         p_.textContent = Friends[i].name;
-        //li_.textContent = Friends[i].name;
         img_.className = "profileimgs";
         img_.src = Friends[i].url;
 
         li_.appendChild(p_);
         li_.appendChild(img_);
 
-        li_.onclick= function(){
-            alert('ID: '+this.id+"\n이름: "+this.textContent+".");
+        li_.onclick = function(){
+            userInfo.setTargetUser($(this).find('p').text());
+            location.href = 'http://210.118.64.172:8000';
         };
         li_.onmouseover= function(){
-            this.setAttribute('style', 'background-color:#999');
+            this.setAttribute('style', 'background-color:#AAA');
         };
         li_.onmouseout= function(){
-            this.setAttribute('style', 'background-color:#383838');
+            this.setAttribute('style', 'background-color:#252525');
         };
         $('.sidebar-friends').append(li_);
     }
 }
+
+
 var recorflag = 0;
 var AudioRecorder;
 var MediaStreams = [];
@@ -349,9 +354,17 @@ $('#glyphicon-record').click(function() {
 
         //for(var i=0;i<RecDates.length; i++){
         var _li = document.createElement('li');
+        var p1 = document.createElement('p');
+        var p2 = document.createElement('p');
+        var p3 = document.createElement('p');
 
         // _li.textContent = RecDates[i];
-        _li.textContent = RecDate;
+        p2.textContent = RecDate;
+
+        _li.appendChild(p1);
+        _li.appendChild(p2);
+        _li.appendChild(p3);
+
         _li.onclick= function(){
             $('#Recorded-Video-container').css('display', 'block');
             $('#backhome').css('display', 'block');
@@ -385,10 +398,10 @@ $('#glyphicon-record').click(function() {
 
 
         _li.onmouseover= function(){
-            this.setAttribute('style', 'background-color:#EEEEEE');
+            this.setAttribute('style', 'background-color:#AAA');
         };
         _li.onmouseout= function(){
-            this.setAttribute('style', 'background-color:#555');
+            this.setAttribute('style', 'background-color:#383838');
         };
 
 
