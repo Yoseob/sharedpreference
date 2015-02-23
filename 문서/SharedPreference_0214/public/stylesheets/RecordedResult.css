@@ -1,3 +1,8 @@
+@font-face{
+    font-family: 'Sun_font';
+    src: url('../fonts/Typo_DodamL.ttf');
+}
+
 #Alert-space{
     z-index: 9999;
     left: 40%;
@@ -49,7 +54,7 @@
     margin-top: 10%;
     width: 50%;
     height: 50%;
-    background-color: red;
+    background-color: #000;
 }
 #Recorded-Videos-controlbar{
     background-color: #222;
