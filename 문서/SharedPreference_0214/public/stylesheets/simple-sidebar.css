@@ -201,39 +201,58 @@ ul>li{
     width: 150px;
     height: 100px;
     display: none;
-    position: relative;
+    position: absolute;
     background-color: #333;
     z-index:9997;
 }
 
 #select-space-contents{
+    text-align: center;
+    font-family: 'Sun_font';
+    color: #ffffff;
     height:70%;
     width:100%;
-    z-index:9998;
-    position: absolute;
+    position: relative;
 }
 
 #select-space-YesOrNot{
     height:30%;
     width:100%;
-    z-index:9998;
-    position: absolute;
+    bottom: 0;
+    background-color: #006600;
+    position: relative;
 }
 
 #select-space-Yes{
+    height:100%;
     width:50%;
+    text-align: center;
+    font-family: 'Sun_font';
     background-color: #0040D0;
-    z-index:9999;
     position: absolute;
+}
+#select-space-Yes p{
+    height:33%;
+    width:100%;
+    text-align: center;
+    font-family: 'Sun_font';
 }
 
 #select-space-Not{
+    height:100%;
     width:50%;
+    right: 0;
+    text-align: center;
+    font-family: 'Sun_font';
     background-color: #843534;
-    z-index:9999;
     position: absolute;
 }
-
+#select-space-Not p{
+    height:33%;
+    width:100%;
+    text-align: center;
+    font-family: 'Sun_font';
+}
 
 #sidebar-friends-list{
     height: 90%;
