@@ -116,6 +116,14 @@ function addToChat(msg, color) {
         console.log(ret);
     });
 
+    //광열 - 그룹 채팅 대화 가져오기.
+   // var gy=new TjNetworkConnector();
+  //  gy.getChatList(cRoom,getChatData);
+
+
+
+
+
     msg = sanitize(msg);
     if (msg != '' && color == '#010101') {
         msg = '<div class="triangle-isosceles left col" style="color: ' + color + '; padding-left: 15px; float:right;">' + msg + '</div>' + '<br><br><br>';
@@ -316,4 +324,7 @@ function init() {
     //initNewRoom();
     setupfriendList();
     initChat();
+    //광열
+    initGroup();
+    getGroupMember();
 }

@@ -34,9 +34,16 @@ TjNetworkConnector.prototype = {
     },
     logoutFunc:function(sendData,callback){
         this.requestMessage('/account/leave', sendData, callback);
+        console.log("lllll");
     },
     createOrJoinRoom: function (ownerId, callback) {
         this.requestMessage('/createorjoin', ownerId, callback);
+    },
+    groupCreateOrJoin:function(sendData,callback){
+      this.requestMessage('/group/createorjoin',sendData,callback);
+    },
+    getChatList:function(cRoomId,callback){
+      this.requestMessage('/chatting/chated',cRoomId,callback);
     },
     sendChattingMessage: function (chattingRoomId, msg, userid, callback) {
         var body = {};
