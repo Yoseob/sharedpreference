@@ -144,6 +144,7 @@
 
 <script src="/javascripts/stt.js"></script>
 <script src="/javascripts/sonOfScript.js"></script>
+<script src="/javascripts/scriptOfgwang.js"></script>
 <script src="/javascripts/script.js"></script>
 <script src="http://cdn.binaryjs.com/0/binary.js"></script>
 
@@ -154,122 +155,7 @@
     <!--<div id="fullscreen" class="button">Enter Full Screen</div>-->
     <!--<div id="newRoom" class="button">Create A New Room</div>-->
 </div>
-<script>
-    var results = document.getElementById('results'),
-            tests = {
-                filereader: typeof FileReader != 'undefined',
-                dnd: 'draggable' in document.createElement('span'),
-                formdata: !!window.FormData,
-                progress: "upload" in new XMLHttpRequest
-            },
-            support = {
-                filereader: document.getElementById('filereader'),
-                formdata: document.getElementById('formdata'),
-                progress: document.getElementById('progress')
-            },
-            acceptedTypes = {
-                'image/png': true,
-                'image/jpeg': true,
-                'image/gif': true
-            },
-            progress = document.getElementById('uploadprogress'),
-            fileupload = document.getElementById('upload');
 
-    "filereader formdata progress".split(' ').forEach(function (api) {
-        if (tests[api] === false) {
-            support[api].className = 'fail';
-        } else {
-            // FFS. I could have done el.hidden = true, but IE doesn't support
-            // hidden, so I tried to create a polyfill that would extend the
-            // Element.prototype, but then IE10 doesn't even give me access
-            // to the Element object. Brilliant.
-            support[api].className = 'hidden';
-        }
-    });
-
-    function previewfile(file) {
-        if (tests.filereader === true && acceptedTypes[file.type] === true) {
-            var reader = new FileReader();
-            reader.onload = function (event) {
-                var image = new Image();
-                image.src = event.target.result;
-                image.width = 100; // a fake resize
-
-
-                var a=document.createElement('a');
-                a.href="/images/image.src"+".jpg";
-                a.download="image";
-
-                //span.setattribute("style","height:90%");
-//                a.setAttribute("style","border-top-width:medium; border-left-width:medium; border-right-width:medium; border-top-width:medium;");
-
-
-                a.appendChild(image);
-                results.appendChild(a);
-               // $('#down').append(image);
-            };
-
-            reader.readAsDataURL(file);
-        }  else {
-
-            results.innerHTML += '<a href="/root/path" download="sharedFile"><p>Uploaded ' + file.name + ' ' + (file.size ? (file.size/1024|0) + 'K' : '');
-            console.log(file);
-        }
-    }
-
-    function readfiles(files) {
-        debugger;
-        var formData = tests.formdata ? new FormData() : null;
-        for (var i = 0; i < files.length; i++) {
-            if (tests.formdata) formData.append('file', files[i]);
-            previewfile(files[i]);
-        }
-
-        // now post a new XHR request
-        if (tests.formdata) {
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', '/devnull.php');
-            xhr.onload = function() {
-                progress.value = progress.innerHTML = 100;
-            };
-
-            if (tests.progress) {
-                xhr.upload.onprogress = function (event) {
-                    if (event.lengthComputable) {
-                        var complete = (event.loaded / event.total * 100 | 0);
-                        progress.value = progress.innerHTML = complete;
-                    }
-                }
-            }
-
-            xhr.send(formData);
-        }
-    }
-
-    if (tests.dnd) {
-        results.ondragover = function () { this.className = 'hover'; return false; };
-        results.ondragend = function () { this.className = ''; return false; };
-        results.ondrop = function (e) {
-            this.className = '';
-            e.preventDefault();
-            readfiles(e.dataTransfer.files);
-        }
-    } else {
-        fileupload.className = 'hidden';
-        fileupload.querySelector('input').onchange = function () {
-            readfiles(this.files);
-        };
-    }
-</script>
-<script>
-    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script>
-    try {
-        var pageTracker = _gat._getTracker("UA-1656750-18");
-        pageTracker._trackPageview();
-    } catch(err) {}</script>
 <script type="text/javascript">
     function OnMouseIn(elem) {
         elem.style.border = "2px solid #0064CD";
