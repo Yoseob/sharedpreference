@@ -236,7 +236,45 @@ a:hover {
     width: 100%;
     overflow: scroll;
     background-color:#ffffff;
+   /* border: 10px dashed #ccc;*/
 }
+/************************************************drag & drop *******************************************/
+#results.hover { border: 10px dashed #0c0; }
+#results img {
+    display: block;
+    margin: 10px;
+    margin-left: auto;
+    border-style: solid;
+    border-color: darkgray;
+    border-radius: 10px;
+    border-top-width: medium;
+    border-left-width: medium;
+    border-right-width: medium;
+    border-bottom-width: medium;
+}
+#results p {
+    margin: 10px;
+    font-size: 12px;
+    color:#000000;
+    text-align: right;
+    border-style: solid;
+    border-color: darkgray;
+    border-radius: 10px;
+    border-top-width: medium;
+    border-left-width: medium;
+    border-right-width: medium;
+    border-bottom-width: medium;
+    background-color: darkgray;
+}
+progress { width: 100%; }
+progress:after { content: '%'; }
+.fail {
+    background: #c00;
+    padding: 2px;
+    color: #fff;
+}
+.hidden { display: none !important;}
+
 
 #chat-top {
     height: 5%;

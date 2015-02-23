@@ -111,34 +111,7 @@
             fb_login(response);
         });
     };
-    function requestLogout(){
-        FB.api('/me', function (response) {
-            console.log('logoutTest');
-            var outdata='';
-            if (response) {
-                console.log(response);
 
-                outdata.account_id = response.id;
-
-                //$('.account_id').text(data.facebookId);
-
-                var userInfo = new DefaultUserinfo();
-                userInfo.setUserName(data.username);
-
-                var outnc = new TjNetworkConnector();
-
-                console.log('start');
-                console.log(outdata);
-
-                outnc.logoutFunc(outdata, function (result) {
-                    var data = result.data;
-                    console.log('recv');
-                    console.log(data);
-
-                });
-            }
-        });
-    }
     function requetMyFacebookInfo(accessToken) {
         //서버로 전송할 데이터
         // 내이름
@@ -272,29 +245,7 @@
 <script src="/javascripts/jquery.hammer.js"></script>
 <script src="/javascripts/tjNetworkConnector.js"></script>
 <script src="/javascripts/defaultUserinfo.js"></script>
-<!--
-<script>
-    $(document).ready(function(){
-        $('.logout_test').click(function(){
-            var val=$('.account_id').val();
-            console.log("1");
-            console.log(val);
-            $.ajax({
-                url:'http://210.118.64.172:8000/account/leave',
-                dataType:'json',
-                data:val,
-                type:'POST',
-                success:function(result){
-                    console.log("success");
-                    console.log(result);
-                }
-            }).fail(function(){
-                console.log("fail");
-            });
-        });
-    });
-</script>
--->
+
 <script>
     $('#myModal').modal(options);
     $('#myModal').modal({
