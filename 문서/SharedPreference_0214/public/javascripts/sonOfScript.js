@@ -223,8 +223,17 @@ function initFriendsList(result){
         li_.appendChild(img_);
 
         li_.onclick = function(){
-            userInfo.setTargetUser($(this).find('p').text());
-            location.href = 'http://210.118.64.172:8000';
+            $('#select-space').css('display','block');
+            $('#select-space-Yes').onclick = function(){
+                $('#select-space').css('display','none');
+                userInfo.setTargetUser($(this).find('p').text());
+                location.href = 'http://210.118.64.172:8000';
+            }
+
+            $('#select-space-Not').onclick = function(){
+                $('#select-space').css('display','none');
+            }
+
         };
         li_.onmouseover= function(){
             this.setAttribute('style', 'background-color:#AAA');
@@ -384,9 +393,6 @@ $('#glyphicon-record').click(function() {
             appendReviewVideos();
             //다시볼 비디오들의 크기를 알맞게 재조정.
             resizeReviewVideos();
-            //자동 재생
-            //$('.reviews').autoplay = true;
-            //$('.reviews').load();
 
 
 

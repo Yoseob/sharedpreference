@@ -195,6 +195,38 @@ ul>li{
     width: 100%;
 }
 
+#select-space{
+    top: 50px;
+    left: 250px;
+    width: 150px;
+    height: 100px;
+    display: none;
+    position: absolute;
+    background-color: #333;
+    z-index:9999;
+}
+
+#select-space-contents{
+    height:70%;
+    width:100%;
+}
+
+#select-space-YesOrNot{
+    height:30%;
+    width:100%;
+}
+
+#select-space-Yes{
+    width:50%;
+    background-color: #0040D0;
+}
+
+#select-space-Not{
+    width:50%;
+    background-color: #843534;
+}
+
+
 #sidebar-friends-list{
     height: 90%;
     overflow: auto;
