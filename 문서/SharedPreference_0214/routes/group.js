@@ -50,7 +50,7 @@ router.route('/join').post(function (req, res) {
 });
 
 //ajax 에서 호출된 값을 처리하는 함수 .... 중요
-function findGroupOnwerWhoThisId(curruntUserInfo, res) {
+function 디findGroupOnwerWhoThisId(curruntUserInfo, res) {
     //1.뷰에서 그룹을 찾는것을 요청한다. 그룹을 찾는 쿼리 조건은 그룹오너의아이디와 활성화 상태를
     //기준으로 한다.
     //2_1 찾고자는 그룹이 있으면 그룹 멤버에 자신의 아이디를 추가하고
@@ -77,6 +77,7 @@ function findGroupOnwerWhoThisId(curruntUserInfo, res) {
                 data.result = 200;
                 Resmodule._response(res ,data);
             } else {
+                console.log('room Create');
                 data.result = 200;
                 //채팅룸 먼저 만들고 채팅 아이디를 전달한다.
                 //그룹이 없음으로 내이름으로 그룹을 생성한다.

@@ -30,6 +30,7 @@ DefaultUserinfo.prototype = {
     },
 
 
+    //사용자 자신의 아이
     setUserId: function (id) {
         localStorage.setItem(this._id, id);
     },
@@ -37,6 +38,7 @@ DefaultUserinfo.prototype = {
         return localStorage.getItem(this._id);
     },
 
+    //채팅방 아이디
     setCurrentChattingRoom: function (chattingRoom) {
         localStorage.setItem(this._chattingRoom, chattingRoom);
     },
