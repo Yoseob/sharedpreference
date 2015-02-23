@@ -201,29 +201,37 @@ ul>li{
     width: 150px;
     height: 100px;
     display: none;
-    position: absolute;
+    position: relative;
     background-color: #333;
-    z-index:9999;
+    z-index:9997;
 }
 
 #select-space-contents{
     height:70%;
     width:100%;
+    z-index:9998;
+    position: absolute;
 }
 
 #select-space-YesOrNot{
     height:30%;
     width:100%;
+    z-index:9998;
+    position: absolute;
 }
 
 #select-space-Yes{
     width:50%;
     background-color: #0040D0;
+    z-index:9999;
+    position: absolute;
 }
 
 #select-space-Not{
     width:50%;
     background-color: #843534;
+    z-index:9999;
+    position: absolute;
 }
 
 
