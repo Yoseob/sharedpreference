@@ -550,6 +550,8 @@ $('#glyphicon-record').click(function() {
 
 // Recorded-Videos 공간에 다시 볼 비디오의 갯수만큼 비디오태그를 만들어서 blob url 까지 넣어서 추가해주는 함수
 function appendReviewVideos(){
+    //새로 추가하려고 하는부분
+    $('#Recorded-Videos').remove('.reviews');
 
     var audio = document.createElement('audio');
     audio.src = window.URL.createObjectURL(AudioRecorder.blob);
