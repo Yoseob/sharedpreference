@@ -211,7 +211,7 @@ ul>li{
 }
 
 #sidebar-friends-list li p{
-    padding-top:7%;
+    padding-top:6%;
     height: 100%;
     width: 75%;
     text-align: center;
@@ -221,7 +221,7 @@ ul>li{
 #sidebar-friends-list li .profileimgs{
     border-radius: 15%;
     width: 22%;
-    height: 80%;
+    height: 100%;
     top:10%;
     right: 6.8%;
     position: absolute;
