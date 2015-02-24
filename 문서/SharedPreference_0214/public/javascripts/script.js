@@ -239,6 +239,8 @@ function initChat() {
             input.value = "";
         }
     }, false);
+    console.log(chat.event
+    );
     rtc.on(chat.event, function () {
         var data = chat.recv.apply(this, arguments);
         console.log(data.color);

@@ -46,12 +46,12 @@ router.route('/leave').post(function(req , res){
 });
 
 
-router.route('ckeck').post(function (req , res){
+router.route('/check').post(function (req , res){
     console.log('check');
     console.log(req.body);
 
     if(req.body.owner_id){
-        checkRoomExist(req.body.owner_id);
+        checkRoomExist(req.body.owner_id ,res);
     }
 });
 
@@ -131,20 +131,30 @@ function findGroupOnwerWhoThisId(curruntUserInfo, res) {
 function leaveGroupWithGroupAndOnwerId(ownerId, sp_id){
     db.collection('groups' , {safe :true} , function(err, collection){
         if(err) throw err;
-        //collection.
+        if(ownerId === sp_id){  // 방을 폭파 시킨다.
+            collection.update({ownerId : ownerId} , {$set : {state : 'inactive'}} ,function(err , result){
+                
+            });
+        }else{  // 룸에서  방정보를 최신화 시킨다.
+            collection.update({ownerId : ownerId} , {$pull : {members :sp_id}} , function(err , result , object){});
+        }
 
     });
 }
 
 
-function checkRoomExist(owner_id){
+function checkRoomExist(owner_id  ,res){
     db.collection('groups' , {safe :true} , function(err, collection){
         if(err) throw err;
         collection.findOne({$and: [{ownerId: owner_id}, {state: "active"}]}, function (err, item) {
-            if(item){
-                console.log(item);
 
+            var result  = {result : 200  , tsmp : new Date()};
+            if(item){
+                result.data = {state : 'active'}
+            }else{
+                result.data = {state : 'inactive'}
             }
+            res.send(result);
         });
     });
 }
