@@ -238,7 +238,7 @@ function initFriendsList(result){
                     console.log(data_.state);
 
 
-                    if(data_.room === 'active'){
+                    if(data_.state === 'active'){
                         userInfo.setTargetUser($(this).find('p').text());
                         location.href = 'http://210.118.64.172:8000';
                     }else {
