@@ -79,7 +79,7 @@
                 testAPI();
             } else {
                 //user hit cancel button
-                requestLogout();
+                //requestLogout();
                 console.log('User cancelled login or did not fully authorize.');
 
             }
@@ -105,6 +105,7 @@
         });
         FB.Event.subscribe('auth.logout', function (response) {
             //request Logout 추가
+            requestLogout();
             document.location.reload();
         });
 

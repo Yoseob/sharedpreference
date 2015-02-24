@@ -42,7 +42,9 @@ TjNetworkConnector.prototype = {
       this.requestMessage('/group/createorjoin',sendData,callback);
     },
     getChatList:function(cRoomId,callback){
+        console.log('그룹채팅');
       this.requestMessage('/chatting/chated',cRoomId,callback);
+        console.log('그룹채팅2');
     },
     sendChattingMessage: function (chattingRoomId, msg, userid, callback) {
         var body = {};

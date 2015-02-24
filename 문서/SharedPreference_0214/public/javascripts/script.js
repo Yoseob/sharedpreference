@@ -125,6 +125,7 @@ function addToChat(msg, color) {
 
 
 
+
     msg = sanitize(msg);
     if (msg != '' && color == '#010101') {
         msg = '<div class="triangle-isosceles left col" style="color: ' + color + '; padding-left: 15px; float:right;">' + msg + '</div>' + '<br><br><br>';
