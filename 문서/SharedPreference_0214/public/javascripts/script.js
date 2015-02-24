@@ -118,11 +118,10 @@ function addToChat(msg, color) {
     });
 
     //광열 - 그룹 채팅 대화 가져오기.
-    var gy=new TjNetworkConnector();
-    gy.getChatList(cRoom,getChatData);
-
-
-
+ //   var gy=new TjNetworkConnector();
+ //   console.log('croom');
+ //   console.log(cRoom);
+ //   gy.getChatList(cRoom,getChatData);
 
 
 

@@ -13,7 +13,7 @@ TjNetworkConnector.prototype = {
     requestMessage: function (url, sendData, callback) {
         console.log(sendData);
         $.ajax({
-            url: 'http://210.118.64.172:8000' + url,
+            url: 'http://tjchat.com' + url,
             dataType: 'json',
             data: sendData,
             type: 'POST',
@@ -41,11 +41,12 @@ TjNetworkConnector.prototype = {
     groupCreateOrJoin:function(sendData,callback){
       this.requestMessage('/group/createorjoin',sendData,callback);
     },
+    /*
     getChatList:function(cRoomId,callback){
         console.log('그룹채팅');
       this.requestMessage('/chatting/chated',cRoomId,callback);
         console.log('그룹채팅2');
-    },
+    },*/
     sendChattingMessage: function (chattingRoomId, msg, userid, callback) {
         var body = {};
         body.cRoomId = chattingRoomId;

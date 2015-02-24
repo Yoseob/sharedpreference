@@ -44,7 +44,7 @@ function getGroupMember(){
     //group_id ..
 }
 
-
+/*
 function getChatData(result){
     var data=result.data;
     chatList=data.chatlist;
@@ -57,7 +57,7 @@ function getChatData(result){
         console.log(chatList[i].updated);
     }
 }
-
+*/
 
 var results = document.getElementById('results'),
     tests = {

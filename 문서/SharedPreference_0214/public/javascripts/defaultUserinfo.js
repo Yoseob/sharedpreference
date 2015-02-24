@@ -47,5 +47,4 @@ DefaultUserinfo.prototype = {
         return localStorage.getItem(this._chattingRoom);
     }
 
-
 };
