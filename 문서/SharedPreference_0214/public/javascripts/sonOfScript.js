@@ -231,9 +231,11 @@ function initFriendsList(result){
                 var id_ = userInfo.getUserId();
                 var nc = new TjNetworkConnector();
                 nc.checkTheRoomExist({owner_id:selectedName}, function(result){
-                    console.log('result.data.room : ');
+                    console.log('result : ');
+                    console.log(result);
+                    console.log('result.data.state : ');
                     var data_ = result.data;
-                    console.log(data_.room);
+                    console.log(data_.state);
 
 
                     if(data_.room === 'active'){
