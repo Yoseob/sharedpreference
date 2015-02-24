@@ -33,10 +33,27 @@ router.route('/member.list').post(function (req, res) {
     } else {
         Resmodule._response(res ,result)
     }
+});
 
+router.route('/leave').post(function(req , res){
+    console.log('leave');
+    console.log(req.body);
+    if(req.body.group_id !== undefined && req.body.sp_id !== undefined){
+
+
+    }
 
 });
 
+
+router.route('ckeck').post(function (req , res){
+    console.log('check');
+    console.log(req.body);
+
+    if(req.body.owner_id){
+        checkRoomExist(req.body.owner_id);
+    }
+});
 
 //Deprecate
 router.route('/join').post(function (req, res) {
@@ -50,7 +67,7 @@ router.route('/join').post(function (req, res) {
 });
 
 //ajax 에서 호출된 값을 처리하는 함수 .... 중요
-function 디findGroupOnwerWhoThisId(curruntUserInfo, res) {
+function findGroupOnwerWhoThisId(curruntUserInfo, res) {
     //1.뷰에서 그룹을 찾는것을 요청한다. 그룹을 찾는 쿼리 조건은 그룹오너의아이디와 활성화 상태를
     //기준으로 한다.
     //2_1 찾고자는 그룹이 있으면 그룹 멤버에 자신의 아이디를 추가하고
@@ -108,6 +125,28 @@ function 디findGroupOnwerWhoThisId(curruntUserInfo, res) {
 
         });
     })
+}
+
+//해당 그룹의 멤버를 최신화
+function leaveGroupWithGroupAndOnwerId(ownerId, sp_id){
+    db.collection('groups' , {safe :true} , function(err, collection){
+        if(err) throw err;
+        //collection.
+
+    });
+}
+
+
+function checkRoomExist(owner_id){
+    db.collection('groups' , {safe :true} , function(err, collection){
+        if(err) throw err;
+        collection.findOne({$and: [{ownerId: owner_id}, {state: "active"}]}, function (err, item) {
+            if(item){
+                console.log(item);
+
+            }
+        });
+    });
 }
 
 
