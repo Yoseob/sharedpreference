@@ -228,10 +228,19 @@ function initFriendsList(result){
             //$('#select-space-contents').append($(this).find('p').text()+'님의 방으로 이동 하시겠습니까?');
 
             if (confirm($(this).find('p').text()+'님의 방으로 이동 하시겠습니까?') === true){    //확인
-                userInfo.setTargetUser($(this).find('p').text());
-                location.href = 'http://210.118.64.172:8000';
-            }else{   //취소
+                var id_ = userInfo.getUserId();
 
+                var nc = new TjNetworkConnector();
+                nc.checkTheRoomExist({ownerId:$(this).find('p').text(), sp_id:id_}, function(result){
+                    if(result.status === 'active'){
+                        userInfo.setTargetUser($(this).find('p').text());
+                        location.href = 'http://210.118.64.172:8000';
+                    }else {
+                        alert($(this).find('p').text()+'님의 방이 존재하지 않아서 입장이 불가합니다.');
+                    }
+                });
+
+            }else{   //취소
             }
 /*
             $('#select-space-Yes').onclick = function(){
@@ -258,9 +267,17 @@ function initFriendsList(result){
 
 
 var recorflag = 0;
-var AudioRecorder;
 var MediaStreams = [];
 var MediaStreamLength=0;
+var AudioRecorder0;
+var AudioRecorder1;
+var AudioRecorder2;
+var AudioRecorder3;
+var AudioRecorder4;
+var AudioRecorder5;
+var AudioRecorder6;
+var AudioRecorder7;
+var AudioRecorder8;
 var VideoRecorder0;
 var VideoRecorder1;
 var VideoRecorder2;
@@ -288,50 +305,82 @@ $('#glyphicon-record').click(function() {
         recorflag = 1;
         MediaStreamLength = MediaStreams.length;
 
-        AudioRecorder = new RecordRTC(MediaStreams[0], {
+        AudioRecorder0 = new RecordRTC(MediaStreams[0], {
             type: 'audio'
         });
-        AudioRecorder.startRecording();
+        AudioRecorder0.startRecording();
         VideoRecorder0 = new RecordRTC(MediaStreams[0], {
             type: 'video'
         });
         VideoRecorder0.startRecording();
         if(MediaStreamLength === 1) return;
+        AudioRecorder1 = new RecordRTC(MediaStreams[1], {
+            type: 'audio'
+        });
+        AudioRecorder1.startRecording();
         VideoRecorder1 = new RecordRTC(MediaStreams[1], {
             type: 'video'
         });
         VideoRecorder1.startRecording();
         if(MediaStreamLength === 2) return;
+        AudioRecorder2 = new RecordRTC(MediaStreams[2], {
+            type: 'audio'
+        });
+        AudioRecorder2.startRecording();
         VideoRecorder2 = new RecordRTC(MediaStreams[2], {
             type: 'video'
         });
         VideoRecorder2.startRecording();
         if(MediaStreamLength === 3) return;
+        AudioRecorder3 = new RecordRTC(MediaStreams[3], {
+            type: 'audio'
+        });
+        AudioRecorder3.startRecording();
         VideoRecorder3 = new RecordRTC(MediaStreams[3], {
             type: 'video'
         });
         VideoRecorder3.startRecording();
         if(MediaStreamLength === 4) return;
+        AudioRecorder4 = new RecordRTC(MediaStreams[4], {
+            type: 'audio'
+        });
+        AudioRecorder4.startRecording();
         VideoRecorder4 = new RecordRTC(MediaStreams[4], {
             type: 'video'
         });
         VideoRecorder4.startRecording();
         if(MediaStreamLength === 5) return;
+        AudioRecorder5 = new RecordRTC(MediaStreams[5], {
+            type: 'audio'
+        });
+        AudioRecorder5.startRecording();
         VideoRecorder5 = new RecordRTC(MediaStreams[5], {
             type: 'video'
         });
         VideoRecorder5.startRecording();
         if(MediaStreamLength === 6) return;
+        AudioRecorder6 = new RecordRTC(MediaStreams[6], {
+            type: 'audio'
+        });
+        AudioRecorder6.startRecording();
         VideoRecorder6 = new RecordRTC(MediaStreams[6], {
             type: 'video'
         });
         VideoRecorder6.startRecording();
         if(MediaStreamLength === 7) return;
+        AudioRecorder7 = new RecordRTC(MediaStreams[7], {
+            type: 'audio'
+        });
+        AudioRecorder7.startRecording();
         VideoRecorder7 = new RecordRTC(MediaStreams[7], {
             type: 'video'
         });
         VideoRecorder7.startRecording();
         if(MediaStreamLength === 8) return;
+        AudioRecorder8 = new RecordRTC(MediaStreams[8], {
+            type: 'audio'
+        });
+        AudioRecorder8.startRecording();
         VideoRecorder8 = new RecordRTC(MediaStreams[8], {
             type: 'video'
         });
@@ -432,17 +481,15 @@ $('#glyphicon-record').click(function() {
 
 
 
-        AudioRecorder.stopRecording(function() {
+        AudioRecorder0.stopRecording(function() {
             var AudioLink = document.createElement('a');
-            console.log('AudioRecorder.blob : ' + AudioRecorder.blob);
-            AudioLink.href = window.URL.createObjectURL(AudioRecorder.blob);
-            AudioLink.download = RecDate+'Audio.mp3';
+            AudioLink.href = window.URL.createObjectURL(AudioRecorder0.blob);
+            AudioLink.download = RecDate+'audio' + 0 +'.mp3';
             //AudioLink.click();
         });
 
         VideoRecorder0.stopRecording(function(){
             var VideoLink = document.createElement('a');
-            console.log('VideoRecorder0 : ' + VideoRecorder0.blob);
             VideoLink.href = window.URL.createObjectURL(VideoRecorder0.blob);
             VideoLink.download = RecDate+'video' + 0 + '.mp4';
             //VideoLink.click();
@@ -451,76 +498,107 @@ $('#glyphicon-record').click(function() {
            //var file = FileReader.readAsBinaryString(VideoRecorder0.blob);
             //console.log('file : ' + file);
 
-
-
-
-
-
-
-
-
-
         });
         if(MediaStreamLength === 1) return;
+        AudioRecorder1.stopRecording(function() {
+            var AudioLink = document.createElement('a');
+            AudioLink.href = window.URL.createObjectURL(AudioRecorder1.blob);
+            AudioLink.download = RecDate+'audio' + 1 +'.mp3';
+            //AudioLink.click();
+        });
         VideoRecorder1.stopRecording(function(){
             var VideoLink = document.createElement('a');
-            console.log('VideoRecorder1 : ' + VideoRecorder1.blob);
             VideoLink.href = window.URL.createObjectURL(VideoRecorder1.blob);
             VideoLink.download = RecDate+'video' + 1 + '.mp4';
             //VideoLink.click();
         });
         if(MediaStreamLength === 2) return;
+        AudioRecorder2.stopRecording(function() {
+            var AudioLink = document.createElement('a');
+            AudioLink.href = window.URL.createObjectURL(AudioRecorder2.blob);
+            AudioLink.download = RecDate+'audio' + 2 +'.mp3';
+            //AudioLink.click();
+        });
         VideoRecorder2.stopRecording(function(){
             var VideoLink = document.createElement('a');
-            console.log('VideoRecorder2 : ' + VideoRecorder2.blob);
             VideoLink.href = window.URL.createObjectURL(VideoRecorder2.blob);
             VideoLink.download = RecDate+'video' + 2 + '.mp4';
             //VideoLink.click();
         });
         if(MediaStreamLength === 3) return;
+        AudioRecorder3.stopRecording(function() {
+            var AudioLink = document.createElement('a');
+            AudioLink.href = window.URL.createObjectURL(AudioRecorder3.blob);
+            AudioLink.download = RecDate+'audio' + 3 +'.mp3';
+            //AudioLink.click();
+        });
         VideoRecorder3.stopRecording(function(){
             var VideoLink = document.createElement('a');
-            console.log('VideoRecorder0 : ' + VideoRecorder3.blob);
             VideoLink.href = window.URL.createObjectURL(VideoRecorder3.blob);
             VideoLink.download = RecDate+'video' + 3 + '.mp4';
             //VideoLink.click();
         });
         if(MediaStreamLength === 4) return;
+        AudioRecorder4.stopRecording(function() {
+            var AudioLink = document.createElement('a');
+            AudioLink.href = window.URL.createObjectURL(AudioRecorder4.blob);
+            AudioLink.download = RecDate+'audio' + 4 +'.mp3';
+            //AudioLink.click();
+        });
         VideoRecorder4.stopRecording(function(){
             var VideoLink = document.createElement('a');
-            console.log('VideoRecorder4 : ' + VideoRecorder4.blob);
             VideoLink.href = window.URL.createObjectURL(VideoRecorder4.blob);
             VideoLink.download = RecDate+'video' + 4 + '.mp4';
             // VideoLink.click();
         });
         if(MediaStreamLength === 5) return;
+        AudioRecorder5.stopRecording(function() {
+            var AudioLink = document.createElement('a');
+            AudioLink.href = window.URL.createObjectURL(AudioRecorder5.blob);
+            AudioLink.download = RecDate+'audio' + 5 +'.mp3';
+            //AudioLink.click();
+        });
         VideoRecorder5.stopRecording(function(){
             var VideoLink = document.createElement('a');
-            console.log('VideoRecorder5 : ' + VideoRecorder5.blob);
             VideoLink.href = window.URL.createObjectURL(VideoRecorder5.blob);
             VideoLink.download = RecDate+'video' + 5 + '.mp4';
             //VideoLink.click();
         });
         if(MediaStreamLength === 6) return;
+        AudioRecorder6.stopRecording(function() {
+            var AudioLink = document.createElement('a');
+            AudioLink.href = window.URL.createObjectURL(AudioRecorder6.blob);
+            AudioLink.download = RecDate+'audio' + 6 +'.mp3';
+            //AudioLink.click();
+        });
         VideoRecorder6.stopRecording(function(){
             var VideoLink = document.createElement('a');
-            console.log('VideoRecorder6 : ' + VideoRecorder6.blob);
             VideoLink.href = window.URL.createObjectURL(VideoRecorder6.blob);
             VideoLink.download = RecDate+'video' + 6 + '.mp4';
             //VideoLink.click();
         });
         if(MediaStreamLength === 7) return;
+        AudioRecorder7.stopRecording(function() {
+            var AudioLink = document.createElement('a');
+            AudioLink.href = window.URL.createObjectURL(AudioRecorder7.blob);
+            AudioLink.download = RecDate+'audio' + 7 +'.mp3';
+            //AudioLink.click();
+        });
         VideoRecorder7.stopRecording(function(){
             var VideoLink = document.createElement('a');
-            console.log('VideoRecorder7 : ' + VideoRecorder7.blob);
             VideoLink.href = window.URL.createObjectURL(VideoRecorder7.blob);
             VideoLink.download = RecDate+'video' + 7 + '.mp4';
             //VideoLink.click();
         });
         if(MediaStreamLength === 8) return;
+        AudioRecorder8.stopRecording(function() {
+            var AudioLink = document.createElement('a');
+            AudioLink.href = window.URL.createObjectURL(AudioRecorder8.blob);
+            AudioLink.download = RecDate+'audio' + 8 +'.mp3';
+            //AudioLink.click();
+        });
         VideoRecorder8.stopRecording(function(){
             var VideoLink = document.createElement('a');
-            console.log('VideoRecorder8 : ' + VideoRecorder8.blob);
             VideoLink.href = window.URL.createObjectURL(VideoRecorder8.blob);
             VideoLink.download = RecDate+'video' + 8 + '.mp4';
             //VideoLink.click();
@@ -571,7 +649,7 @@ function appendReviewVideos(){
     $('.reviews').remove();
 
     var audio = document.createElement('audio');
-    audio.src = window.URL.createObjectURL(AudioRecorder.blob);
+    audio.src = window.URL.createObjectURL(AudioRecorder0.blob);
     audio.className = "reviews";
     audio.autoplay = true;
     $('#Recorded-Videos').append(audio);
@@ -580,49 +658,98 @@ function appendReviewVideos(){
     video.className = "reviews";
     video.autoplay = true;
     $('#Recorded-Videos').append(video);
+
+    //controlbar로 사용할 비디오
+    var video_ = document.createElement('video');
+    video_.className = "reviews";
+    video_.autoplay = true;
+    video_.controls = true;
+    video_.duration = video.duration;
+    $('#Recorded-Videos-controlbar').append(video_);
+
     if(MediaStreamLength === 1) return;
+    var audio = document.createElement('audio');
+    audio.src = window.URL.createObjectURL(AudioRecorder1.blob);
+    audio.className = "reviews";
+    audio.autoplay = true;
+    $('#Recorded-Videos').append(audio);
     var video = document.createElement('video');
     video.src = window.URL.createObjectURL(VideoRecorder1.blob);
     video.className = "reviews";
     video.autoplay = true;
     $('#Recorded-Videos').append(video);
     if(MediaStreamLength === 2) return;
+    var audio = document.createElement('audio');
+    audio.src = window.URL.createObjectURL(AudioRecorder2.blob);
+    audio.className = "reviews";
+    audio.autoplay = true;
+    $('#Recorded-Videos').append(audio);
     var video = document.createElement('video');
     video.src = window.URL.createObjectURL(VideoRecorder2.blob);
     video.className = "reviews";
     video.autoplay = true;
     $('#Recorded-Videos').append(video);
     if(MediaStreamLength === 3) return;
+    var audio = document.createElement('audio');
+    audio.src = window.URL.createObjectURL(AudioRecorder3.blob);
+    audio.className = "reviews";
+    audio.autoplay = true;
+    $('#Recorded-Videos').append(audio);
     var video = document.createElement('video');
     video.src = window.URL.createObjectURL(VideoRecorder3.blob);
     video.className = "reviews";
     video.autoplay = true;
     $('#Recorded-Videos').append(video);
     if(MediaStreamLength === 4) return;
+    var audio = document.createElement('audio');
+    audio.src = window.URL.createObjectURL(AudioRecorder4.blob);
+    audio.className = "reviews";
+    audio.autoplay = true;
+    $('#Recorded-Videos').append(audio);
     var video = document.createElement('video');
     video.src = window.URL.createObjectURL(VideoRecorder4.blob);
     video.className = "reviews";
     video.autoplay = true;
     $('#Recorded-Videos').append(video);
     if(MediaStreamLength === 5) return;
+    var audio = document.createElement('audio');
+    audio.src = window.URL.createObjectURL(AudioRecorder5.blob);
+    audio.className = "reviews";
+    audio.autoplay = true;
+    $('#Recorded-Videos').append(audio);
     var video = document.createElement('video');
     video.src = window.URL.createObjectURL(VideoRecorder5.blob);
     video.className = "reviews";
     video.autoplay = true;
     $('#Recorded-Videos').append(video);
     if(MediaStreamLength === 6) return;
+    var audio = document.createElement('audio');
+    audio.src = window.URL.createObjectURL(AudioRecorder6.blob);
+    audio.className = "reviews";
+    audio.autoplay = true;
+    $('#Recorded-Videos').append(audio);
     var video = document.createElement('video');
     video.src = window.URL.createObjectURL(VideoRecorder6.blob);
     video.className = "reviews";
     video.autoplay = true;
     $('#Recorded-Videos').append(video);
     if(MediaStreamLength === 7) return;
+    var audio = document.createElement('audio');
+    audio.src = window.URL.createObjectURL(AudioRecorder7.blob);
+    audio.className = "reviews";
+    audio.autoplay = true;
+    $('#Recorded-Videos').append(audio);
     var video = document.createElement('video');
     video.src = window.URL.createObjectURL(VideoRecorder7.blob);
     video.className = "reviews";
     video.autoplay = true;
     $('#Recorded-Videos').append(video);
     if(MediaStreamLength === 8) return;
+    var audio = document.createElement('audio');
+    audio.src = window.URL.createObjectURL(AudioRecorder8.blob);
+    audio.className = "reviews";
+    audio.autoplay = true;
+    $('#Recorded-Videos').append(audio);
     var video = document.createElement('video');
     video.src = window.URL.createObjectURL(VideoRecorder8.blob);
     video.className = "reviews";

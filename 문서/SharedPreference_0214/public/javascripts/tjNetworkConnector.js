@@ -26,6 +26,9 @@ TjNetworkConnector.prototype = {
         });
 
     },
+    checkTheRoomExist: function(sendData, callback){
+        this.requestMessage('/group/createorjoin', sendData, callback);
+    },
     getFriendsList: function(sendData, callback){
         this.requestMessage('/friends/friendlist', sendData, callback);
     },
