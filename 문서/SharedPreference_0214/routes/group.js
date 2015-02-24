@@ -33,10 +33,27 @@ router.route('/member.list').post(function (req, res) {
     } else {
         Resmodule._response(res ,result)
     }
+});
 
+router.route('/leave').post(function(req , res){
+    console.log('leave');
+    console.log(req.body);
+    if(req.body.group_id !== undefined && req.body.sp_id !== undefined){
+
+
+    }
 
 });
 
+
+router.route('ckeck').post(function (req , res){
+    console.log('check');
+    console.log(req.body);
+
+    if(req.body.owner_id){
+        checkRoomExist(req.body.owner_id);
+    }
+});
 
 //Deprecate
 router.route('/join').post(function (req, res) {
@@ -77,6 +94,7 @@ function findGroupOnwerWhoThisId(curruntUserInfo, res) {
                 data.result = 200;
                 Resmodule._response(res ,data);
             } else {
+                console.log('room Create');
                 data.result = 200;
                 //채팅룸 먼저 만들고 채팅 아이디를 전달한다.
                 //그룹이 없음으로 내이름으로 그룹을 생성한다.
@@ -107,6 +125,28 @@ function findGroupOnwerWhoThisId(curruntUserInfo, res) {
 
         });
     })
+}
+
+//해당 그룹의 멤버를 최신화
+function leaveGroupWithGroupAndOnwerId(ownerId, sp_id){
+    db.collection('groups' , {safe :true} , function(err, collection){
+        if(err) throw err;
+        //collection.
+
+    });
+}
+
+
+function checkRoomExist(owner_id){
+    db.collection('groups' , {safe :true} , function(err, collection){
+        if(err) throw err;
+        collection.findOne({$and: [{ownerId: owner_id}, {state: "active"}]}, function (err, item) {
+            if(item){
+                console.log(item);
+
+            }
+        });
+    });
 }
 
 
