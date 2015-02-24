@@ -1,6 +1,7 @@
 /**
  * Created by rgy on 2015-02-22.
  */
+
 function requestLogout(){
     var userInfo=new DefaultUserinfo();
     var account_id=userInfo.getUserId();
@@ -36,14 +37,14 @@ function startGroupInit(result){
     console.log('initGroupTest222');
 
     var groupData=result.data;
-    console.log('groupData');
+    console.log(groupData);
 }
 
 function getGroupMember(){
-    //그룹아이디..
+    //group_id ..
 }
 
-/*
+
 function getChatData(result){
     var data=result.data;
     chatList=data.chatlist;
@@ -56,7 +57,7 @@ function getChatData(result){
         console.log(chatList[i].updated);
     }
 }
-    */
+
 
 var results = document.getElementById('results'),
     tests = {

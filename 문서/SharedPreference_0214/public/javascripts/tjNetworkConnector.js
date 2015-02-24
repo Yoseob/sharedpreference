@@ -1,16 +1,13 @@
 /**
  * Created by leeyoseob on 15. 2. 9.
  */
-
 //var db  = dbConnector.getDataBase();
-
 
 //console.log(db);
 function TjNetworkConnector() {
     this.servername = '';
     this.post = 30;
 }
-
 
 TjNetworkConnector.prototype = {
     requestMessage: function (url, sendData, callback) {
@@ -24,7 +21,6 @@ TjNetworkConnector.prototype = {
                 callback(result);
             }
         });
-
     },
     getFriendsList: function(sendData, callback){
         this.requestMessage('/friends/friendlist', sendData, callback);
