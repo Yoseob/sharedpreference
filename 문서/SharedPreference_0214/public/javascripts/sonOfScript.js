@@ -231,8 +231,9 @@ function initFriendsList(result){
                 var id_ = userInfo.getUserId();
                 var nc = new TjNetworkConnector();
                 nc.checkTheRoomExist({owner_id:$(this).find('p').text()}, function(result){
+                    console.log('result.data.room : ');
+                    console.log(result.data.room);
                     if(result.data.room == 'active'){
-                        console.log('result.data.room : '+result.data.room);
                         userInfo.setTargetUser($(this).find('p').text());
                         location.href = 'http://210.118.64.172:8000';
                     }else {
