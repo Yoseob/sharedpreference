@@ -4,10 +4,12 @@ var app = require('../app');
 var debug = require('debug')('SharedPreference:server');
 var http = require('http');
 
-var port = parseInt(process.env.PORT, 10) || 8000;
+var port = parseInt(process.env.PORT, 10) || 80;
 app.set('port', port);
 var server = http.createServer(app);
 var webrtc = require('webrtc.io').listen(server);
+
+
 //var io = require('socket.io').listen(server);
 // Start Binary.js server
 //var BinaryServer = require('binaryjs').BinaryServer;
@@ -37,7 +39,7 @@ var webrtc = require('webrtc.io').listen(server);
 //});
 
 
-console.log('server running with ' + 8100 + ' port');
+console.log('server running with ' + port + ' port');
 
 
 //////////////// log ////////////

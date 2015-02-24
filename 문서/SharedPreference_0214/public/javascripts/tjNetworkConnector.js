@@ -13,7 +13,7 @@ TjNetworkConnector.prototype = {
     requestMessage: function (url, sendData, callback) {
         console.log(sendData);
         $.ajax({
-            url: 'http://210.118.64.172:8000' + url,
+            url: 'http://tjchat.com' + url,
             dataType: 'json',
             data: sendData,
             type: 'POST',
