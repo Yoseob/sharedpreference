@@ -229,10 +229,9 @@ function initFriendsList(result){
 
             if (confirm($(this).find('p').text()+'님의 방으로 이동 하시겠습니까?') === true){    //확인
                 var id_ = userInfo.getUserId();
-
                 var nc = new TjNetworkConnector();
-                nc.checkTheRoomExist({ownerId:$(this).find('p').text(), sp_id:id_}, function(result){
-                    if(result.status === 'active'){
+                nc.checkTheRoomExist({owner_id:$(this).find('p').text()}, function(result){
+                    if(result.data.room == 'active'){
                         userInfo.setTargetUser($(this).find('p').text());
                         location.href = 'http://210.118.64.172:8000';
                     }else {

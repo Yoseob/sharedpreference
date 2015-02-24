@@ -27,7 +27,7 @@ TjNetworkConnector.prototype = {
 
     },
     checkTheRoomExist: function(sendData, callback){
-        this.requestMessage('/group/createorjoin', sendData, callback);
+        this.requestMessage('/group/check', sendData, callback);
     },
     getFriendsList: function(sendData, callback){
         this.requestMessage('/friends/friendlist', sendData, callback);
