@@ -172,16 +172,16 @@ function initFullScreen() {
 
 })();
 
-//
-//var websocketChat = {
-//    send: function (message) {
-//        rtc._socket.send(message);
-//    },
-//    recv: function (message) {
-//        return message;
-//    },
-//    event: 'receive_chat_msg'
-//};
+
+var websocketChat = {
+    send: function (message) {
+        rtc._socket.send(message);
+    },
+    recv: function (message) {
+        return message;
+    },
+    event: 'receive_chat_msg'
+};
 
 var dataChannelChat = {
     send: function (message) {
@@ -243,7 +243,7 @@ function initChat() {
     );
     rtc.on(chat.event, function () {
         var data = chat.recv.apply(this, arguments);
-        console.log(data.color);
+        console.log(chat.event+'  skdfjslkjfslkdjflksdjfslkdjf');
         addToChat(data.messages, data.color.toString(16));
     });
 }
@@ -270,7 +270,7 @@ function init() {
         }, function (stream) {
 
 
-            console.log('success attachStream isStrema : ' + stream);
+            console.log('success attachStream is Strema : ' + stream);
             var BigVideo = {};
             BigVideo = rtc.attachStream(stream, 'local-video');
             CurrentVideo = BigVideo;

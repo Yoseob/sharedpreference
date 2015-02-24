@@ -4,7 +4,7 @@ var app = require('../app');
 var debug = require('debug')('SharedPreference:server');
 var http = require('http');
 
-var port = parseInt(process.env.PORT, 10) || 80;
+var port =  80;
 app.set('port', port);
 var server = http.createServer(app);
 var webrtc = require('webrtc.io').listen(server);
@@ -12,31 +12,30 @@ var webrtc = require('webrtc.io').listen(server);
 
 //var io = require('socket.io').listen(server);
 // Start Binary.js server
-//var BinaryServer = require('binaryjs').BinaryServer;
+var BinaryServer = require('binaryjs').BinaryServer;
 //
-//var bs = BinaryServer({server: server});
-//
+var bs = BinaryServer({port: 8100});
+
 //
 //// Wait for new user connections
-//bs.on('connection', function(client){
-//    // Incoming stream from browsers
-//
-//    client.on('stream', function(stream, meta){
-//        //
-//        console.log('ing streamiung');
-//        if (!fs.existsSync(meta.groupname)){
-//            fs.mkdirSync(meta.groupname);
-//        }
-//        var file = fs.createWriteStream(__dirname+ '/'+ meta.groupname+'/'  + meta.filename);
-//        stream.pipe(file);
-//
-//
-//        stream.on('data', function(data){
-//            stream.write({rx: data.length / meta.size});
-//        });
-//        //
-//    });
-//});
+bs.on('connection', function(client){
+    // Incoming stream from browsers
+    console.log(client);
+
+    client.on('stream', function(stream, meta){
+        //
+        console.log('ing streamiung');
+
+
+        var file = fs.createWriteStream(__dirname + meta.filename);
+        stream.pipe(file);
+
+        stream.on('data', function(data){
+            stream.write({rx: data.length / meta.size});
+        });
+        //
+    });
+});
 
 
 console.log('server running with ' + port + ' port');
@@ -48,13 +47,13 @@ function log(logname) {
 }
 
 webrtc.rtc.on('chat_msg', function (data, socket) {
-    var roomList = webRTC.rtc.rooms[data.room] || [];
+    var roomList = webrtc.rtc.rooms[data.room] || [];
 
     for (var i = 0; i < roomList.length; i++) {
         var socketId = roomList[i];
 
         if (socketId !== socket.id) {
-            var soc = webRTC.rtc.getSocket(socketId);
+            var soc = webrtc.rtc.getSocket(socketId);
 
             if (soc) {
                 soc.send(JSON.stringify({

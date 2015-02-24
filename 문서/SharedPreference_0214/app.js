@@ -13,6 +13,7 @@ var Chatting = require('./routes/chatting'); // chatting
 var Account = require('./routes/account');  // account login process
 var Friends = require('./routes/friends');
 var Group = require('./routes/group');
+var testFileTransger = require('./routes/fileTransfer');
 var app = express();
 
 // view engine setup
@@ -35,6 +36,7 @@ app.use('/chatting', Chatting);
 app.use('/account', Account);
 app.use('/group', Group);
 app.use('/friends/', Friends);
+app.use('/file' , testFileTransger);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found');

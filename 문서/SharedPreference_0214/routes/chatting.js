@@ -23,11 +23,13 @@ router.route('/chated').post(function (req, res) {
     var cRoomId = req.body.cRoomId;
     getChattedListWithOwnerName(cRoomId, function (croom) {
         console.log(croom);
+        console.log('chated' + '');
+
 
         var result = {};
         result.tsmp = new Date();
 
-        if (croom) {
+        if (croom !== null) {
             result.result = 200;
             result.data = {chatlist: croom.chats};
         } else {
@@ -64,7 +66,6 @@ function getChattedListWithOwnerName(cRoomId, callback) {
     db.collection('chatting', {safe: true}, function (err, collection) {
         collection.findOne({_id: new ObjectId(cRoomId)}, function (err, item) {
             if (err) throw  err;
-
             callback(item);
         });
     });
