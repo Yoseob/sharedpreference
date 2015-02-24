@@ -226,14 +226,17 @@ function initFriendsList(result){
             //$('#select-space-contents').empty();
             //$('#select-space').css('display','block');
             //$('#select-space-contents').append($(this).find('p').text()+'님의 방으로 이동 하시겠습니까?');
-
-            if (confirm($(this).find('p').text()+'님의 방으로 이동 하시겠습니까?') === true){    //확인
+                var selectedName = $(this).find('p').text();
+            if (confirm(selectedName+'님의 방으로 이동 하시겠습니까?') === true){    //확인
                 var id_ = userInfo.getUserId();
                 var nc = new TjNetworkConnector();
-                nc.checkTheRoomExist({owner_id:$(this).find('p').text()}, function(result){
+                nc.checkTheRoomExist({owner_id:selectedName}, function(result){
                     console.log('result.data.room : ');
-                    console.log(result.data.room);
-                    if(result.data.room == 'active'){
+                    var data_ = result.data;
+                    console.log(data_.room);
+
+
+                    if(data_.room === 'active'){
                         userInfo.setTargetUser($(this).find('p').text());
                         location.href = 'http://210.118.64.172:8000';
                     }else {
