@@ -111,28 +111,23 @@ function addToChat(msg, color) {
     var cRoom = userinfo.getCurrectChattingRoom();
     var userId = userinfo.getUserId();
     console.log(cRoom + " " + userId);
-
     var tj = new TjNetworkConnector();
     tj.sendChattingMessage(cRoom, msg, userId, function (ret) {
         console.log(ret);
     });
 
     //광열 - 그룹 채팅 대화 가져오기.
- //   var gy=new TjNetworkConnector();
- //   console.log('croom');
- //   console.log(cRoom);
- //   gy.getChatList(cRoom,getChatData);
-
-
+   // var gy=new TjNetworkConnector();
+  //  gy.getChatList(cRoom,getChatData);
 
     msg = sanitize(msg);
     if (msg != '' && color == '#010101') {
         msg = '<div class="triangle-isosceles left col" style="color: ' + color + '; padding-left: 15px; float:right;">' + msg + '</div>' + '<br><br><br>';
     }
     else if (color && msg != '') {
-        msg = '<div class="triangle-isosceles left" style="color: ' + color + '; padding-left: 15px; float:left;">' + msg + '</div>' + '<br><br><br>';
+        msg = '<div class="bubble white" style="color: ' + color + '; padding-left: 15px; float:left;">' + msg + '</div>' + '<br><br><br>';
     } else if (msg != '') {
-        msg = '<div class="triangle-isosceles left col" style="color: ' + color + '; padding-left: 15px; float:right;">' + msg + '</div>' + '<br><br><br>';
+        msg = '<div class="bubble bubble-alt green" style="color: ' + color + '; padding-left: 15px; float:right;">' + msg + '</div>' + '<br><br><br>';
     }
     messages.innerHTML = messages.innerHTML + msg;
     messages.scrollTop = 10000;
@@ -172,16 +167,16 @@ function initFullScreen() {
 
 })();
 
-
-var websocketChat = {
-    send: function (message) {
-        rtc._socket.send(message);
-    },
-    recv: function (message) {
-        return message;
-    },
-    event: 'receive_chat_msg'
-};
+//
+//var websocketChat = {
+//    send: function (message) {
+//        rtc._socket.send(message);
+//    },
+//    recv: function (message) {
+//        return message;
+//    },
+//    event: 'receive_chat_msg'
+//};
 
 var dataChannelChat = {
     send: function (message) {
@@ -239,11 +234,9 @@ function initChat() {
             input.value = "";
         }
     }, false);
-    console.log(chat.event
-    );
     rtc.on(chat.event, function () {
         var data = chat.recv.apply(this, arguments);
-        console.log(chat.event+'  skdfjslkjfslkdjflksdjfslkdjf');
+        console.log(data.color);
         addToChat(data.messages, data.color.toString(16));
     });
 }
@@ -270,7 +263,7 @@ function init() {
         }, function (stream) {
 
 
-            console.log('success attachStream is Strema : ' + stream);
+            console.log('success attachStream isStrema : ' + stream);
             var BigVideo = {};
             BigVideo = rtc.attachStream(stream, 'local-video');
             CurrentVideo = BigVideo;

@@ -33,7 +33,7 @@ TjNetworkConnector.prototype = {
     },
     logoutFunc:function(sendData,callback){
         this.requestMessage('/account/leave', sendData, callback);
-        console.log("lllll");
+        //console.log("lllll");
     },
     createOrJoinRoom: function (ownerId, callback) {
         this.requestMessage('/createorjoin', ownerId, callback);

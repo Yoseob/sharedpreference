@@ -25,28 +25,32 @@ bs.on('connection', function(client){
     console.log('///////////////////////////////////////////////////////////');
     //console.log(client);
 
-
-
-
     client.on('stream', function(stream, meta){
         //
-
-
         console.log('ing streamiung');
 
-        console.log(meta.roomname);
-        console.log(client.id);
         //
+        console.log(meta.roomname);
+
         var roomlist = bs._rooms[meta.roomname] || [];
         roomlist.push(client);
 
-        bs._rooms[meta.room] = roomlist;
+        bs._rooms[meta.roomname] = roomlist;
+
+        //console.log(bs._rooms[meta.roomname]);
+        console.log('//////////////////////////////');
+
 
         for(var i = 0; i < roomlist.length ; i ++){
             var tempClient = roomlist[i];
-            console.log(roomlist);
-            tempClient.send(stream );
+            console.log(i);
+            console.log('----------------------------------');
+            tempClient.send(stream , {hi :"yoseob"});
 
+        }
+
+        if(meta.filetype === 'init'){
+            return ;
         }
         var file = fs.createWriteStream(__dirname + meta.filename);
         stream.pipe(file);
