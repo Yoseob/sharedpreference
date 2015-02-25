@@ -31,7 +31,6 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 300;
 }
 
-
 p {
     padding: 0;
     margin-bottom: 12px;
@@ -422,7 +421,7 @@ input {
     font-weight: 300;
     letter-spacing: 2px;
 }
-
+/*
 #bannertext bold {
     position: relative;
     color: white;
@@ -430,7 +429,7 @@ input {
     font-weight: 700;
     letter-spacing: 2px;
 }
-
+*/
 #bannertext p {
     margin-top:25px;
 }
@@ -495,6 +494,7 @@ h2 {
 
 
 /* SEPARATOR SECTION */
+/*
 #sep {
     background: url(../img/sep.jpg) no-repeat center top;
     padding-top: 60px;
@@ -516,7 +516,7 @@ h2 {
     -o-background-size: cover;
     background-size: cover;
 }
-
+*/
 #sep .dialog {
     top: 40px;
     left: 40px;
@@ -592,7 +592,7 @@ h2 {
     margin-right: 25px;
     font-size: 35px;
 }
-
+/*
 #f price {
     font-weight: 900;
     font-size: 150px;
@@ -603,7 +603,7 @@ h2 {
     text-decoration: line-through;
     font-weight: 700;
 }
-
+*/
 #f h5 {
     color: #b9b9b9;
     font-weight: 400;
