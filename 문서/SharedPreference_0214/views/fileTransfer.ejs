@@ -3,8 +3,13 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
     <script src="http://cdn.binaryjs.com/0/binary.js"></script>
     <script>
-        var client = new BinaryClient('ws://210.118.64.172:8100');
+        var client = new BinaryClient('ws://210.118.64.172:8100' , {room_id : 'yoseobZZZAngi'});
 
+        client.on('stream' , function(stream , meta){
+
+            console.log(stream ,  meta);
+
+        });
         // Wait for connection to BinaryJS server
         client.on('open', function(){
             var box = $('#box');
@@ -26,9 +31,11 @@
                 fileinfo.username = '';
                 fileinfo.filename =  file.name;
                 fileinfo.groupname = '';
+                fileinfo.roomname = 'yoseob';
                 filesize = file.size;
 
                 var stream = client.send(file,fileinfo);
+
 
                 // Print progress
                 var tx = 0;
