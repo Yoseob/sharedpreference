@@ -1098,6 +1098,6 @@ $(document).ready(function() {
         $('#backhome').css('background-color', '#999');
         });
     $('#backhome').mouseleave(function(){
-        $('#backhome').css('background-color', '#222');
+        $('#backhome').css('background-color', '#444');
     });
 });

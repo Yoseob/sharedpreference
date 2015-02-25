@@ -64,23 +64,23 @@
 }
 #Recorded-Videos-controlbar button{
     width: 23.6%;
-    height: 50%;
+    height: 25%;
     padding: 0;
     margin: 0;
-    /*background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent),
+    background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent),
     linear-gradient(-45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent),
     linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%),
-    linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%);*/
-    border:1px solid #333; -webkit-border-radius: 5px; font-size:12px;font-family:trebuchet MS, sans-serif; padding: 1px 1px 1px 1px; text-decoration:none; display:inline-block; color: #FFFFFF;
+    linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%);
+    /*border:1px solid #333; -webkit-border-radius: 5px; font-size:12px;font-family:trebuchet MS, sans-serif; padding: 1px 1px 1px 1px; text-decoration:none; display:inline-block; color: #FFFFFF;
     background-color: #FFF; background-image: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#707070));
     background-image: -webkit-linear-gradient(top, #FFF, #707070);
-    background-image: linear-gradient(to bottom, #FFF, #707070);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#FFF, endColorstr=#707070);
+    background-image: linear-gradient(to bottom, #FFF, #707070);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#FFF, endColorstr=#707070);*/
 }
 #Recorded-Videos-controlbar button:hover{
-    /*box-shadow: 0 0 .1em rgba(0,0,0,0.4);*/
-    background-color: #bababa; background-image: -webkit-gradient(linear, left top, left bottom, from(#bababa), to(#333));
+    box-shadow: 0 0 .1em rgba(0,0,0,0.4);
+    /*background-color: #bababa; background-image: -webkit-gradient(linear, left top, left bottom, from(#bababa), to(#333));
     background-image: -webkit-linear-gradient(top, #bababa, #333);
-    background-image: linear-gradient(to bottom, #bababa, #333);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#bababa, endColorstr=#333);
+    background-image: linear-gradient(to bottom, #bababa, #333);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#bababa, endColorstr=#333);*/
 }
 
 #Recorded-Videos-controlbar button a{
