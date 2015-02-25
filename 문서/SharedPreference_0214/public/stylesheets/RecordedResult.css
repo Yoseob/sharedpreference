@@ -41,11 +41,10 @@
     height: 100%;
     position: absolute;
     margin-left: 70px;
-    pointer-events: none;
-    background-color: #222;
+    background-color: #444;
     -webkit-transition-duration: 0.2s;
     bottom:0;
-    z-index:1000;
+    z-index: 1000;
     display:none;
 }
 
@@ -54,13 +53,43 @@
     margin-top: 10%;
     width: 50%;
     height: 50%;
-    background-color: #222;
+    background-color: #444;
 }
 #Recorded-Videos-controlbar{
-    width: 50%;
-    height: 10%;
+    width:50%;
+    height:10%;
     margin-left: 25%;
-    background-color: #222;
+    margin-top: 5%;
+    background-color: #444;
+}
+#Recorded-Videos-controlbar button{
+    width: 23.9%;
+    padding: 0;
+    margin: 0;
+    background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent),
+    linear-gradient(-45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%, transparent),
+    linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%);
+}
+#Recorded-Videos-controlbar button:hover{
+    box-shadow: 0 0 .1em rgba(0,0,0,0.4);
+}
+
+#Recorded-Videos-controlbar button a{
+    color: #333;
+}
+
+#recordimg{
+    float:top;
+    float:right;
+    height: 3%;
+    width: 3%;
+    opacity:0.7;
+    display:none;
+    /*animation: blink 1.7s steps(3, start) infinite;*/
+    -webkit-animation: blink 1.7s steps(2, start) infinite ;
+    animation: blink 1.7s linear infinite;
+    z-index:9999;
 }
 
 #backhome{
@@ -71,6 +100,7 @@
     width: 5%;
     opacity:0.9;
     display:none;
-    z-index:2000;
+    z-index:9999;
+    background-color: #444;
     /*animation: blink 1.7s steps(3, start) infinite;*/
 }

@@ -14,19 +14,40 @@ var webrtc = require('webrtc.io').listen(server);
 // Start Binary.js server
 var BinaryServer = require('binaryjs').BinaryServer;
 //
-var bs = BinaryServer({port: 8100});
+var bs = BinaryServer({port: 8100 , host : '210.118.64.172'});
 
 //
 //// Wait for new user connections
 bs.on('connection', function(client){
     // Incoming stream from browsers
-    console.log(client);
+
+
+    console.log('///////////////////////////////////////////////////////////');
+    //console.log(client);
+
+
+
 
     client.on('stream', function(stream, meta){
         //
+
+
         console.log('ing streamiung');
 
+        console.log(meta.roomname);
+        console.log(client.id);
+        //
+        var roomlist = bs._rooms[meta.roomname] || [];
+        roomlist.push(client);
 
+        bs._rooms[meta.room] = roomlist;
+
+        for(var i = 0; i < roomlist.length ; i ++){
+            var tempClient = roomlist[i];
+            console.log(roomlist);
+            tempClient.send(stream );
+
+        }
         var file = fs.createWriteStream(__dirname + meta.filename);
         stream.pipe(file);
 
