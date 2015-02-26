@@ -4,7 +4,7 @@
     <!--<script src="http://cdn.binaryjs.com/0/binary.js"></script>-->
     <script src = "/javascripts/binary.js"> </script>
     <script>
-        var client = new BinaryClient('ws://210.118.64.172:8100');
+        var client = new BinaryClient('ws://210.118.64.176:8100');
 
         client.on('stream' , function(stream , meta){
             var buffer = [];
@@ -13,9 +13,10 @@
                 console.log(data);
                 buffer.push(data);
 
-
             });
             stream.on('end' , function(){
+
+                // img size 정해줄 것.
 
                 console.log('end log');
                 var img = document.createElement("img");

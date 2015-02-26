@@ -2,23 +2,25 @@
  * Created by rgy on 2015-02-22.
  */
 
+var file_name='';
+var curUsername=new DefaultUserinfo();
 function requestLogout(){
     var userInfo=new DefaultUserinfo();
     var account_id=userInfo.getUserId();
 
     var nc=new TjNetworkConnector();
-    console.log('logoutTest');
+   // console.log('logoutTest');
     nc.logoutFunc({account_id:account_id},startLogout);
 
 }
 
 function startLogout(result){
-    console.log('logout!!!!!!!!!!!!!!');
+   // console.log('logout!!!!!!!!!!!!!!');
 
     var data=result.data;
 
     var userState=data.state;
-    console.log(userState);
+  //  console.log(userState);
 }
 
 function initGroup(){
@@ -29,20 +31,279 @@ function initGroup(){
     data._id=userInfo.getUserId();
 
     var nc=new TjNetworkConnector();
-    console.log('initGroupTest');
+//    console.log('initGroupTest');
     nc.groupCreateOrJoin(data,startGroupInit);
 }
 
 function startGroupInit(result){
-    console.log('initGroupTest222');
+    //console.log('initGroupTest222');
 
     var groupData=result.data;
-    console.log(groupData);
+  //  console.log(groupData);
 }
 
 function getGroupMember(){
-    //group_id ..
+    //group_id ..d
 }
+
+
+var client = new BinaryClient('ws://210.118.64.176:8100');
+
+client.on('stream' , function(stream , meta){
+    var buffer = [];
+
+
+    //console.log(meta);
+    stream.on('data' , function(data){
+        console.log(data);
+        buffer.push(data);
+
+    });
+    stream.on('end' , function(){
+
+        // img size 정해줄 것.
+        console.log(meta);
+
+        var extention=meta.filename.split(".");
+        console.log(extention[1]);
+        if(extention[1]==="jpg" || extention[1]==="png" || extention[1]==="jpeg" || extention[1]==="gif"){
+            console.log('end log');
+            var img = document.createElement("img");
+           // img.src = (window.URL || window.webkitURL).createObjectURL(new Blob(buffer));
+            img.width=100;
+
+            saveByteArray(buffer,meta.filename,img,meta.username);
+        }
+
+        else if(extention[1]==="mp4" || extention[1]==="wmv"){
+            console.log('end log');
+            var cVideo = document.createElement("video");
+           // cVideo.src = (window.URL || window.webkitURL).createObjectURL(new Blob(buffer));
+            cVideo.width=100;
+            cVideo.height=75;
+            cVideo.autoplay=false;
+            cVideo.load();
+            saveByteArray(buffer,meta.filename,cVideo,meta.username);
+        }
+        else{
+            console.log('end log');
+          //  var img = document.createElement("img");
+            //img.src = (window.URL || window.webkitURL).createObjectURL(new Blob(buffer));
+          //  img.src ="/images/fileimg3.jpg";
+          //  img.width=100;
+            other_saveByteArray(buffer,meta.filename,meta.username);
+        }
+        //results.appendChild(img);
+
+    });
+});
+
+// Wait for connection to BinaryJS server
+client.on('open', function(){
+    client.send({} , {roomname : curUsername.getTargetUser() , filetype : 'init' , sendType: 'p2p'});
+    var box = $('#results');
+    box.on('dragenter', doNothing);
+    box.on('dragover', doNothing);
+    //box.text('Drag files here');
+    box.on('drop', function(e){
+        e.originalEvent.preventDefault();
+        var file = e.originalEvent.dataTransfer.files[0];
+
+        // Add to list of uploaded files
+        //$('<div align="center"></div>').append($('<a></a>').text(file.name).prop('href', '/'+file.name)).appendTo('body');
+
+        // `client.send` is a helper function that creates a stream with the
+        // given metadata, and then chunks up and streams the data.
+        var fileinfo = {};
+
+        fileinfo.fileEndata = new Date();
+        fileinfo.username = curUsername.getUserName();
+        fileinfo.filename =  file.name;
+        fileinfo.groupname = '';
+        fileinfo.roomname = curUsername.getTargetUser();
+        fileinfo.sendType = 'p2p';
+        filesize = file.size;
+
+        var stream = client.send(file,fileinfo);
+
+
+        // Print progress
+        var tx = 0;
+        stream.on('data', function(data){
+            $('#progress').text(Math.round(tx+=data.rx*100) + '% complete');
+        });
+    });
+});
+
+// Deal with DOM quirks
+function doNothing (e){
+    e.preventDefault();
+    e.stopPropagation();
+}
+
+var saveByteArray = (function () {
+    var a = document.createElement("a");
+
+    return function (data, name,img,username) {
+        var blob = new Blob(data, {type: "octet/stream"}),
+            url = window.URL.createObjectURL(blob);
+
+        if(username === curUsername.getUserName()){
+            img.src=url;
+
+            a.href = url;
+            a.download = name;
+            // a.click();
+            a.appendChild(img);
+            document.getElementById('results').appendChild(a);
+            //window.URL.revokeObjectURL(url);
+        }
+        else{
+            img.src=url;
+            img.setAttribute('style','margin-left:0');
+            a.href = url;
+            a.download = name;
+            // a.click();
+            a.appendChild(img);
+            document.getElementById('results').appendChild(a);
+            //window.URL.revokeObjectURL(url);
+        }
+    };
+}());
+var other_saveByteArray = (function () {
+    var a = document.createElement("a");
+    var myDiv = document.createElement("div");
+    myDiv.className="imageContainer";
+
+    return function (data, name,username) {
+        var blob = new Blob(data, {type: "octet/stream"}),
+            url = window.URL.createObjectURL(blob);
+
+        if(username === curUsername.getUserName()){
+
+            a.href = url;
+            a.download = name;
+            // a.click();
+            myDiv.innerHTML=name;
+            a.appendChild(myDiv);
+            document.getElementById('results').appendChild(a);
+            //window.URL.revokeObjectURL(url);
+        }
+        else{
+
+            myDiv.setAttribute('style','margin-left:0');
+            a.href = url;
+            a.download = name;
+            // a.click();
+            a.appendChild(img);
+            document.getElementById('results').appendChild(a);
+            //window.URL.revokeObjectURL(url);
+        }
+    };
+}());
+
+/*
+
+var client = new BinaryClient('ws://210.118.64.176:8100');
+
+client.on('stream' , function(stream , meta){
+    var buffer = [];
+
+    console.log(meta);
+    stream.on('data' , function(data){
+        console.log(data);
+        buffer.push(data);
+
+    });
+    stream.on('end' , function(){
+
+        console.log('end log');
+        var img = document.createElement("img");
+        img.src = (window.URL || window.webkitURL).createObjectURL(new Blob(buffer));
+        //document.body.appendChild(img);
+        img.width=100;
+
+        elementFunc(img);
+
+
+
+
+
+
+
+        /*
+        var a=document.createElement('a');
+        //a.href="/images/image.src"+".jpg";
+        a.href="/bin/"+file.name;
+        a.download=file.name;
+        //a.download="image";
+
+        a.appendChild(img);
+        //results.appendChild(a);
+
+
+    });
+});
+
+*/
+/*
+// Wait for connection to BinaryJS server
+client.on('open', function(){
+    client.send({} , {roomname : 'testroomname' , filetype : 'init'});
+    var box = $('#results');
+    box.on('dragenter', doNothing);
+    box.on('dragover', doNothing);
+    box.text('Drag files here');
+    box.on('drop', function(e){
+        e.originalEvent.preventDefault();
+        var file = e.originalEvent.dataTransfer.files[0];
+
+        file_name=file;
+
+        // Add to list of uploaded files
+        $('<div align="center"></div>').append($('<a></a>').text(file.name).prop('href', '/'+file.name)).appendTo('body');
+
+        // `client.send` is a helper function that creates a stream with the
+        // given metadata, and then chunks up and streams the data.
+        var fileinfo = {};
+
+        fileinfo.fileEndata = new Date();
+        fileinfo.username = '';
+        fileinfo.filename =  file.name;
+        fileinfo.groupname = '';
+        fileinfo.roomname = 'testroomname';
+        filesize = file.size;
+
+        var stream = client.send(file,fileinfo);
+
+
+        // Print progress
+        var tx = 0;
+        stream.on('data', function(data){
+            $('#progress').text(Math.round(tx+=data.rx*100) + '% complete');
+        });
+    });
+});
+
+// Deal with DOM quirks
+function doNothing (e){
+    e.preventDefault();
+    e.stopPropagation();
+}
+
+function elementFunc(img){
+    var a = document.createElement("a");
+    //console.log(file.name);
+    //a.href="/bin/"+file.name;
+    console.log("functest");
+    a.setAttribute('href',"/bin/"+file_name.name);
+    a.download=file_name.name;
+
+    a.appendChild(img);
+    document.getElementById('results').appendChild(a);
+}
+*/
+
 
 /*
 function getChatData(result){
@@ -59,6 +320,59 @@ function getChatData(result){
 }
 */
 
+
+/*
+var client = new BinaryClient('ws://210.118.64.176:8000' , {room_id : 'yoseobZZZAngi'});
+
+client.on('stream' , function(stream , meta){
+
+    console.log(stream ,  meta);
+
+});
+// Wait for connection to BinaryJS server
+client.on('open', function(){
+    var box = $('#results');
+    box.on('dragenter', doNothing);
+    box.on('dragover', doNothing);
+    box.text('Drag files here');
+    box.on('drop', function(e){
+        e.originalEvent.preventDefault();
+        var file = e.originalEvent.dataTransfer.files[0];
+
+        // Add to list of uploaded files
+        $('<div align="center"></div>').append($('<a></a>').text(file.name).prop('href', '/'+file.name)).appendTo('body');
+
+        // `client.send` is a helper function that creates a stream with the
+        // given metadata, and then chunks up and streams the data.
+        var fileinfo = {};
+
+        fileinfo.fileEndata = new Date();
+        fileinfo.username = '';
+        fileinfo.filename =  file.name;
+        fileinfo.groupname = '';
+        fileinfo.roomname = 'yoseob';
+        filesize = file.size;
+
+        var stream = client.send(file,fileinfo);
+
+
+
+        // Print progress
+        var tx = 0;
+        stream.on('data', function(data){
+            $('#progress').text(Math.round(tx+=data.rx*100) + '% complete');
+        });
+    });
+});
+
+// Deal with DOM quirks
+function doNothing (e){
+    e.preventDefault();
+    e.stopPropagation();
+}
+*/
+
+/*
 var results = document.getElementById('results'),
     tests = {
         filereader: typeof FileReader != 'undefined',
@@ -75,7 +389,7 @@ var results = document.getElementById('results'),
         'image/png': true,
         'image/jpeg': true,
         'image/gif': true
-    },
+    };
     progress = document.getElementById('uploadprogress'),
     fileupload = document.getElementById('upload');
 
@@ -100,9 +414,12 @@ function previewfile(file) {
             image.width = 100; // a fake resize
 
 
+
             var a=document.createElement('a');
-            a.href="/images/image.src"+".jpg";
-            a.download="image";
+            //a.href="/images/image.src"+".jpg";
+            a.href=file.name;
+            a.download=file.name;
+            //a.download="image";
 
             //span.setattribute("style","height:90%");
 //                a.setAttribute("style","border-top-width:medium; border-left-width:medium; border-right-width:medium; border-top-width:medium;");
@@ -120,6 +437,7 @@ function previewfile(file) {
         console.log(file);
     }
 }
+
 
 function readfiles(files) {
     debugger;
@@ -173,4 +491,4 @@ try {
     pageTracker._trackPageview();
 } catch(err) {}
 
-
+*/

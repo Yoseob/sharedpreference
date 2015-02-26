@@ -11,9 +11,9 @@ function TjNetworkConnector() {
 
 TjNetworkConnector.prototype = {
     requestMessage: function (url, sendData, callback) {
-        console.log(sendData);
+       // console.log(sendData);
         $.ajax({
-            url: 'http://tjchat.com' + url,
+            url: 'http://210.118.64.176:8000' + url,
             dataType: 'json',
             data: sendData,
             type: 'POST',

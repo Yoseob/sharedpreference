@@ -354,10 +354,42 @@ a:hover {
 #results.hover { border: 10px dashed #0c0; }
 #results img {
     display: block;
-    margin: 10px;
+    margin: 15px;
     margin-left: auto;
-    border-style: solid;
-    border-color: darkgray;
+    margin-right: 0;
+    /*  border-style: solid;
+    border-color: darkgray;*/
+    border-radius: 10px;
+    border-top-width: medium;
+    border-left-width: medium;
+    border-right-width: medium;
+    border-bottom-width: medium;
+}
+#results div {
+    display: block;
+    margin: 15px;
+    margin-left: auto;
+    margin-right: 0;
+    /*  border-style: solid;
+    border-color: darkgray;*/
+    border-radius: 10px;
+    border-top-width: medium;
+    border-left-width: medium;
+    border-right-width: medium;
+    border-bottom-width: medium;
+}
+.imageContainer{
+    width: 64px;
+    height:64px;
+    background-image: url("/images/fileimg3.jpg");
+}
+#results video {
+    display: block;
+    margin: 15px;
+    margin-left: auto;
+    margin-right: 0;
+    /*  border-style: solid;
+    border-color: darkgray;*/
     border-radius: 10px;
     border-top-width: medium;
     border-left-width: medium;

@@ -78,7 +78,7 @@
         FB.login(function(response) {
 
             if (response.authResponse) {
-                console.log('Welcome!  Fetching your information.... ');
+                //console.log('Welcome!  Fetching your information.... ');
                 //console.log(response); // dump complete info
                 access_token = response.authResponse.accessToken; //get access token
                 user_id = response.authResponse.userID; //get FB UID
@@ -90,7 +90,7 @@
             } else {
                 //user hit cancel button
                 //requestLogout();
-                console.log('User cancelled login or did not fully authorize.');
+               // console.log('User cancelled login or did not fully authorize.');
 
             }
         }, {
@@ -133,10 +133,10 @@
         // facebookid
 
         FB.api('/me', function (response) {
-            console.log('facebook api');
+            //console.log('facebook api');
             var data = {};
             if (response) {
-                console.log(response);
+                //console.log(response);
 
                 data.facebookId = response.id;
 
@@ -150,13 +150,13 @@
 
                 var nc = new TjNetworkConnector();
 
-                console.log('start');
-                console.log(data);
+               // console.log('start');
+               // console.log(data);
 
                 nc.loginAndJoin(data, function (result) {
                     var data = result.data;
-                    console.log('recv');
-                    console.log(data);
+                   // console.log('recv');
+                  //  console.log(data);
 //                  //아이디
                     userInfo.setUserId(data._id);
 //                    localStorage.setItem("spUserId" , data._id);
@@ -177,7 +177,7 @@
     }(document, 'script', 'facebook-jssdk'));
 
     function testAPI() {
-        console.log('Welcome!  Fetching your information.... ');
+        //console.log('Welcome!  Fetching your information.... ');
         FB.api('/me?', function (response) {
 
         });
@@ -279,7 +279,8 @@
         var username = userinfo.getUserName();
         if (username !== null) {
 //            location.replace('http://210.118.64.172:8100' + username);
-            location.href = 'http://tjchat.com';
+            //location.href = 'http://tjchat.com';
+            location.href = 'http://210.118.64.176:8000';
         }
     }
 </script>
