@@ -4,10 +4,6 @@
 var RecDate;
 var Friends = [];
 var userInfo = new DefaultUserinfo();
-$('#glyphicon-sharescreen').click(function(){
-
-
-});
 
 
 //화면크기 조절을 감지하여 footer의 높이를 조절해주는 함수
@@ -651,6 +647,9 @@ $('#glyphicon-record').click(function() {
 
 
 function resetReview(){
+    /*var icon = document.getElementById("playorstop");
+    icon.className = 'glyphicon glyphicon-pause';
+*/
     var aid0 = document.getElementById('reviews-audio0');
     var vid0 = document.getElementById('reviews-video0');
     aid0.currentTime = 0;
@@ -698,6 +697,9 @@ function resetReview(){
 }
 
 function skipBackReview(){
+    /*var icon = document.getElementById("playorstop");
+    icon.className = 'glyphicon glyphicon-pause';*/
+
     var aid0 = document.getElementById('reviews-audio0');
     var vid0 = document.getElementById('reviews-video0');
     aid0.currentTime -= 10;
@@ -844,6 +846,12 @@ function skipForwardReview(){
     var vid0 = document.getElementById('reviews-video0');
     aid0.currentTime += 10;
     vid0.currentTime += 10;
+
+    /*if(vid0.currentTime === vid0.duration){
+        var icon = document.getElementById("playorstop");
+        icon.className = 'glyphicon glyphicon-play';
+    }*/
+
     if(MediaStreamLength === 1) return;
     var aid1 = document.getElementById('reviews-audio1');
     var vid1 = document.getElementById('reviews-video1');
@@ -904,7 +912,22 @@ function appendReviewVideos(){
     video.autoplay = true;
     $('#Recorded-Videos').append(video);
 
-
+    //동영상 종료시 일시정지 버튼이 재생버튼으로 바뀌게.
+    var vid0 = document.getElementById('reviews-video0');
+    vid0.addEventListener("ended",
+        function(){
+            var icon = document.getElementById("playorstop");
+            icon.className = 'glyphicon glyphicon-play';
+        }
+        , false
+    );
+    vid0.addEventListener("played",
+        function(){
+            var icon = document.getElementById("playorstop");
+            icon.className = 'glyphicon glyphicon-pause';
+        }
+        , false
+    );
 
     if(MediaStreamLength === 1) return;
     var audio = document.createElement('audio');
@@ -1075,6 +1098,6 @@ $(document).ready(function() {
         $('#backhome').css('background-color', '#999');
         });
     $('#backhome').mouseleave(function(){
-        $('#backhome').css('background-color', '#222');
+        $('#backhome').css('background-color', '#444');
     });
 });
