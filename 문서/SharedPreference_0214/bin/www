@@ -15,12 +15,17 @@ var webrtc = require('webrtc.io').listen(server);
 var BinaryServer = require('binaryjs').BinaryServer;
 //
 var bs = BinaryServer({port: 8100 , host : '210.118.64.172'});
-
-//
+var roomName;
+var self;
+bs.on('close' , function () {
+    var roomlist = bs._rooms[roomName] || [];
+    var index  = roomlist.indexOf(self);
+    roomlist.slice(index , 1);
+});
 //// Wait for new user connections
 bs.on('connection', function(client){
     // Incoming stream from browsers
-
+    self = client;
 
     client.on('stream', function(stream, meta){
         //
@@ -36,7 +41,7 @@ bs.on('connection', function(client){
 
         var roomlist = bs._rooms[meta.roomname] || [];
         if(meta.filetype === 'init'){
-
+            roomName = meta.roomname;
             roomlist.push(client);
             bs._rooms[meta.roomname] = roomlist;
             return ;
