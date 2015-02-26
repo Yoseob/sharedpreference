@@ -25,16 +25,18 @@ bs.on('connection', function(client){
     client.on('stream', function(stream, meta){
         //
 
+        var buf = [];
+        console.log('ing streamiung');
+        console.log(stream);
+
 
 
         //console.log(bs._rooms[meta.roomname]);
         console.log('//////////////////////////////');
-        var roomlist = bs._rooms[meta.roomname] || [];
 
+        var roomlist = bs._rooms[meta.roomname] || [];
         if(meta.filetype === 'init'){
-            var buf = [];
-            console.log('ing streamiung');
-            console.log(stream);
+
             roomlist.push(client);
             bs._rooms[meta.roomname] = roomlist;
             return ;
