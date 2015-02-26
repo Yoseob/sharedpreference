@@ -22,41 +22,42 @@ bs.on('connection', function(client){
     // Incoming stream from browsers
 
 
-    console.log('///////////////////////////////////////////////////////////');
-    //console.log(client);
-
     client.on('stream', function(stream, meta){
         //
-        console.log('ing streamiung');
 
-        //
-        console.log(meta.roomname);
+        var buf = [];
+        console.log('ing streamiung');
+        console.log(stream);
 
         var roomlist = bs._rooms[meta.roomname] || [];
         roomlist.push(client);
-
         bs._rooms[meta.roomname] = roomlist;
 
         //console.log(bs._rooms[meta.roomname]);
         console.log('//////////////////////////////');
 
 
-        for(var i = 0; i < roomlist.length ; i ++){
-            var tempClient = roomlist[i];
-            console.log(i);
-            console.log('----------------------------------');
-            tempClient.send(stream , {hi :"yoseob"});
-
-        }
-
         if(meta.filetype === 'init'){
             return ;
         }
-        var file = fs.createWriteStream(__dirname + meta.filename);
+        var file = fs.createWriteStream(__dirname+'/' +meta.filename);
         stream.pipe(file);
 
         stream.on('data', function(data){
+
             stream.write({rx: data.length / meta.size});
+        });
+        stream.on('end' , function(){
+
+
+            for(var i = 0; i < roomlist.length ; i ++){
+                var tempClient = roomlist[i];
+                console.log(i);
+                console.log('----------------------------------');
+                tempClient.send(fs.createReadStream(__dirname +'/'+meta.filename));
+                //tempClient.send(buf , {hi :"yoseob" , filename : meta.filename});
+
+            }
         });
         //
     });

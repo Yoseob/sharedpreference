@@ -4,13 +4,27 @@
     <!--<script src="http://cdn.binaryjs.com/0/binary.js"></script>-->
     <script src = "/javascripts/binary.js"> </script>
     <script>
-        var client = new BinaryClient('ws://210.118.64.172:8100' , {room_id : 'yoseobZZZAngi'});
+        var client = new BinaryClient('ws://210.118.64.172:8100');
 
         client.on('stream' , function(stream , meta){
+            var buffer = [];
 
-            console.log(stream ,  meta);
+            stream.on('data' , function(data){
+                console.log(data);
+                buffer.push(data);
 
+
+            });
+            stream.on('end' , function(){
+
+                console.log('end log');
+                var img = document.createElement("img");
+                img.src = (window.URL || window.webkitURL).createObjectURL(new Blob(buffer));
+                document.body.appendChild(img);
+
+            });
         });
+
         // Wait for connection to BinaryJS server
         client.on('open', function(){
             client.send({} , {roomname : 'testroomname' , filetype : 'init'});
