@@ -8,19 +8,23 @@
 
         client.on('stream' , function(stream , meta){
             var buffer = [];
-
+            console.log(meta);
+            console.log('-----------------');
             stream.on('data' , function(data){
                 console.log(data);
                 buffer.push(data);
-
-
             });
             stream.on('end' , function(){
 
                 console.log('end log');
-                var img = document.createElement("img");
-                img.src = (window.URL || window.webkitURL).createObjectURL(new Blob(buffer));
-                document.body.appendChild(img);
+                var video = document.createElement("video");
+                video.src = (window.URL || window.webkitURL).createObjectURL(new Blob(buffer));
+                video.autoplay = true;
+                video.load();
+                document.body.appendChild(video);
+
+
+
 
             });
         });
