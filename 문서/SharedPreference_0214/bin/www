@@ -17,55 +17,65 @@ var BinaryServer = require('binaryjs').BinaryServer;
 var bs = BinaryServer({port: 8100 , host : '210.118.64.172'});
 var roomName;
 var self;
-bs.on('close' , function () {
-    var roomlist = bs._rooms[roomName] || [];
-    var index  = roomlist.indexOf(self);
-    roomlist.slice(index , 1);
-});
-//// Wait for new user connections
+
+
 bs.on('connection', function(client){
     // Incoming stream from browsers
-    self = client;
+    client.on('close' ,function(stream){
+        var roomlist = bs._rooms[roomName] || [];
+        var index  = roomlist.indexOf(client);
+        roomlist.splice(index , 1);
+
+    });
 
     client.on('stream', function(stream, meta){
-        //
+        if(meta.sendType === 'p2p'){
 
-        var buf = [];
-        console.log('ing streamiung');
-        console.log(stream);
+            console.log('//////////////////////////////');
 
-
-
-        //console.log(bs._rooms[meta.roomname]);
-        console.log('//////////////////////////////');
-
-        var roomlist = bs._rooms[meta.roomname] || [];
-        if(meta.filetype === 'init'){
-            roomName = meta.roomname;
-            roomlist.push(client);
-            bs._rooms[meta.roomname] = roomlist;
-            return ;
-        }
-        var file = fs.createWriteStream(__dirname+'/' +meta.filename);
-        stream.pipe(file);
-
-        stream.on('data', function(data){
-
-            stream.write({rx: data.length / meta.size});
-        });
-        stream.on('end' , function(){
-
-
+            var buf = [];
+            var roomlist = bs._rooms[meta.roomname] || [];
+            if(meta.filetype === 'init'){
+                roomName = meta.roomname;
+                roomlist.push(client);
+                bs._rooms[meta.roomname] = roomlist;
+                return ;
+            }
             for(var i = 0; i < roomlist.length ; i ++){
                 var tempClient = roomlist[i];
-                console.log(i);
-                console.log('----------------------------------');
-                tempClient.send(fs.createReadStream(__dirname +'/'+meta.filename));
-                //tempClient.send(buf , {hi :"yoseob" , filename : meta.filename});
-
+                console.log(tempClient);
+                console.log(i+' = *****************************************');
+                if(tempClient !== undefined && tempClient !== null){
+                    var send = tempClient.createStream(meta);
+                    stream.pipe(send);
+                }
             }
-        });
-        //
+        }else{
+            /*
+             var file = fs.createWriteStream(__dirname+'/' +meta.filename);
+             stream.pipe(file);
+             stream.on('data', function(data){
+             stream.write({rx: data.length / meta.size});
+             });
+
+             stream.on('end' , function(){
+
+
+             for(var i = 0; i < roomlist.length ; i ++){
+             var tempClient = roomlist[i];
+             console.log(i);
+             console.log('----------------------------------');
+             //tempClient.send(fs.createReadStream(__dirname +'/'+meta.filename));
+             var send = tempClient.createStream(meta);
+             stream.pipe(send);
+
+             }
+             });
+             */
+        }
+
+
+
     });
 });
 

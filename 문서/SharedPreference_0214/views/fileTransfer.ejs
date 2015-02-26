@@ -27,7 +27,7 @@
 
         // Wait for connection to BinaryJS server
         client.on('open', function(){
-            client.send({} , {roomname : 'testroomname' , filetype : 'init'});
+            client.send({} , {roomname : 'testroomname' , filetype : 'init' , sendType: 'p2p'});
             var box = $('#box');
             box.on('dragenter', doNothing);
             box.on('dragover', doNothing);
@@ -48,6 +48,7 @@
                 fileinfo.filename =  file.name;
                 fileinfo.groupname = '';
                 fileinfo.roomname = 'testroomname';
+                fileinfo.sendType = 'p2p';
                 filesize = file.size;
 
                 var stream = client.send(file,fileinfo);
