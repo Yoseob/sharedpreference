@@ -69,7 +69,7 @@ client.on('stream' , function(stream , meta){
         if(extention[1]==="jpg" || extention[1]==="png" || extention[1]==="jpeg" || extention[1]==="gif"){
             console.log('end log');
             var img = document.createElement("img");
-           // img.src = (window.URL || window.webkitURL).createObjectURL(new Blob(buffer));
+
             img.width=100;
 
             saveByteArray(buffer,meta.filename,img,meta.username);
@@ -78,7 +78,7 @@ client.on('stream' , function(stream , meta){
         else if(extention[1]==="mp4" || extention[1]==="wmv"){
             console.log('end log');
             var cVideo = document.createElement("video");
-           // cVideo.src = (window.URL || window.webkitURL).createObjectURL(new Blob(buffer));
+
             cVideo.width=100;
             cVideo.height=75;
             cVideo.autoplay=false;
@@ -87,13 +87,10 @@ client.on('stream' , function(stream , meta){
         }
         else{
             console.log('end log');
-          //  var img = document.createElement("img");
-            //img.src = (window.URL || window.webkitURL).createObjectURL(new Blob(buffer));
-          //  img.src ="/images/fileimg3.jpg";
-          //  img.width=100;
+
             other_saveByteArray(buffer,meta.filename,meta.username);
         }
-        //results.appendChild(img);
+
 
     });
 });
@@ -104,16 +101,11 @@ client.on('open', function(){
     var box = $('#results');
     box.on('dragenter', doNothing);
     box.on('dragover', doNothing);
-    //box.text('Drag files here');
+
     box.on('drop', function(e){
         e.originalEvent.preventDefault();
         var file = e.originalEvent.dataTransfer.files[0];
 
-        // Add to list of uploaded files
-        //$('<div align="center"></div>').append($('<a></a>').text(file.name).prop('href', '/'+file.name)).appendTo('body');
-
-        // `client.send` is a helper function that creates a stream with the
-        // given metadata, and then chunks up and streams the data.
         var fileinfo = {};
 
         fileinfo.fileEndata = new Date();
@@ -127,7 +119,6 @@ client.on('open', function(){
         var stream = client.send(file,fileinfo);
 
 
-        // Print progress
         var tx = 0;
         stream.on('data', function(data){
             $('#progress').text(Math.round(tx+=data.rx*100) + '% complete');
@@ -153,23 +144,24 @@ var saveByteArray = (function () {
 
             a.href = url;
             a.download = name;
-            // a.click();
+
             a.appendChild(img);
             document.getElementById('results').appendChild(a);
-            //window.URL.revokeObjectURL(url);
+
         }
         else{
             img.src=url;
             img.setAttribute('style','margin-left:0');
             a.href = url;
             a.download = name;
-            // a.click();
+
             a.appendChild(img);
             document.getElementById('results').appendChild(a);
-            //window.URL.revokeObjectURL(url);
+
         }
     };
 }());
+
 var other_saveByteArray = (function () {
     var a = document.createElement("a");
     var myDiv = document.createElement("div");
@@ -183,21 +175,21 @@ var other_saveByteArray = (function () {
 
             a.href = url;
             a.download = name;
-            // a.click();
+
             myDiv.innerHTML=name;
             a.appendChild(myDiv);
             document.getElementById('results').appendChild(a);
-            //window.URL.revokeObjectURL(url);
+
         }
         else{
 
             myDiv.setAttribute('style','margin-left:0');
             a.href = url;
             a.download = name;
-            // a.click();
+
             a.appendChild(img);
             document.getElementById('results').appendChild(a);
-            //window.URL.revokeObjectURL(url);
+
         }
     };
 }());
