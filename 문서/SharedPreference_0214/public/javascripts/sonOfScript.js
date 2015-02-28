@@ -440,22 +440,24 @@ $('#glyphicon-record').click(function() {
             $('#Recorded-Video-container').css('display', 'block');
             $('#backhome').css('display', 'block');
 
-            //$('#Recorded-Video-container').css('-webkit-transform', 'translate(2000px, 0px)');
-            //$('#Wvideos').css('z-index', '-9999');
-            //$('#Wvideos').css('display', 'none');
-            //$('#Recorded-Video-container').css('-webkit-transform', 'translate(2000px, 0px)');
-            //$('#Wvideos').css('-webkit-transform', 'translate(2000px, 0px)');
-            //$('#Recorded-Video-container').css('-webkit-transform', 'translate(2000px, 0px)');
-
-
-
-            //MediaStreamLength
 
             //녹화된 내용을 다시 볼때의 화면에 video들을 추가해주는 함수
             appendReviewVideos();
             //다시볼 비디오들의 크기를 알맞게 재조정.
             resizeReviewVideos();
 
+
+            /*
+            var exec = require('child_process').exec, child;
+            child = exec('/usr/bin/java -jar C:/Users/KimSangYun/Desktop/KomoranOfSunModule',
+                function (error, stdout, stderr){
+                    console.log('stdout: ' + stdout);
+                    console.log('stderr: ' + stderr);
+                    if(error !== null){
+                        console.log('exec error: ' + error);
+                    }
+                });
+            */
 
 
 
