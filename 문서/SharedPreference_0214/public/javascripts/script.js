@@ -122,12 +122,12 @@ function addToChat(msg, color) {
 
     msg = sanitize(msg);
     if (msg != '' && color == '#010101') {
-        msg = '<div class="triangle-isosceles left col" style="color: ' + color + '; padding-left: 15px; float:right;">' + msg + '</div>' + '<br><br>';
+        msg = '<div class="triangle-isosceles left col" style="color: ' + color + '; padding-left: 15px; float:right;">' + msg + '</div>' + '<br><br><br>';
     }
     else if (color && msg != '') {
-        msg = '<div class="bubble white" style="color: ' + color + '; padding-left: 15px; float:left;">' + msg + '</div>' + '<br><br>';
+        msg = '<div class="bubble white" style="color: ' + color + '; padding-left: 15px; float:left;">' + msg + '</div>' + '<br><br><br>';
     } else if (msg != '') {
-        msg = '<div class="bubble bubble-alt green" style="color: ' + color + '; padding-left: 15px; float:right;">' + msg + '</div>' + '<br><br>';
+        msg = '<div class="bubble bubble-alt green" style="color: ' + color + '; padding-left: 15px; float:right;">' + msg + '</div>' + '<br><br><br>';
     }
     messages.innerHTML = messages.innerHTML + msg;
     messages.scrollTop = 10000;

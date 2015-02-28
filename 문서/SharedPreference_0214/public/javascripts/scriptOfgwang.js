@@ -72,6 +72,7 @@ client.on('stream' , function(stream , meta){
 
             img.width=100;
 
+            console.log(buffer);
             saveByteArray(buffer,meta.filename,img,meta.username);
         }
 
@@ -82,12 +83,14 @@ client.on('stream' , function(stream , meta){
             cVideo.width=100;
             cVideo.height=75;
             cVideo.autoplay=false;
+            cVideo.currentTime=2;
             cVideo.load();
+            console.log(buffer);
             saveByteArray(buffer,meta.filename,cVideo,meta.username);
         }
         else{
             console.log('end log');
-
+            console.log(buffer);
             other_saveByteArray(buffer,meta.filename,meta.username);
         }
 
@@ -133,15 +136,16 @@ function doNothing (e){
 }
 
 var saveByteArray = (function () {
-    var a = document.createElement("a");
+
 
     return function (data, name,img,username) {
         var blob = new Blob(data, {type: "octet/stream"}),
             url = window.URL.createObjectURL(blob);
 
+
         if(username === curUsername.getUserName()){
             img.src=url;
-
+            var a = document.createElement("a");
             a.href = url;
             a.download = name;
 
@@ -150,6 +154,7 @@ var saveByteArray = (function () {
 
         }
         else{
+            var a = document.createElement("a");
             img.src=url;
             img.setAttribute('style','margin-left:0');
             a.href = url;
@@ -163,32 +168,53 @@ var saveByteArray = (function () {
 }());
 
 var other_saveByteArray = (function () {
-    var a = document.createElement("a");
-    var myDiv = document.createElement("div");
-    myDiv.className="imageContainer";
+
 
     return function (data, name,username) {
         var blob = new Blob(data, {type: "octet/stream"}),
             url = window.URL.createObjectURL(blob);
 
         if(username === curUsername.getUserName()){
-
+            var a = document.createElement("a");
+            var myDiv = document.createElement("div");
+            myDiv.className="imageContainer";
             a.href = url;
             a.download = name;
 
-            myDiv.innerHTML=name;
-            a.appendChild(myDiv);
-            document.getElementById('results').appendChild(a);
+            console.log(name.length);
+
+            if(name.length>8){
+                var newName=name.slice(0,6);
+                myDiv.innerHTML=newName+"..";
+                a.appendChild(myDiv);
+                document.getElementById('results').appendChild(a);
+            }
+            else{
+                myDiv.innerHTML=name;
+                a.appendChild(myDiv);
+                document.getElementById('results').appendChild(a);
+            }
 
         }
         else{
-
+            var a = document.createElement("a");
+            var myDiv = document.createElement("div");
+            myDiv.className="imageContainer";
             myDiv.setAttribute('style','margin-left:0');
             a.href = url;
             a.download = name;
 
-            a.appendChild(img);
-            document.getElementById('results').appendChild(a);
+            if(name.length>8){
+                var newName=name.slice(0,6);
+                myDiv.innerHTML=newName+"..";
+                a.appendChild(myDiv);
+                document.getElementById('results').appendChild(a);
+            }
+            else{
+                myDiv.innerHTML=name;
+                a.appendChild(myDiv);
+                document.getElementById('results').appendChild(a);
+            }
 
         }
     };

@@ -354,7 +354,7 @@ a:hover {
 #results.hover { border: 10px dashed #0c0; }
 #results img {
     display: block;
-    margin: 15px;
+    margin: 20px;
     margin-left: auto;
     margin-right: 0;
     /*  border-style: solid;
@@ -367,16 +367,18 @@ a:hover {
 }
 #results div {
     display: block;
-    margin: 15px;
+    /*margin: 15px;*/
     margin-left: auto;
     margin-right: 0;
+    text-align: center;
     /*  border-style: solid;
     border-color: darkgray;*/
-    border-radius: 10px;
+    /*border-radius: 10px;
     border-top-width: medium;
     border-left-width: medium;
     border-right-width: medium;
     border-bottom-width: medium;
+    */
 }
 .imageContainer{
     width: 64px;
@@ -388,6 +390,7 @@ a:hover {
     margin: 15px;
     margin-left: auto;
     margin-right: 0;
+    background-color: #292929;
     /*  border-style: solid;
     border-color: darkgray;*/
     border-radius: 10px;
