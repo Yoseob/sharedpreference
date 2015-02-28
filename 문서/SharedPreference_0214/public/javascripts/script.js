@@ -121,6 +121,9 @@ function addToChat(msg, color) {
   //  gy.getChatList(cRoom,getChatData);
 
     msg = sanitize(msg);
+
+
+
     if (msg != '' && color == '#010101') {
         msg = '<div class="triangle-isosceles left col" style="color: ' + color + '; padding-left: 15px; float:right;">' + msg + '</div>' + '<br><br><br>';
     }
@@ -134,6 +137,7 @@ function addToChat(msg, color) {
 }
 
 function sanitize(msg) {
+
     return msg.replace(/</g, '&lt;');
 }
 
@@ -180,6 +184,7 @@ function initFullScreen() {
 
 var dataChannelChat = {
     send: function (message) {
+        console.log(message);
         for (var connection in rtc.dataChannels) {
             var channel = rtc.dataChannels[connection];
             channel.send(message);
@@ -220,8 +225,11 @@ function initChat() {
     });
 
     input.addEventListener('keydown', function (event) {
+        //console.log(event);
+
         var key = event.which || event.keyCode;
-        if (key === 13) {
+        if (key === 13 && key !== 32) {
+            console.log("msgTest");
             chat.send(JSON.stringify({
                 "eventName": "chat_msg",
                 "data": {
@@ -230,6 +238,9 @@ function initChat() {
                     "color": color
                 }
             }));
+            console.log(input.value);
+
+
             addToChat(input.value);
             input.value = "";
         }
@@ -237,6 +248,7 @@ function initChat() {
     rtc.on(chat.event, function () {
         var data = chat.recv.apply(this, arguments);
         console.log(data.color);
+        console.log(data.messages);
         addToChat(data.messages, data.color.toString(16));
     });
 }
