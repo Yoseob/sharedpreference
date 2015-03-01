@@ -24,112 +24,6 @@
 
 </head>
 <body onload="init()">
-<!--
-<script>
-    function fb_login(){
-        FB.login(function(response) {
-            if (response.authResponse) {
-                access_token = response.authResponse.accessToken; //get access token
-                user_id = response.authResponse.userID; //get FB UID
-                testAPI();
-            } else {
-
-            }
-        }, {
-            scope: 'publish_stream,email,public_profile,user_friends'
-        });
-    }
-
-    function checkLoginState() {
-        FB.getLoginStatus(function (response) {
-            fb_login(response);
-        });
-    }
-
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: '347355892131088',
-            cookie: true,  // enable cookies to allow the server to access
-                           // the session
-            xfbml: true,  // parse social plugins on this page
-            version: 'v2.1' // use version 2.1
-        });
-        FB.Event.subscribe('auth.logout', function (response) {
-            //request Logout 추가
-          //  $('#myVisible').css('display','inline');
-          //  $('#myVisible_Logout').css('display','none');
-            requestLogout();
-
-            document.location.reload();
-        });
-
-        FB.getLoginStatus(function (response) {
-            fb_login(response);
-        });
-    };
-
-    function requetMyFacebookInfo(accessToken) {
-        //서버로 전송할 데이터
-        // 내이름
-        // acesstoken
-        // facebookid
-
-        FB.api('/me', function (response) {
-            //console.log('facebook api');
-
-            var data = {};
-            if (response) {
-                //console.log(response);
-
-                data.facebookId = response.id;
-
-                $('.account_id').text(data.facebookId);
-
-                data.username = response.last_name + response.first_name;
-                data.accessToken = accessToken;
-
-              //  var userInfo = new DefaultUserinfo();
-               // userInfo.setUserName(data.username);
-
-              //  var nc = new TjNetworkConnector();
-
-                // console.log('start');
-                // console.log(data);
-
-                /*
-                nc.loginAndJoin(data, function (result) {
-                    var data = result.data;
-                    // console.log('recv');
-                    //  console.log(data);
-//                  //아이디
-                    userInfo.setUserId(data._id);
-//                    localStorage.setItem("spUserId" , data._id);
-
-                });*/
-            }
-        });
-    }
-
-    // Load the SDK asynchronously
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-    function testAPI() {
-        //console.log('Welcome!  Fetching your information.... ');
-        FB.api('/me?', function (response) {
-
-        });
-        $('#flgBnt').removeAttr("disabled");
-    }
-
-</script>
--->
 <div id="info">
     <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
         microphone settings</a>
@@ -156,17 +50,22 @@
             <div id='sidebar-nav'>
                 <table id='sidebar-table'>
                     <tr>
-                        <td><a href="#" id="glyphicon-record" class="glyphicon glyphicon-facetime-video"></a></td>
-                        <td><a href="#" id="glyphicon-comment" class="glyphicon glyphicon-comment"></a></td>
-                        <td><a href="#" id="glyphicon-sharescreen" class="glyphicon glyphicon-screenshot"></a></td>
+                        <td id="glyphicon-record" ><a href="#" class="glyphicon glyphicon-facetime-video"></a></td>
+                        <td id="glyphicon-comment"><a href="#" class="glyphicon glyphicon-comment"></a></td>
+                        <td id="glyphicon-sharescreen"><a href="#" class="glyphicon glyphicon-screenshot"></a></td>
                     </tr>
                     <tr>
-                        <td><a href="#" id="glyphicon-repeat" class="glyphicon glyphicon-repeat"></a></td>
-                        <td><a id="glyphicon-logout" onclick="moveLogin();" class="glyphicon glyphicon-log-out"></a></td>
+                        <td id="glyphicon-repeat"><a href="#" class="glyphicon glyphicon-repeat"></a></td>
+                        <td id="glyphicon-logout"><a href="#" class="glyphicon glyphicon-log-out"></a></td>
                     </tr>
                 </table>
             </div>
 
+        </div>
+
+        <div id="sidebar-friends-list2">
+            <ul class="sidebar-friends2">
+            </ul>
         </div>
 
 
@@ -238,6 +137,17 @@
             </ul>
         </div>
 
+        <div id="Recorded-List-container2">
+            <div id="Recorded-List-Top2">
+                <p id="Recorded-List-Top-text12"></p>
+                <p id="Recorded-List-Top-text22">Recorded List</p>
+                <p id="Recorded-List-Top-text32"></p>
+            </div>
+            <ul class="Recorded-list2">
+
+            </ul>
+        </div>
+
         <div id="Recorded-Video-container">
             <div id="Recorded-Videos">
             </div>
@@ -273,6 +183,49 @@
 
 
     </div>
+
+    <div id="chatting-space2"> <!-- chatStyle.css-->
+        <div id="chat-top2">
+            <div id="right2">
+                <div id="start_button2" onclick="startButton(event)">
+                    <img id="start_img2" src="/images/mic.gif" alt="Start">
+                </div>
+            </div>
+        </div>
+
+
+        <!--<div id="progress" align="center">0% complete</div>-->
+        <div id="results2">
+
+            <span id="final_span2" class="final"></span> <!-- sst.js-->
+            <span id="interim_span2" class="interim"></span> <!-- sst.js-->
+
+
+            <!-- file drag & drop 부분임 -->
+            <!--
+            <p id="upload" class="hidden"><label>Drag & drop not supported, but you can still upload via this input field:<br><input type="file"></label></p>
+            <p id="filereader">File API & FileReader API not supported</p>
+            <p id="formdata">XHR2's FormData is not supported</p>
+            <p id="progress">XHR2's upload progress isn't supported</p>
+            -->
+        </div>
+        <div id="chatinput-space2">
+            <input id="chatinput2" style="border-top:2px;" type="text" placeholder="  Message:"/>
+        </div>
+        <div id="hideShowMessages2" class="button">toggle chat</div>
+    </div>
+
+    <div id="bottombar-wrapper">
+        <table id='sidebar-table'>
+            <tr>
+                <td><a href="#" id="glyphicon-comment2" class="glyphicon glyphicon-comment"></a></td>
+                <td><a href="#" id="glyphicon-record2" class="glyphicon glyphicon-facetime-video"></a></td>
+                <td><a href="#" id="glyphicon-repeat2" class="glyphicon glyphicon-repeat"></a></td>
+                <td><a href="#" id="glyphicon-friends" class="glyphicon glyphicon-user"></a></td>
+                <td><a href="#" id="glyphicon-logout2" class="glyphicon glyphicon-log-out"></a></td>
+            </tr>
+        </table>
+    </div>
 </div>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -295,13 +248,6 @@
     <!--<div id="fullscreen" class="button">Enter Full Screen</div>-->
     <!--<div id="newRoom" class="button">Create A New Room</div>-->
 </div>
-
-<script>
-
-    function moveLogin(){
-        location.href='http://210.118.64.176:8000/login';
-    }
-</script>
 
 
 <script type="text/javascript">

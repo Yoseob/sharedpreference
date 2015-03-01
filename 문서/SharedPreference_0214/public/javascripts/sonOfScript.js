@@ -11,10 +11,50 @@ window.onresize = function resizeFooterHeight() {
     var ClientWidth = document.body.clientWidth;
     var ClientHeight = document.body.clientHeight;
 // 화면의 넓이가 높이보다 좁아지면 (화면이 세로로 길어지면)
-    if(ClientWidth < ClientHeight){
+    /*if(ClientWidth < ClientHeight){
         $('#footer').css('height',ClientWidth/4 + 'px');
     }else{
         $('#footer').css('height',ClientHeight/4+'px');
+    }*/
+
+    if(ClientWidth <= '400'){
+        $('#sidebar-wrapper').css('left','-250px');
+        $('#bottombar-wrapper').css('bottom','0px');
+        setTimeout(function(){
+            $('#footer').css('height',ClientWidth/4 + 'px');
+            $('#footer').css('width','95%');
+            $('#footer').css('margin-left','5%');
+            $('#footer').css('bottom','50px');
+            $('#Wvideos').css('height','calc(100% - 50px)');
+            $('#Wvideos').css('width','100%');
+            $('#Wvideos').css('margin-left','0');
+            $('#Recorded-Video-container').css('width', '100%');
+            $('#Recorded-Video-container').css('margin-left','0');
+            $('#Recorded-Video-container').css('bottom', '50px');
+        },400);
+    }else{
+        $('#footer').css('height',ClientHeight/4+'px');
+        $('#footer').css('bottom','0px');
+        $('#footer').css('width','calc(95% - 70px)');
+        $('#footer').css('margin-left','calc(5% + 70px)');
+        $('#footer').css('margin-bottom','0px');
+        $('#Wvideos').css('height','100%');
+        $('#Wvideos').css('width','calc(100% - 70px)');
+        $('#Wvideos').css('margin-left','70px');
+        $('#Recorded-Video-container').css('width', 'calc(100% - 70px)');
+        $('#Recorded-Video-container').css('margin-left','70px');
+        $('#Recorded-Video-container').css('bottom', '0');
+        $('#chatting-space2').css('bottom', '-550px');
+        $('#chatting-space2').css('display', 'none');
+        $('#Recorded-List-container2').css('bottom', '-550px');
+        $('#Recorded-List-container2').css('display', 'none');
+        $('#sidebar-friends-list2').css('left', '-300px');
+        $('#sidebar-friends-list2').css('display', 'none');
+        setTimeout(function(){
+            $('#sidebar-wrapper').css('left','-130px');
+            $('#bottombar-wrapper').css('bottom','-100px');
+        },300);
+
     }
 };
 
@@ -119,10 +159,28 @@ $(document).ready(function() {
 
 });
 
+//모바일버전에서 친구리스트 뜨게하는 부분 - 태양
+$(document).ready(function() {
+    $('#glyphicon-friends').click(function(){
+        if ($('#sidebar-friends-list2').css("display") === 'none') {
+            $('#sidebar-friends-list2').css('left', '0');
+            $('#sidebar-friends-list2').css('display', 'block');
+        }
+        //친구리스트이 있었을 경우 클릭시 else문 수행
+        else {
+            $('#sidebar-friends-list2').css('left', '-300px');
+            $('#sidebar-friends-list2').css('display', 'none');
+        }
+
+    });
+
+});
+
 //채팅 버튼 눌렀을 때 채팅창 뜨게 하는 함수  - 태양
 $(document).ready(function(){
     var chat;
     $('#glyphicon-comment').click(function(){
+        $('#sidebar-wrapper').css('-webkit-transform', 'translate(-0px,0px)');
         //채팅창이 없었을 경우 클릭시 if문 수행
         if ($('#chatting-space').css("display") === 'none') {
             if ($('#Recorded-List-container').css('display') === 'block') {
@@ -152,6 +210,46 @@ $(document).ready(function(){
             },200);
         }
     });
+
+    $('#glyphicon-comment2').click(function(){
+        //채팅창이 없었을 경우 클릭시 if문 수행
+        if ($('#chatting-space2').css("display") === 'none') {
+            if ($('#Recorded-List-container2').css('display') === 'block') {
+                $('#Recorded-List-container2').css('bottom', '-550px');
+                $('#Recorded-List-container2').css('display', 'none');
+            }
+            $('#chatting-space2').css('display', 'block');
+            $('#chatting-space2').css('bottom', '50px');
+            //$('#chatting-space2').css('-webkit-transform', 'translate(0px, -550px)');
+
+            $('#footer').css('bottom', 'calc(30% + 50px');
+            $('#footer').css('margin-bottom', '0');
+            $('#Wvideos').css('height', 'calc(70% - 50px)');
+            $('#Wvideos').css('margin-bottom', 'calc(30% + 50px)');
+
+            /*$('#Recorded-Video-container').css('width', 'calc(80% - 70px)');
+            $('#Recorded-Video-container').css('margin-left', 'calc(20% + 70px)');*/
+        }
+        //채팅창이 있었을 경우 클릭시 else문 수행
+        else {
+            $('#footer').css('bottom', '50px');
+            $('#Wvideos').css('height', 'calc(100% - 50px)');
+            $('#Wvideos').css('margin-bottom', '50px');
+            //$('#Wvideos').css('margin-left', '70px');
+            //$('#Wvideos').css('width', 'calc(100% - 70px)');
+           // $('#footer').css('width', 'calc(95% - 70px)');
+            //$('#footer').css('margin-left', 'calc(5% + 70px)');
+            /*$('#Recorded-Video-container').css('margin-left', '70px');
+            $('#Recorded-Video-container').css('width', 'calc(100% - 70px)');*/
+            //setTimeout(function(){
+            //$('#chatting-space2').css('-webkit-transform', 'translate(0px, 550px)');
+            //$('#chatting-space2').css('display', 'none');
+            //$('#chatting-space2').css('display', 'block');
+            $('#chatting-space2').css('bottom', '-550px');
+            $('#chatting-space2').css('display', 'none');
+            //},200);
+        }
+    });
 });
 
 //녹화목록보기 버튼 눌렀을 때 목록 뜨게 하는 함수  - 태양
@@ -159,6 +257,7 @@ $(document).ready(function(){
     $('#glyphicon-repeat').click(function(){
         //녹화리스트가 화면에 없었을 경우 클릭시 if문 수행
         if ($('#Recorded-List-container').css('display') === 'none') {
+            $('#sidebar-wrapper').css('-webkit-transform', 'translate(-0px,0px)');
             if($('#chatting-space').css("display") === 'block'){
                 $('#chatting-space').css('-webkit-transform', 'translate(-570px, 0px)');
                 $('#chatting-space').css('display', 'none');
@@ -186,6 +285,46 @@ $(document).ready(function(){
                 $('#Recorded-List-container').css('-webkit-transform', 'translate(-570px, 0px)');
                 $('#Recorded-List-container').css('display', 'none');
              },200);
+
+
+        }
+    });
+
+    $('#glyphicon-repeat2').click(function(){
+        //녹화리스트가 화면에 없었을 경우 클릭시 if문 수행
+        if ($('#Recorded-List-container2').css('display') === 'none') {
+            if($('#chatting-space2').css("display") === 'block'){
+                $('#chatting-space2').css('bottom', '-550px');
+                $('#chatting-space2').css('display', 'none');
+            }
+            $('#Recorded-List-container2').css('display', 'block');
+            $('#Recorded-List-container2').css('bottom', '50px');
+
+
+            $('#footer').css('bottom', 'calc(30% + 50px');
+            $('#footer').css('margin-bottom', '0');
+            $('#Wvideos').css('height', 'calc(70% - 50px)');
+            $('#Wvideos').css('margin-bottom', 'calc(30% + 50px)');
+            $('#Recorded-Video-container').css('height', 'calc(70% - 50px)');
+            $('#Recorded-Video-container').css('bottom', 'calc(30% + 50px)');
+            $('#backhome').css('bottom', 'calc(30% + 50px)');
+        }
+        //녹화리스트가 화면에  있었을 경우 클릭시 else문 수행
+        else {
+            $('#footer').css('bottom', '50px');
+            $('#Wvideos').css('height', 'calc(100% - 50px)');
+            $('#Wvideos').css('margin-bottom', '50px');
+            $('#Wvideos').css('margin-bottom', '50px');
+            $('#Recorded-Video-container').css('height', 'calc(100% - 50px)');
+            $('#Recorded-Video-container').css('bottom', '50px');
+            $('#backhome').css('bottom', '50px');
+            //$('#Recorded-Video-container').css('margin-left', '70px');
+            //$('#Recorded-Video-container').css('width', 'calc(100% - 70px)');
+
+            setTimeout(function(){
+                $('#Recorded-List-container2').css('bottom', '-550px');
+                $('#Recorded-List-container2').css('display', 'none');
+            },200);
 
 
         }
@@ -244,18 +383,6 @@ function initFriendsList(result){
 
             }else{   //취소
             }
-/*
-            $('#select-space-Yes').onclick = function(){
-                $('#select-space').css('display','none');
-                userInfo.setTargetUser($(this).find('p').text());
-                location.href = 'http://210.118.64.172:8000';
-            }
-
-            $('#select-space-Not').onclick = function(){
-                $('#select-space').css('display','none');
-                $('#select-space-contents').empty();
-            }
-*/
         };
         li_.onmouseover= function(){
             this.setAttribute('style', 'background-color:#AAA');
@@ -263,7 +390,46 @@ function initFriendsList(result){
         li_.onmouseout= function(){
             this.setAttribute('style', 'background-color:#252525');
         };
+
+        var _li = li_.cloneNode(true);
+
+        _li.onclick = function(){
+            //$('#select-space-contents').empty();
+            //$('#select-space').css('display','block');
+            //$('#select-space-contents').append($(this).find('p').text()+'님의 방으로 이동 하시겠습니까?');
+            var selectedName = $(this).find('p').text();
+            if (confirm(selectedName+'님의 방으로 이동 하시겠습니까?') === true){    //확인
+                var id_ = userInfo.getUserId();
+                var nc = new TjNetworkConnector();
+                nc.checkTheRoomExist({owner_id:selectedName}, function(result){
+                    console.log('result : ');
+                    console.log(result);
+                    console.log('result.data.state : ');
+                    var data_ = result.data;
+                    console.log(data_.state);
+
+
+                    if(data_.state === 'active'){
+                        userInfo.setTargetUser(selectedName);
+                        location.href = 'http://210.118.64.172:8000';
+                    }else {
+                        alert(selectedName+'님의 방이 존재하지 않아서 입장이 불가합니다.');
+                    }
+                });
+
+            }else{   //취소
+            }
+        };
+        _li.onmouseover= function(){
+            this.setAttribute('style', 'background-color:#AAA');
+        };
+        _li.onmouseout= function(){
+            this.setAttribute('style', 'background-color:#252525');
+        };
+
+
         $('.sidebar-friends').append(li_);
+        $('.sidebar-friends2').append(_li);
     }
 }
 
@@ -440,28 +606,10 @@ $('#glyphicon-record').click(function() {
             $('#Recorded-Video-container').css('display', 'block');
             $('#backhome').css('display', 'block');
 
-            //$('#Recorded-Video-container').css('-webkit-transform', 'translate(2000px, 0px)');
-            //$('#Wvideos').css('z-index', '-9999');
-            //$('#Wvideos').css('display', 'none');
-            //$('#Recorded-Video-container').css('-webkit-transform', 'translate(2000px, 0px)');
-            //$('#Wvideos').css('-webkit-transform', 'translate(2000px, 0px)');
-            //$('#Recorded-Video-container').css('-webkit-transform', 'translate(2000px, 0px)');
-
-
-
-            //MediaStreamLength
-
             //녹화된 내용을 다시 볼때의 화면에 video들을 추가해주는 함수
             appendReviewVideos();
             //다시볼 비디오들의 크기를 알맞게 재조정.
             resizeReviewVideos();
-
-
-
-
-
-
-
         };
 
 
@@ -472,9 +620,25 @@ $('#glyphicon-record').click(function() {
             this.setAttribute('style', 'background-color:#383838');
         };
 
+        var li_ = _li.cloneNode(true);
 
+        li_.onclick= function(){
+            $('#Recorded-Video-container').css('display', 'block');
+            $('#backhome').css('display', 'block');
 
+            //녹화된 내용을 다시 볼때의 화면에 video들을 추가해주는 함수
+            appendReviewVideos();
+            //다시볼 비디오들의 크기를 알맞게 재조정.
+            resizeReviewVideos();
+        };
+        li_.onmouseover= function(){
+            this.setAttribute('style', 'background-color:#AAA');
+        };
+        li_.onmouseout= function(){
+            this.setAttribute('style', 'background-color:#383838');
+        };
         $('.Recorded-list').append(_li);
+        $('.Recorded-list2').append(li_);
         //}
 
 
@@ -645,6 +809,362 @@ $('#glyphicon-record').click(function() {
 
 });
 
+$('#glyphicon-record2').click(function() {
+    //요섭이형의 script.js로 부터 MediaStreams을 받아온다.
+    MediaStreams = getMediaStreams();
+    //녹화중이 아니었다면 녹화를 시작한다.
+    if (recorflag === 0) {
+        $('#Alert-space-text').append("녹화가 시작됩니다.");
+        $('#Alert-space').css('-webkit-transform', 'translate(0px, 25%)');
+        setTimeout(function(){
+            $('#Alert-space').css('-webkit-transform', 'translate(0px, -25%)');
+            $('#Alert-space-text').empty();
+        },1500);
+        //alert('녹화를 시작합니다.');
+        $('#recordimg').css('display','block');
+        recorflag = 1;
+        MediaStreamLength = MediaStreams.length;
+
+        AudioRecorder0 = new RecordRTC(MediaStreams[0], {
+            type: 'audio'
+        });
+        AudioRecorder0.startRecording();
+        VideoRecorder0 = new RecordRTC(MediaStreams[0], {
+            type: 'video'
+        });
+        VideoRecorder0.startRecording();
+        if(MediaStreamLength === 1) return;
+        AudioRecorder1 = new RecordRTC(MediaStreams[1], {
+            type: 'audio'
+        });
+        AudioRecorder1.startRecording();
+        VideoRecorder1 = new RecordRTC(MediaStreams[1], {
+            type: 'video'
+        });
+        VideoRecorder1.startRecording();
+        if(MediaStreamLength === 2) return;
+        AudioRecorder2 = new RecordRTC(MediaStreams[2], {
+            type: 'audio'
+        });
+        AudioRecorder2.startRecording();
+        VideoRecorder2 = new RecordRTC(MediaStreams[2], {
+            type: 'video'
+        });
+        VideoRecorder2.startRecording();
+        if(MediaStreamLength === 3) return;
+        AudioRecorder3 = new RecordRTC(MediaStreams[3], {
+            type: 'audio'
+        });
+        AudioRecorder3.startRecording();
+        VideoRecorder3 = new RecordRTC(MediaStreams[3], {
+            type: 'video'
+        });
+        VideoRecorder3.startRecording();
+        if(MediaStreamLength === 4) return;
+        AudioRecorder4 = new RecordRTC(MediaStreams[4], {
+            type: 'audio'
+        });
+        AudioRecorder4.startRecording();
+        VideoRecorder4 = new RecordRTC(MediaStreams[4], {
+            type: 'video'
+        });
+        VideoRecorder4.startRecording();
+        if(MediaStreamLength === 5) return;
+        AudioRecorder5 = new RecordRTC(MediaStreams[5], {
+            type: 'audio'
+        });
+        AudioRecorder5.startRecording();
+        VideoRecorder5 = new RecordRTC(MediaStreams[5], {
+            type: 'video'
+        });
+        VideoRecorder5.startRecording();
+        if(MediaStreamLength === 6) return;
+        AudioRecorder6 = new RecordRTC(MediaStreams[6], {
+            type: 'audio'
+        });
+        AudioRecorder6.startRecording();
+        VideoRecorder6 = new RecordRTC(MediaStreams[6], {
+            type: 'video'
+        });
+        VideoRecorder6.startRecording();
+        if(MediaStreamLength === 7) return;
+        AudioRecorder7 = new RecordRTC(MediaStreams[7], {
+            type: 'audio'
+        });
+        AudioRecorder7.startRecording();
+        VideoRecorder7 = new RecordRTC(MediaStreams[7], {
+            type: 'video'
+        });
+        VideoRecorder7.startRecording();
+        if(MediaStreamLength === 8) return;
+        AudioRecorder8 = new RecordRTC(MediaStreams[8], {
+            type: 'audio'
+        });
+        AudioRecorder8.startRecording();
+        VideoRecorder8 = new RecordRTC(MediaStreams[8], {
+            type: 'video'
+        });
+        VideoRecorder8.startRecording();
+
+
+
+        /*for (var i=0;i<MediaStreams.length;i++) {
+         console.log('i :  ' + i);
+
+         VideoRecorders[i] = new RecordRTC(MediaStreams[i], {
+         type: 'video'
+         });
+         VideoRecorders[i].startRecording();
+         //첫번째 비디오인 경우 오디오까지 같이 녹화/녹음
+         //if(i === 0) {
+         AudioRecorder = new RecordRTC(MediaStreams[i], {
+         type: 'audio'
+         });
+         AudioRecorder.startRecording();
+         }
+         }*/
+    }
+    //이미 녹화중이었다면 종료한다.
+    else{
+        $('#Alert-space-text').append("녹화가 종료됩니다.");
+        $('#Alert-space').css('-webkit-transform', 'translate(0px, 25%)');
+        setTimeout(function(){
+            $('#Alert-space').css('-webkit-transform', 'translate(0px, -25%)');
+            $('#Alert-space-text').empty();
+        },1500);
+        //alert('녹화를 종료합니다.');
+        $('#recordimg').css('display','none');
+        recorflag = 0;
+
+        var d = new Date();
+        //녹화가 완료된 시점의 년월일시분초. RecDate 변수에 저장하여 목록 이름으로 사용할 것임.- 태양
+        RecDate = d.getFullYear()+'-'+(d.getMonth() + 1)+'-'+d.getDate()+', '+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds();
+        //RecDates.push(RecDate);
+
+        //for(var i=0;i<RecDates.length; i++){
+        var _li = document.createElement('li');
+        var p1 = document.createElement('p');
+        var p2 = document.createElement('p');
+        var p3 = document.createElement('p');
+
+        // _li.textContent = RecDates[i];
+        p2.textContent = RecDate;
+
+        _li.appendChild(p1);
+        _li.appendChild(p2);
+        _li.appendChild(p3);
+
+        _li.onclick= function(){
+            $('#Recorded-Video-container').css('display', 'block');
+            $('#backhome').css('display', 'block');
+
+
+            //녹화된 내용을 다시 볼때의 화면에 video들을 추가해주는 함수
+            appendReviewVideos();
+            //다시볼 비디오들의 크기를 알맞게 재조정.
+            resizeReviewVideos();
+
+
+            /*
+             var exec = require('child_process').exec, child;
+             child = exec('/usr/bin/java -jar C:/Users/KimSangYun/Desktop/KomoranOfSunModule',
+             function (error, stdout, stderr){
+             console.log('stdout: ' + stdout);
+             console.log('stderr: ' + stderr);
+             if(error !== null){
+             console.log('exec error: ' + error);
+             }
+             });
+             */
+
+
+
+
+
+
+        };
+
+
+        _li.onmouseover= function(){
+            this.setAttribute('style', 'background-color:#AAA');
+        };
+        _li.onmouseout= function(){
+            this.setAttribute('style', 'background-color:#383838');
+        };
+
+
+
+        $('.Recorded-list').append(_li);
+        $('.Recorded-list2').append(_li);
+        //}
+
+
+
+
+
+
+
+        AudioRecorder0.stopRecording(function() {
+            var AudioLink = document.createElement('a');
+            AudioLink.href = window.URL.createObjectURL(AudioRecorder0.blob);
+            AudioLink.download = RecDate+'audio' + 0 +'.mp3';
+            //AudioLink.click();
+        });
+
+        VideoRecorder0.stopRecording(function(){
+            var VideoLink = document.createElement('a');
+            VideoLink.href = window.URL.createObjectURL(VideoRecorder0.blob);
+            VideoLink.download = RecDate+'video' + 0 + '.mp4';
+            //VideoLink.click();
+
+
+            //var file = FileReader.readAsBinaryString(VideoRecorder0.blob);
+            //console.log('file : ' + file);
+
+        });
+        if(MediaStreamLength === 1) return;
+        AudioRecorder1.stopRecording(function() {
+            var AudioLink = document.createElement('a');
+            AudioLink.href = window.URL.createObjectURL(AudioRecorder1.blob);
+            AudioLink.download = RecDate+'audio' + 1 +'.mp3';
+            //AudioLink.click();
+        });
+        VideoRecorder1.stopRecording(function(){
+            var VideoLink = document.createElement('a');
+            VideoLink.href = window.URL.createObjectURL(VideoRecorder1.blob);
+            VideoLink.download = RecDate+'video' + 1 + '.mp4';
+            //VideoLink.click();
+        });
+        if(MediaStreamLength === 2) return;
+        AudioRecorder2.stopRecording(function() {
+            var AudioLink = document.createElement('a');
+            AudioLink.href = window.URL.createObjectURL(AudioRecorder2.blob);
+            AudioLink.download = RecDate+'audio' + 2 +'.mp3';
+            //AudioLink.click();
+        });
+        VideoRecorder2.stopRecording(function(){
+            var VideoLink = document.createElement('a');
+            VideoLink.href = window.URL.createObjectURL(VideoRecorder2.blob);
+            VideoLink.download = RecDate+'video' + 2 + '.mp4';
+            //VideoLink.click();
+        });
+        if(MediaStreamLength === 3) return;
+        AudioRecorder3.stopRecording(function() {
+            var AudioLink = document.createElement('a');
+            AudioLink.href = window.URL.createObjectURL(AudioRecorder3.blob);
+            AudioLink.download = RecDate+'audio' + 3 +'.mp3';
+            //AudioLink.click();
+        });
+        VideoRecorder3.stopRecording(function(){
+            var VideoLink = document.createElement('a');
+            VideoLink.href = window.URL.createObjectURL(VideoRecorder3.blob);
+            VideoLink.download = RecDate+'video' + 3 + '.mp4';
+            //VideoLink.click();
+        });
+        if(MediaStreamLength === 4) return;
+        AudioRecorder4.stopRecording(function() {
+            var AudioLink = document.createElement('a');
+            AudioLink.href = window.URL.createObjectURL(AudioRecorder4.blob);
+            AudioLink.download = RecDate+'audio' + 4 +'.mp3';
+            //AudioLink.click();
+        });
+        VideoRecorder4.stopRecording(function(){
+            var VideoLink = document.createElement('a');
+            VideoLink.href = window.URL.createObjectURL(VideoRecorder4.blob);
+            VideoLink.download = RecDate+'video' + 4 + '.mp4';
+            // VideoLink.click();
+        });
+        if(MediaStreamLength === 5) return;
+        AudioRecorder5.stopRecording(function() {
+            var AudioLink = document.createElement('a');
+            AudioLink.href = window.URL.createObjectURL(AudioRecorder5.blob);
+            AudioLink.download = RecDate+'audio' + 5 +'.mp3';
+            //AudioLink.click();
+        });
+        VideoRecorder5.stopRecording(function(){
+            var VideoLink = document.createElement('a');
+            VideoLink.href = window.URL.createObjectURL(VideoRecorder5.blob);
+            VideoLink.download = RecDate+'video' + 5 + '.mp4';
+            //VideoLink.click();
+        });
+        if(MediaStreamLength === 6) return;
+        AudioRecorder6.stopRecording(function() {
+            var AudioLink = document.createElement('a');
+            AudioLink.href = window.URL.createObjectURL(AudioRecorder6.blob);
+            AudioLink.download = RecDate+'audio' + 6 +'.mp3';
+            //AudioLink.click();
+        });
+        VideoRecorder6.stopRecording(function(){
+            var VideoLink = document.createElement('a');
+            VideoLink.href = window.URL.createObjectURL(VideoRecorder6.blob);
+            VideoLink.download = RecDate+'video' + 6 + '.mp4';
+            //VideoLink.click();
+        });
+        if(MediaStreamLength === 7) return;
+        AudioRecorder7.stopRecording(function() {
+            var AudioLink = document.createElement('a');
+            AudioLink.href = window.URL.createObjectURL(AudioRecorder7.blob);
+            AudioLink.download = RecDate+'audio' + 7 +'.mp3';
+            //AudioLink.click();
+        });
+        VideoRecorder7.stopRecording(function(){
+            var VideoLink = document.createElement('a');
+            VideoLink.href = window.URL.createObjectURL(VideoRecorder7.blob);
+            VideoLink.download = RecDate+'video' + 7 + '.mp4';
+            //VideoLink.click();
+        });
+        if(MediaStreamLength === 8) return;
+        AudioRecorder8.stopRecording(function() {
+            var AudioLink = document.createElement('a');
+            AudioLink.href = window.URL.createObjectURL(AudioRecorder8.blob);
+            AudioLink.download = RecDate+'audio' + 8 +'.mp3';
+            //AudioLink.click();
+        });
+        VideoRecorder8.stopRecording(function(){
+            var VideoLink = document.createElement('a');
+            VideoLink.href = window.URL.createObjectURL(VideoRecorder8.blob);
+            VideoLink.download = RecDate+'video' + 8 + '.mp4';
+            //VideoLink.click();
+        });
+
+
+
+
+
+        /*for (var j=0;j<MediaStreams.length;j++) {
+         console.log('j :  ' + j);
+         if(j !== 0){
+         TmpRecorder1 = VideoRecorders[j];
+         TmpRecorder1.stopRecording(function(){
+         var VideoLink = document.createElement('a');
+         console.log('VideoRecorders['+0+'] : ' + TmpRecorder1.blob);
+         VideoLink.href = window.URL.createObjectURL(TmpRecorder1.blob);
+         VideoLink.download = 'RecVRst' + 0 + '.mp4';
+         VideoLink.click();
+         });
+         }else{
+         AudioRecorder.stopRecording(function(){
+         var AudioLink = document.createElement('a');
+         console.log('AudioRecorder.blob : ' + AudioRecorder.blob);
+         AudioLink.href = window.URL.createObjectURL(AudioRecorder.blob);
+         AudioLink.download = 'RecARst.mp3';
+         AudioLink.click();
+         });
+
+         TmpRecorder2 = VideoRecorders[j];
+         TmpRecorder2.stopRecording(function(){
+         var VideoLink = document.createElement('a');
+         console.log('VideoRecorders['+1+'] : ' + TmpRecorder2.blob);
+         VideoLink.href = window.URL.createObjectURL(TmpRecorder2.blob);
+         VideoLink.download = 'RecVRst' + 1 + '.mp4';
+         VideoLink.click();
+         });
+         }
+
+         }*/
+    }
+
+});
 
 function resetReview(){
     /*var icon = document.getElementById("playorstop");
@@ -1033,6 +1553,8 @@ function appendReviewVideos(){
     video.className = "reviews";
     video.autoplay = true;
     $('#Recorded-Videos').append(video);
+
+
 /*
     for(var i=0;i<MediaStreamLength; i++){
         var video = document.createElement('video');

@@ -311,7 +311,7 @@ function sharescreen(strema){
 function windowShareInit(){
 
     $("#glyphicon-sharescreen").click(function(){
-        chrome.tabCapture.capture({audio :  true , video : true } , sharescreen);
+        chrome.tabCapture.capture({audio :  false , video : true } , sharescreen);
     });
 }
 
