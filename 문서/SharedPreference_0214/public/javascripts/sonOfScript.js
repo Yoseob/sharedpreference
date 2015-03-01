@@ -388,7 +388,7 @@ function initFriendsList(result){
         li_.onmouseout= function(){
             this.setAttribute('style', 'background-color:#252525');
         };
-        var _li = li_;
+        var _li = li_.cloneNode(false);
         $('.sidebar-friends').append(li_);
         $('.sidebar-friends2').append(_li);
     }
