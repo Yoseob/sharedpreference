@@ -388,8 +388,10 @@ function initFriendsList(result){
         li_.onmouseout= function(){
             this.setAttribute('style', 'background-color:#252525');
         };
+        var _li = document.createElement('li');
+        _li = li_;
         $('.sidebar-friends').append(li_);
-        $('.sidebar-friends2').append(li_);
+        $('.sidebar-friends2').append(_li);
     }
 }
 
@@ -601,9 +603,10 @@ $('#glyphicon-record').click(function() {
         };
 
 
-
+        var li_ = document.createElement('li');
+        li_ = _li;
         $('.Recorded-list').append(_li);
-        $('.Recorded-list2').append(_li);
+        $('.Recorded-list2').append(li_);
         //}
 
 
