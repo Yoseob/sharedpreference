@@ -388,8 +388,7 @@ function initFriendsList(result){
         li_.onmouseout= function(){
             this.setAttribute('style', 'background-color:#252525');
         };
-        var _li = document.createElement('li');
-        _li = li_;
+        var _li = li_;
         $('.sidebar-friends').append(li_);
         $('.sidebar-friends2').append(_li);
     }
@@ -1521,6 +1520,8 @@ function appendReviewVideos(){
     video.className = "reviews";
     video.autoplay = true;
     $('#Recorded-Videos').append(video);
+
+
 /*
     for(var i=0;i<MediaStreamLength; i++){
         var video = document.createElement('video');
