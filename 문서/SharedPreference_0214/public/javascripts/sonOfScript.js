@@ -17,7 +17,34 @@ window.onresize = function resizeFooterHeight() {
         $('#footer').css('height',ClientHeight/4+'px');
     }*/
 
-    if(ClientWidth <= '400'){
+    var ua = window.navigator.userAgent.toLowerCase();
+    //모바일인지 아닌지 체크
+    if(/iphone/.test(ua) || /android/.test(ua) || /opera/.test(ua) || /bada/.test(ua)){
+        $('#sidebar-wrapper').css('left','-250px');
+        $('#bottombar-wrapper').css('bottom','0px');
+            $('#footer').css('height',ClientWidth/4 + 'px');
+            $('#footer').css('width','95%');
+            $('#footer').css('margin-left','5%');
+            $('#footer').css('bottom','50px');
+            $('#Wvideos').css('height','calc(100% - 50px)');
+            $('#Wvideos').css('width','100%');
+            $('#Wvideos').css('margin-left','0');
+            $('#Recorded-Video-container').css('width', '100%');
+            $('#Recorded-Video-container').css('margin-left','0');
+            $('#Recorded-Video-container').css('bottom', '50px');
+
+            $('#chatting-space').css('left', '-500px');
+            $('#chatting-space').css('display', 'none');
+            $('#Recorded-List-container').css('left', '-500px');
+            $('#Recorded-List-container').css('display', 'none');
+            $('#backhome').css('bottom', '50px');
+            $('#backhome').css('height', '7%');
+            $('#backhome').css('width', '7%');
+            $('#Alert-space-text').css('font-size', '10%');
+            $('#recordimg').css('height', '10%');
+            $('#recordimg').css('width', '10%');
+
+    }else if(ClientWidth <= '400'){
         $('#sidebar-wrapper').css('left','-250px');
         $('#bottombar-wrapper').css('bottom','0px');
         setTimeout(function(){
@@ -37,6 +64,11 @@ window.onresize = function resizeFooterHeight() {
             $('#Recorded-List-container').css('left', '-500px');
             $('#Recorded-List-container').css('display', 'none');
             $('#backhome').css('bottom', '50px');
+            $('#backhome').css('height', '7%');
+            $('#backhome').css('width', '7%');
+            $('#Alert-space-text').css('font-size', '10%');
+            $('#recordimg').css('height', '10%');
+            $('#recordimg').css('width', '10%');
         },400);
     }else{
         $('#footer').css('height',ClientHeight/4+'px');
@@ -58,6 +90,11 @@ window.onresize = function resizeFooterHeight() {
         $('#sidebar-friends-list2').css('left', '-300px');
         $('#sidebar-friends-list2').css('display', 'none');
         $('#backhome').css('bottom', '0px');
+        $('#backhome').css('height', '5%');
+        $('#backhome').css('width', '5%');
+        $('#Alert-space-text').css('font-size', '100%');
+        $('#recordimg').css('height', '3%');
+        $('#recordimg').css('width', '3%');
         setTimeout(function(){
             $('#sidebar-wrapper').css('left','-130px');
             $('#bottombar-wrapper').css('bottom','-100px');
