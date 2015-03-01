@@ -17,7 +17,7 @@ window.onresize = function resizeFooterHeight() {
         $('#footer').css('height',ClientHeight/4+'px');
     }*/
 
-    if(ClientWidth <= '400'){
+    if(ClientWidth <= '500'){
         $('#sidebar-wrapper').css('left','-250px');
         $('#bottombar-wrapper').css('bottom','0px');
         setTimeout(function(){
@@ -37,6 +37,11 @@ window.onresize = function resizeFooterHeight() {
             $('#Recorded-List-container').css('left', '-500px');
             $('#Recorded-List-container').css('display', 'none');
             $('#backhome').css('bottom', '50px');
+            $('#backhome').css('height', '7%');
+            $('#backhome').css('width', '7%');
+            $('#Alert-space-text').css('font-size', '10%');
+            $('#recordimg').css('height', '10%');
+            $('#recordimg').css('width', '10%');
         },400);
     }else{
         $('#footer').css('height',ClientHeight/4+'px');
@@ -58,6 +63,11 @@ window.onresize = function resizeFooterHeight() {
         $('#sidebar-friends-list2').css('left', '-300px');
         $('#sidebar-friends-list2').css('display', 'none');
         $('#backhome').css('bottom', '0px');
+        $('#backhome').css('height', '5%');
+        $('#backhome').css('width', '5%');
+        $('#Alert-space-text').css('font-size', '100%');
+        $('#recordimg').css('height', '3%');
+        $('#recordimg').css('width', '3%');
         setTimeout(function(){
             $('#sidebar-wrapper').css('left','-130px');
             $('#bottombar-wrapper').css('bottom','-100px');
