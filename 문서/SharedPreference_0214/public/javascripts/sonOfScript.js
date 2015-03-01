@@ -22,7 +22,6 @@ window.onresize = function resizeFooterHeight() {
     if(/iphone/.test(ua) || /android/.test(ua) || /opera/.test(ua) || /bada/.test(ua)){
         $('#sidebar-wrapper').css('left','-250px');
         $('#bottombar-wrapper').css('bottom','0px');
-        setTimeout(function(){
             $('#footer').css('height',ClientWidth/4 + 'px');
             $('#footer').css('width','95%');
             $('#footer').css('margin-left','5%');
@@ -44,8 +43,8 @@ window.onresize = function resizeFooterHeight() {
             $('#Alert-space-text').css('font-size', '10%');
             $('#recordimg').css('height', '10%');
             $('#recordimg').css('width', '10%');
-    }
-    else if(ClientWidth <= '400'){
+
+    }else if(ClientWidth <= '400'){
         $('#sidebar-wrapper').css('left','-250px');
         $('#bottombar-wrapper').css('bottom','0px');
         setTimeout(function(){
