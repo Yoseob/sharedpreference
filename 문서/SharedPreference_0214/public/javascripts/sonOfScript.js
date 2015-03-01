@@ -48,6 +48,8 @@ window.onresize = function resizeFooterHeight() {
         $('#chatting-space2').css('display', 'none');
         $('#Recorded-List-container2').css('bottom', '-550px');
         $('#Recorded-List-container2').css('display', 'none');
+        $('#sidebar-friends-list2').css('left', '-300px');
+        $('#sidebar-friends-list2').css('display', 'none');
         setTimeout(function(){
             $('#sidebar-wrapper').css('left','-130px');
             $('#bottombar-wrapper').css('bottom','-100px');
