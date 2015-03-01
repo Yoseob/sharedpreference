@@ -44,8 +44,17 @@ body {
     height: 5%;
     width: 100%;
 }
-
+#chatinput-space2 {
+    height: 5%;
+    width: 100%;
+}
 #chatinput {
+    background: #ffffff;
+    height: 100%;
+    width: 100%;
+    color: black;
+}
+#chatinput2 {
     background: #ffffff;
     height: 100%;
     width: 100%;
@@ -312,12 +321,18 @@ a:hover {
     float: right;
     height: 100%;
 }
-
+#right2 {
+    float: right;
+    height: 100%;
+}
 #start_img {
     width: 100%;
     height: 100%;
 }
-
+#start_img2 {
+    width: 100%;
+    height: 100%;
+}
 .sidebyside {
     display: inline-block;
     width: 45%;
@@ -350,6 +365,18 @@ a:hover {
     background-color:#ffffff;
 
 }
+#results2 {
+    font-size: 14px;
+    font-weight: bold;
+
+    padding: 15px;
+    text-align: left;
+    height: 90%;
+    width: 100%;
+    overflow: scroll;
+    background-color:#ffffff;
+
+}
 /************************************************drag & drop *******************************************/
 #results.hover { border: 10px dashed #0c0; }
 #results img {
@@ -366,6 +393,35 @@ a:hover {
     border-bottom-width: medium;
 }
 #results div {
+    display: block;
+    /*margin: 15px;*/
+    margin-left: auto;
+    margin-right: 0;
+    text-align: center;
+    /*  border-style: solid;
+    border-color: darkgray;*/
+    /*border-radius: 10px;
+    border-top-width: medium;
+    border-left-width: medium;
+    border-right-width: medium;
+    border-bottom-width: medium;
+    */
+}
+#results2.hover { border: 10px dashed #0c0; }
+#results2 img {
+    display: block;
+    margin: 20px;
+    margin-left: auto;
+    margin-right: 0;
+    /*  border-style: solid;
+    border-color: darkgray;*/
+    border-radius: 10px;
+    border-top-width: medium;
+    border-left-width: medium;
+    border-right-width: medium;
+    border-bottom-width: medium;
+}
+#results2 div {
     display: block;
     /*margin: 15px;*/
     margin-left: auto;
@@ -413,6 +469,34 @@ a:hover {
     border-bottom-width: medium;
     background-color: darkgray;
 }
+#results2 video {
+    display: block;
+    margin: 15px;
+    margin-left: auto;
+    margin-right: 0;
+    background-color: #292929;
+    /*  border-style: solid;
+    border-color: darkgray;*/
+    border-radius: 10px;
+    border-top-width: medium;
+    border-left-width: medium;
+    border-right-width: medium;
+    border-bottom-width: medium;
+}
+#results2 p {
+    margin: 10px;
+    font-size: 12px;
+    color:#000000;
+    text-align: right;
+    border-style: solid;
+    border-color: darkgray;
+    border-radius: 10px;
+    border-top-width: medium;
+    border-left-width: medium;
+    border-right-width: medium;
+    border-bottom-width: medium;
+    background-color: darkgray;
+}
 progress { width: 100%; }
 progress:after { content: '%'; }
 .fail {
@@ -427,13 +511,20 @@ progress:after { content: '%'; }
     height: 5%;
     background-color: #ffffff;
 }
-
+#chat-top2 {
+    height: 5%;
+    background-color: #ffffff;
+}
 #start_button {
     top: 0;
     background-color: transparent;
     height: 100%;
 }
-
+#start_button2 {
+    top: 0;
+    background-color: transparent;
+    height: 100%;
+}
 #select_language {
     opacity: 0;
 }

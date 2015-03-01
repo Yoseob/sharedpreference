@@ -110,8 +110,13 @@ client.on('stream' , function(stream , meta){
 client.on('open', function(){
     client.send({} , {roomname : curUsername.getTargetUser() , filetype : 'init' , sendType: 'p2p'});
     var box = $('#results');
+   // var box2 = $('#results2');
     box.on('dragenter', doNothing);
     box.on('dragover', doNothing);
+
+  //  box2.on('dragenter', doNothing);
+  //  box2.on('dragover', doNothing);
+
 
     box.on('drop', function(e){
         e.originalEvent.preventDefault();
@@ -135,6 +140,32 @@ client.on('open', function(){
             $('#progress').text(Math.round(tx+=data.rx*100) + '% complete');
         });
     });
+/*
+    box2.on('drop', function(e){
+        e.originalEvent.preventDefault();
+        var file2 = e.originalEvent.dataTransfer.files[0];
+
+        var fileinfo2 = {};
+
+        fileinfo2.fileEndata = new Date();
+        fileinfo2.username = curUsername.getUserName();
+        fileinfo2.filename =  file.name;
+        fileinfo2.groupname = '';
+        fileinfo2.roomname = curUsername.getTargetUser();
+        fileinfo2.sendType = 'p2p';
+        filesize = file2.size;
+
+        var stream2 = client.send(file2,fileinfo2);
+
+
+        var tx2 = 0;
+        stream2.on('data', function(data){
+            $('#progress').text(Math.round(tx2+=data.rx*100) + '% complete');
+        });
+    });
+*/
+
+
 });
 
 // Deal with DOM quirks
@@ -159,7 +190,7 @@ var saveByteArray = (function () {
 
             a.appendChild(img);
             document.getElementById('results').appendChild(a);
-
+            //document.getElementById('results2').appendChild(a);
         }
         else{
             var a = document.createElement("a");
@@ -170,7 +201,7 @@ var saveByteArray = (function () {
 
             a.appendChild(img);
             document.getElementById('results').appendChild(a);
-
+            //document.getElementById('results2').appendChild(a);
         }
     };
 }());
@@ -196,11 +227,13 @@ var other_saveByteArray = (function () {
                 myDiv.innerHTML=newName+"..";
                 a.appendChild(myDiv);
                 document.getElementById('results').appendChild(a);
+                //document.getElementById('results2').appendChild(a);
             }
             else{
                 myDiv.innerHTML=name;
                 a.appendChild(myDiv);
                 document.getElementById('results').appendChild(a);
+                //document.getElementById('results2').appendChild(a);
             }
 
         }
@@ -217,11 +250,13 @@ var other_saveByteArray = (function () {
                 myDiv.innerHTML=newName+"..";
                 a.appendChild(myDiv);
                 document.getElementById('results').appendChild(a);
+               // document.getElementById('results2').appendChild(a);
             }
             else{
                 myDiv.innerHTML=name;
                 a.appendChild(myDiv);
                 document.getElementById('results').appendChild(a);
+                //document.getElementById('results2').appendChild(a);
             }
 
         }

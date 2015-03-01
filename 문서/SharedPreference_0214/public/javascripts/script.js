@@ -107,7 +107,7 @@ function removeVideo(socketId) {
 function addToChat(msg, color) {
     //var messages = document.getElementById('messages');
     var messages = document.getElementById('results');
-
+    var messages2 = document.getElementById('results2');
     var cRoom = userinfo.getCurrectChattingRoom();
     var userId = userinfo.getUserId();
     console.log(cRoom + " " + userId);
@@ -134,6 +134,9 @@ function addToChat(msg, color) {
     }
     messages.innerHTML = messages.innerHTML + msg;
     messages.scrollTop = 10000;
+
+    messages2.innerHTML = messages2.innerHTML + msg;
+    messages2.scrollTop = 10000;
 }
 
 function sanitize(msg) {
@@ -210,6 +213,7 @@ function initChat() {
     }
 
     var input = document.getElementById("chatinput");
+    var input2 = document.getElementById("chatinput2");
     var toggleHideShow = document.getElementById("hideShowMessages");
     var room = window.location.hash.slice(1);
     var color = "#" + 000;
@@ -294,6 +298,52 @@ function initChat() {
             change:function(){
                 this.value=this.value.replace(/\s/g, "");
             }
+
+    },false);
+    rtc.on(chat.event, function () {
+        var data = chat.recv.apply(this, arguments);
+        console.log(data.color);
+        console.log(data.messages);
+        addToChat(data.messages, data.color.toString(16));
+    });
+
+    $("#chatinput2").on({
+
+        keydown:function(e) {
+            // console.log(e);
+//            var keyFlg=1;
+//            var keyFlg2=0;
+            // console.log(cnt);
+            if (e.which === 32) {
+
+                //keyFlg=keyFlg2;
+                //console.log(keyFlg);
+                if(input2.value.length == 0) return false;
+                return spaceEnable;
+            }
+
+            else if(e.which===13){
+                spaceEnable = false;
+
+                console.log("msgTest");
+                chat.send(JSON.stringify({
+                    "eventName": "chat_msg",
+                    "data": {
+                        "messages": input2.value,
+                        "room": room,
+                        "color": color
+                    }
+                }));
+                console.log(input2.value);
+
+                addToChat(input2.value);
+                input2.value = "";
+            }
+            else spaceEnable = true;
+        },
+        change:function(){
+            this.value=this.value.replace(/\s/g, "");
+        }
 
     },false);
     rtc.on(chat.event, function () {
