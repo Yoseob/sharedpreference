@@ -31,6 +31,12 @@ window.onresize = function resizeFooterHeight() {
             $('#Recorded-Video-container').css('width', '100%');
             $('#Recorded-Video-container').css('margin-left','0');
             $('#Recorded-Video-container').css('bottom', '50px');
+
+            $('#chatting-space').css('left', '-500px');
+            $('#chatting-space').css('display', 'none');
+            $('#Recorded-List-container').css('left', '-500px');
+            $('#Recorded-List-container').css('display', 'none');
+            $('#backhome').css('bottom', '50px');
         },400);
     }else{
         $('#footer').css('height',ClientHeight/4+'px');
@@ -42,6 +48,7 @@ window.onresize = function resizeFooterHeight() {
         $('#Wvideos').css('width','calc(100% - 70px)');
         $('#Wvideos').css('margin-left','70px');
         $('#Recorded-Video-container').css('width', 'calc(100% - 70px)');
+        $('#Recorded-Video-container').css('height', '100%');
         $('#Recorded-Video-container').css('margin-left','70px');
         $('#Recorded-Video-container').css('bottom', '0');
         $('#chatting-space2').css('bottom', '-550px');
@@ -50,6 +57,7 @@ window.onresize = function resizeFooterHeight() {
         $('#Recorded-List-container2').css('display', 'none');
         $('#sidebar-friends-list2').css('left', '-300px');
         $('#sidebar-friends-list2').css('display', 'none');
+        $('#backhome').css('bottom', '0px');
         setTimeout(function(){
             $('#sidebar-wrapper').css('left','-130px');
             $('#bottombar-wrapper').css('bottom','-100px');
@@ -227,27 +235,20 @@ $(document).ready(function(){
             $('#Wvideos').css('height', 'calc(70% - 50px)');
             $('#Wvideos').css('margin-bottom', 'calc(30% + 50px)');
 
-            /*$('#Recorded-Video-container').css('width', 'calc(80% - 70px)');
-            $('#Recorded-Video-container').css('margin-left', 'calc(20% + 70px)');*/
+            $('#Recorded-Video-container').css('height', 'calc(70% - 50px)');
+            $('#Recorded-Video-container').css('bottom', 'calc(30% + 50px)');
+            $('#backhome').css('bottom', 'calc(30% + 50px)');
         }
         //채팅창이 있었을 경우 클릭시 else문 수행
         else {
             $('#footer').css('bottom', '50px');
             $('#Wvideos').css('height', 'calc(100% - 50px)');
             $('#Wvideos').css('margin-bottom', '50px');
-            //$('#Wvideos').css('margin-left', '70px');
-            //$('#Wvideos').css('width', 'calc(100% - 70px)');
-           // $('#footer').css('width', 'calc(95% - 70px)');
-            //$('#footer').css('margin-left', 'calc(5% + 70px)');
-            /*$('#Recorded-Video-container').css('margin-left', '70px');
-            $('#Recorded-Video-container').css('width', 'calc(100% - 70px)');*/
-            //setTimeout(function(){
-            //$('#chatting-space2').css('-webkit-transform', 'translate(0px, 550px)');
-            //$('#chatting-space2').css('display', 'none');
-            //$('#chatting-space2').css('display', 'block');
             $('#chatting-space2').css('bottom', '-550px');
             $('#chatting-space2').css('display', 'none');
-            //},200);
+            $('#Recorded-Video-container').css('height', 'calc(100% - 50px)');
+            $('#Recorded-Video-container').css('bottom', '50px');
+            $('#backhome').css('bottom', '50px');
         }
     });
 });
@@ -992,10 +993,25 @@ $('#glyphicon-record2').click(function() {
             this.setAttribute('style', 'background-color:#383838');
         };
 
+        var li_ = _li.cloneNode(true);
 
+        li_.onclick= function(){
+            $('#Recorded-Video-container').css('display', 'block');
+            $('#backhome').css('display', 'block');
 
+            //녹화된 내용을 다시 볼때의 화면에 video들을 추가해주는 함수
+            appendReviewVideos();
+            //다시볼 비디오들의 크기를 알맞게 재조정.
+            resizeReviewVideos();
+        };
+        li_.onmouseover= function(){
+            this.setAttribute('style', 'background-color:#AAA');
+        };
+        li_.onmouseout= function(){
+            this.setAttribute('style', 'background-color:#383838');
+        };
         $('.Recorded-list').append(_li);
-        $('.Recorded-list2').append(_li);
+        $('.Recorded-list2').append(li_);
         //}
 
 
