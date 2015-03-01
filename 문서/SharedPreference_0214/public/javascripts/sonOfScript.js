@@ -602,8 +602,7 @@ $('#glyphicon-record').click(function() {
         };
 
 
-        var li_ = document.createElement('li');
-        li_ = _li;
+        var li_ = _li.cloneNode(flase);
         $('.Recorded-list').append(_li);
         $('.Recorded-list2').append(li_);
         //}
