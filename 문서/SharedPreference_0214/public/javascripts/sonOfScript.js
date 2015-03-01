@@ -388,7 +388,7 @@ function initFriendsList(result){
         li_.onmouseout= function(){
             this.setAttribute('style', 'background-color:#252525');
         };
-        var _li = li_;
+        var _li = li_.cloneNode(false);
         $('.sidebar-friends').append(li_);
         $('.sidebar-friends2').append(_li);
     }
@@ -602,8 +602,7 @@ $('#glyphicon-record').click(function() {
         };
 
 
-        var li_ = document.createElement('li');
-        li_ = _li;
+        var li_ = _li.cloneNode(flase);
         $('.Recorded-list').append(_li);
         $('.Recorded-list2').append(li_);
         //}
