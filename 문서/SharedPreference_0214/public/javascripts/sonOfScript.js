@@ -388,7 +388,44 @@ function initFriendsList(result){
         li_.onmouseout= function(){
             this.setAttribute('style', 'background-color:#252525');
         };
+
         var _li = li_.cloneNode(true);
+
+        _li.onclick = function(){
+            //$('#select-space-contents').empty();
+            //$('#select-space').css('display','block');
+            //$('#select-space-contents').append($(this).find('p').text()+'님의 방으로 이동 하시겠습니까?');
+            var selectedName = $(this).find('p').text();
+            if (confirm(selectedName+'님의 방으로 이동 하시겠습니까?') === true){    //확인
+                var id_ = userInfo.getUserId();
+                var nc = new TjNetworkConnector();
+                nc.checkTheRoomExist({owner_id:selectedName}, function(result){
+                    console.log('result : ');
+                    console.log(result);
+                    console.log('result.data.state : ');
+                    var data_ = result.data;
+                    console.log(data_.state);
+
+
+                    if(data_.state === 'active'){
+                        userInfo.setTargetUser(selectedName);
+                        location.href = 'http://210.118.64.172:8000';
+                    }else {
+                        alert(selectedName+'님의 방이 존재하지 않아서 입장이 불가합니다.');
+                    }
+                });
+
+            }else{   //취소
+            }
+        };
+        _li.onmouseover= function(){
+            this.setAttribute('style', 'background-color:#AAA');
+        };
+        _li.onmouseout= function(){
+            this.setAttribute('style', 'background-color:#252525');
+        };
+
+
         $('.sidebar-friends').append(li_);
         $('.sidebar-friends2').append(_li);
     }
@@ -567,30 +604,10 @@ $('#glyphicon-record').click(function() {
             $('#Recorded-Video-container').css('display', 'block');
             $('#backhome').css('display', 'block');
 
-
             //녹화된 내용을 다시 볼때의 화면에 video들을 추가해주는 함수
             appendReviewVideos();
             //다시볼 비디오들의 크기를 알맞게 재조정.
             resizeReviewVideos();
-
-
-            /*
-            var exec = require('child_process').exec, child;
-            child = exec('/usr/bin/java -jar C:/Users/KimSangYun/Desktop/KomoranOfSunModule',
-                function (error, stdout, stderr){
-                    console.log('stdout: ' + stdout);
-                    console.log('stderr: ' + stderr);
-                    if(error !== null){
-                        console.log('exec error: ' + error);
-                    }
-                });
-            */
-
-
-
-
-
-
         };
 
 
@@ -602,6 +619,22 @@ $('#glyphicon-record').click(function() {
         };
 
         var li_ = _li.cloneNode(true);
+
+        li_.onclick= function(){
+            $('#Recorded-Video-container').css('display', 'block');
+            $('#backhome').css('display', 'block');
+
+            //녹화된 내용을 다시 볼때의 화면에 video들을 추가해주는 함수
+            appendReviewVideos();
+            //다시볼 비디오들의 크기를 알맞게 재조정.
+            resizeReviewVideos();
+        };
+        li_.onmouseover= function(){
+            this.setAttribute('style', 'background-color:#AAA');
+        };
+        li_.onmouseout= function(){
+            this.setAttribute('style', 'background-color:#383838');
+        };
         $('.Recorded-list').append(_li);
         $('.Recorded-list2').append(li_);
         //}
