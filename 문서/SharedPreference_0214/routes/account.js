@@ -20,15 +20,22 @@ var fb = require('fb');
 var myFaceBookAppSecret = '3629858ea14fe0e8eb61e368a9839559';
 var accessTokenKey = 'accessToken';
 
-router.route('/login.facebook')
-    .post(function (req, res) {
+var defaultResSet = {result : 400 , stmp : new Date , data : {}};
+router.route('/login.facebook').post(function (req, res) {
         var at = req.body.accessToken;
-        if (at !== undefined) {
-            ckeckOverLapBeforeInsert(req, res, sendLoginAccountInfo);
-            prepareFaceBookGraph(at, req.body.facebookId, myFaceBookAppSecret);
-
+        if (at === undefined) {
+            Resmodule._response(res , defaultResSet);
         }
+    ckeckOverLapBeforeInsert(req, res, sendLoginAccountInfo);
+    prepareFaceBookGraph(at, req.body.facebookId, myFaceBookAppSecret);
     });
+
+router.route('/logout').post(function(req , res){
+    if(req.body.sp_id === undefined){
+        Resmodule._response(res , defaultResSet);
+    }
+    logoutProcess(req.body.sp_id , res);
+});
 
 router.route('/leave').post(function (req, res) {
 
@@ -52,7 +59,24 @@ router.route('/detail').post(function (req, res) {
 
     }
 });
+function logoutProcess(sp_id , res){
+    db.collection('accounts', {safe: true}, function (err, collection) {
+        if (err) throw err;
 
+        collection.update({_id: new ObjectId(sp_id)}, {status :'inactive'}, function (err, ret, obj) {
+            if(err) throw  err ;
+
+            if(obj || ret){
+                defaultResSet.result = 200;
+                defaultResSet.data.state = 'inactive';
+                defaultResSet.data.tsmp =  new Date();
+
+                Resmodule._response(res , defaultResSet);
+            }
+        });
+
+    });
+}
 
 //그레프 API를 사용하기 위한 준비과정
 function prepareFaceBookGraph(accessToken, fbId, appSecret) {
