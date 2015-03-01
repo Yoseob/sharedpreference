@@ -137,19 +137,19 @@ p {
     background-image: linear-gradient(bottom, #bee2ff 15%, #95c2fd 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#95c2fd', endColorstr='#bee2ff');
 
-    border: solid 1px rgba(0,0,0,0.5);
+  /*  border: solid 1px rgba(0,0,0,0.5);*/
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
 
-    -webkit-box-shadow: inset 0 8px 5px rgba(255,255,255,0.65), 0 1px 2px rgba(0,0,0,0.2);
+    /*-webkit-box-shadow: inset 0 8px 5px rgba(255,255,255,0.65), 0 1px 2px rgba(0,0,0,0.2);*/
     -moz-box-shadow: inset 0 8px 5px rgba(255,255,255,0.65), 0 1px 2px rgba(0,0,0,0.2);
-    box-shadow: inset 0 8px 5px rgba(255,255,255,0.65), 0 1px 2px rgba(0,0,0,0.2);
+   /* box-shadow: inset 0 8px 5px rgba(255,255,255,0.65), 0 1px 2px rgba(0,0,0,0.2);*/
 
     margin-bottom: 20px;
     padding: 6px 20px;
     color: #000;
-    text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+  /*  text-shadow: 0 1px 1px rgba(255,255,255,0.8);*/
     word-wrap: break-word;
 }
 
@@ -192,17 +192,17 @@ p {
 
 /* green bubble */
 .green {
-    background: #7acd47;
-    background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.15, #ace44b),color-stop(1, #7acd47));
-    background-image: -webkit-linear-gradient(bottom, #ace44b 15%, #7acd47 100%);
-    background-image: -moz-linear-gradient(bottom, #ace44b 15%, #7acd47 100%);
-    background-image: -ms-linear-gradient(bottom, #ace44b 15%, #7acd47 100%);
-    background-image: -o-linear-gradient(bottom, #ace44b 15%, #7acd47 100%);
-    background-image: linear-gradient(bottom, #ace44b 15%, #7acd47 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#7acd47', endColorstr='#ace44b');
+    background: #3083FF;
+    background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.15, #508CE6),color-stop(1, #3083FF));
+    background-image: -webkit-linear-gradient(bottom, #508CE6 15%, #3083FF 100%);
+    background-image: -moz-linear-gradient(bottom, #508CE6 15%, #3083FF 100%);
+    background-image: -ms-linear-gradient(bottom, #508CE6 15%, #3083FF 100%);
+    background-image: -o-linear-gradient(bottom, #508CE6 15%, #3083FF 100%);
+    background-image: linear-gradient(bottom, #508CE6 15%, #3083FF 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#3083FF', endColorstr='#508CE6');
 }
 .green:after {
-    border-bottom-color: #ace44b;
+    border-bottom-color: #508CE6;
 }
 
 /* white bubble */

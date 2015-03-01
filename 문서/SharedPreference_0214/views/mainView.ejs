@@ -24,6 +24,112 @@
 
 </head>
 <body onload="init()">
+<!--
+<script>
+    function fb_login(){
+        FB.login(function(response) {
+            if (response.authResponse) {
+                access_token = response.authResponse.accessToken; //get access token
+                user_id = response.authResponse.userID; //get FB UID
+                testAPI();
+            } else {
+
+            }
+        }, {
+            scope: 'publish_stream,email,public_profile,user_friends'
+        });
+    }
+
+    function checkLoginState() {
+        FB.getLoginStatus(function (response) {
+            fb_login(response);
+        });
+    }
+
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '347355892131088',
+            cookie: true,  // enable cookies to allow the server to access
+                           // the session
+            xfbml: true,  // parse social plugins on this page
+            version: 'v2.1' // use version 2.1
+        });
+        FB.Event.subscribe('auth.logout', function (response) {
+            //request Logout 추가
+          //  $('#myVisible').css('display','inline');
+          //  $('#myVisible_Logout').css('display','none');
+            requestLogout();
+
+            document.location.reload();
+        });
+
+        FB.getLoginStatus(function (response) {
+            fb_login(response);
+        });
+    };
+
+    function requetMyFacebookInfo(accessToken) {
+        //서버로 전송할 데이터
+        // 내이름
+        // acesstoken
+        // facebookid
+
+        FB.api('/me', function (response) {
+            //console.log('facebook api');
+
+            var data = {};
+            if (response) {
+                //console.log(response);
+
+                data.facebookId = response.id;
+
+                $('.account_id').text(data.facebookId);
+
+                data.username = response.last_name + response.first_name;
+                data.accessToken = accessToken;
+
+              //  var userInfo = new DefaultUserinfo();
+               // userInfo.setUserName(data.username);
+
+              //  var nc = new TjNetworkConnector();
+
+                // console.log('start');
+                // console.log(data);
+
+                /*
+                nc.loginAndJoin(data, function (result) {
+                    var data = result.data;
+                    // console.log('recv');
+                    //  console.log(data);
+//                  //아이디
+                    userInfo.setUserId(data._id);
+//                    localStorage.setItem("spUserId" , data._id);
+
+                });*/
+            }
+        });
+    }
+
+    // Load the SDK asynchronously
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    function testAPI() {
+        //console.log('Welcome!  Fetching your information.... ');
+        FB.api('/me?', function (response) {
+
+        });
+        $('#flgBnt').removeAttr("disabled");
+    }
+
+</script>
+-->
 <div id="info">
     <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
         microphone settings</a>
@@ -56,7 +162,7 @@
                     </tr>
                     <tr>
                         <td><a href="#" id="glyphicon-repeat" class="glyphicon glyphicon-repeat"></a></td>
-                        <td><a href="#" id="glyphicon-logout" class="glyphicon glyphicon-log-out"></a></td>
+                        <td><a id="glyphicon-logout" onclick="moveLogin();" class="glyphicon glyphicon-log-out"></a></td>
                     </tr>
                 </table>
             </div>
@@ -189,6 +295,13 @@
     <!--<div id="fullscreen" class="button">Enter Full Screen</div>-->
     <!--<div id="newRoom" class="button">Create A New Room</div>-->
 </div>
+
+<script>
+
+    function moveLogin(){
+        location.href='http://210.118.64.176:8000/login';
+    }
+</script>
 
 
 <script type="text/javascript">
