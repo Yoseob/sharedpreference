@@ -21,6 +21,8 @@ window.onresize = function resizeFooterHeight() {
     //모바일인지 아닌지 체크
     if(/iphone/.test(ua) || /android/.test(ua) || /opera/.test(ua) || /bada/.test(ua)){
         $('#sidebar-wrapper').css('left','-250px');
+        $('#sidebar-wrapper').css('display','none');
+        $('#bottombar-wrapper').css('display','block');
         $('#bottombar-wrapper').css('bottom','0px');
             $('#footer').css('height',ClientWidth/4 + 'px');
             $('#footer').css('width','95%');
@@ -46,6 +48,8 @@ window.onresize = function resizeFooterHeight() {
 
     }else if(ClientWidth <= '400'){
         $('#sidebar-wrapper').css('left','-250px');
+        $('#sidebar-wrapper').css('display','none');
+        $('#bottombar-wrapper').css('display','block');
         $('#bottombar-wrapper').css('bottom','0px');
         setTimeout(function(){
             $('#footer').css('height',ClientWidth/4 + 'px');
@@ -96,8 +100,10 @@ window.onresize = function resizeFooterHeight() {
         $('#recordimg').css('height', '3%');
         $('#recordimg').css('width', '3%');
         setTimeout(function(){
+            $('#sidebar-wrapper').css('display','block');
             $('#sidebar-wrapper').css('left','-130px');
             $('#bottombar-wrapper').css('bottom','-100px');
+            $('#bottombar-wrapper').css('display','none');
         },300);
 
     }

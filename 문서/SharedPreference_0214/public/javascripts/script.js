@@ -3,7 +3,7 @@ var MediaStreams = [];
 var PeerConnection = window.PeerConnection || window.webkitPeerConnection00 || window.webkitRTCPeerConnection || window.mozRTCPeerConnection || window.RTCPeerConnection;
 var CurrentVideo = {};
 var userinfo = new DefaultUserinfo();
-
+var cnt=0;
 //태양 - 추가부분. 여기서 발생한 Stream을 Sun of Script로 가져가기위해 추가.
 function getMediaStreams(){
     return MediaStreams;
@@ -107,7 +107,7 @@ function removeVideo(socketId) {
 function addToChat(msg, color) {
     //var messages = document.getElementById('messages');
     var messages = document.getElementById('results');
-
+    var messages2 = document.getElementById('results2');
     var cRoom = userinfo.getCurrectChattingRoom();
     var userId = userinfo.getUserId();
     console.log(cRoom + " " + userId);
@@ -123,17 +123,20 @@ function addToChat(msg, color) {
     msg = sanitize(msg);
 
 
-
+    msg.trim();
     if (msg != '' && color == '#010101') {
         msg = '<div class="triangle-isosceles left col" style="color: ' + color + '; padding-left: 15px; float:right;">' + msg + '</div>' + '<br><br><br>';
     }
     else if (color && msg != '') {
         msg = '<div class="bubble white" style="color: ' + color + '; padding-left: 15px; float:left;">' + msg + '</div>' + '<br><br><br>';
     } else if (msg != '') {
-        msg = '<div class="bubble bubble-alt green" style="color: ' + color + '; padding-left: 15px; float:right;">' + msg + '</div>' + '<br><br><br>';
+        msg = '<div class="bubble bubble-alt green" style="color: white; padding-left: 15px; float:right;">' + msg + '</div>' + '<br><br><br>';
     }
     messages.innerHTML = messages.innerHTML + msg;
     messages.scrollTop = 10000;
+
+    messages2.innerHTML = messages2.innerHTML + msg;
+    messages2.scrollTop = 10000;
 }
 
 function sanitize(msg) {
@@ -198,6 +201,8 @@ var dataChannelChat = {
 
 function initChat() {
     var chat;
+    var keyFlg=1;
+    var keyFlg2=0;
 
     if (rtc.dataChannelSupport) {
         console.log('initializing data channel chat');
@@ -208,6 +213,7 @@ function initChat() {
     }
 
     var input = document.getElementById("chatinput");
+    var input2 = document.getElementById("chatinput2");
     var toggleHideShow = document.getElementById("hideShowMessages");
     var room = window.location.hash.slice(1);
     var color = "#" + 000;
@@ -224,10 +230,13 @@ function initChat() {
 
     });
 
+    /*
     input.addEventListener('keydown', function (event) {
-        //console.log(event);
+
+
 
         var key = event.which || event.keyCode;
+
         if (key === 13 && key !== 32) {
             console.log("msgTest");
             chat.send(JSON.stringify({
@@ -240,7 +249,6 @@ function initChat() {
             }));
             console.log(input.value);
 
-
             addToChat(input.value);
             input.value = "";
         }
@@ -251,7 +259,101 @@ function initChat() {
         console.log(data.messages);
         addToChat(data.messages, data.color.toString(16));
     });
+    */
+    var spaceEnable = false;
+    $("#chatinput").on({
+
+        keydown:function(e) {
+           // console.log(e);
+//            var keyFlg=1;
+//            var keyFlg2=0;
+           // console.log(cnt);
+            if (e.which === 32) {
+
+                //keyFlg=keyFlg2;
+                //console.log(keyFlg);
+                if(input.value.length == 0) return false;
+                return spaceEnable;
+            }
+
+            else if(e.which===13){
+                spaceEnable = false;
+
+                console.log("msgTest");
+                chat.send(JSON.stringify({
+                    "eventName": "chat_msg",
+                    "data": {
+                        "messages": input.value,
+                        "room": room,
+                        "color": color
+                    }
+                }));
+                console.log(input.value);
+
+                addToChat(input.value);
+                input.value = "";
+            }
+            else spaceEnable = true;
+        },
+            change:function(){
+                this.value=this.value.replace(/\s/g, "");
+            }
+
+    },false);
+    rtc.on(chat.event, function () {
+        var data = chat.recv.apply(this, arguments);
+        console.log(data.color);
+        console.log(data.messages);
+        addToChat(data.messages, data.color.toString(16));
+    });
+
+    $("#chatinput2").on({
+
+        keydown:function(e) {
+            // console.log(e);
+//            var keyFlg=1;
+//            var keyFlg2=0;
+            // console.log(cnt);
+            if (e.which === 32) {
+
+                //keyFlg=keyFlg2;
+                //console.log(keyFlg);
+                if(input2.value.length == 0) return false;
+                return spaceEnable;
+            }
+
+            else if(e.which===13){
+                spaceEnable = false;
+
+                console.log("msgTest");
+                chat.send(JSON.stringify({
+                    "eventName": "chat_msg",
+                    "data": {
+                        "messages": input2.value,
+                        "room": room,
+                        "color": color
+                    }
+                }));
+                console.log(input2.value);
+
+                addToChat(input2.value);
+                input2.value = "";
+            }
+            else spaceEnable = true;
+        },
+        change:function(){
+            this.value=this.value.replace(/\s/g, "");
+        }
+
+    },false);
+    rtc.on(chat.event, function () {
+        var data = chat.recv.apply(this, arguments);
+        console.log(data.color);
+        console.log(data.messages);
+        addToChat(data.messages, data.color.toString(16));
+    });
 }
+
 
 function sharescreen(strema){
    CurrentVideo.attachStream(stream , CurrentVideo.id);
