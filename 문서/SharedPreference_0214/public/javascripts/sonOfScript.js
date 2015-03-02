@@ -485,9 +485,9 @@ $('#glyphicon-record').click(function() {
     //녹화중이 아니었다면 녹화를 시작한다.
     if (recorflag === 0) {
         $('#Alert-space-text').append("녹화가 시작됩니다.");
-        $('#Alert-space').css('-webkit-transform', 'translate(0px, 25%)');
+        $('#Alert-space').css('-webkit-transform', 'translate(0px, 40%)');
         setTimeout(function(){
-            $('#Alert-space').css('-webkit-transform', 'translate(0px, -25%)');
+            $('#Alert-space').css('-webkit-transform', 'translate(0px, -40%)');
             $('#Alert-space-text').empty();
         },1500);
         //alert('녹화를 시작합니다.');
@@ -597,9 +597,9 @@ $('#glyphicon-record').click(function() {
     //이미 녹화중이었다면 종료한다.
     else{
         $('#Alert-space-text').append("녹화가 종료됩니다.");
-        $('#Alert-space').css('-webkit-transform', 'translate(0px, 25%)');
+        $('#Alert-space').css('-webkit-transform', 'translate(0px, 40%)');
         setTimeout(function(){
-            $('#Alert-space').css('-webkit-transform', 'translate(0px, -25%)');
+            $('#Alert-space').css('-webkit-transform', 'translate(0px, -40%)');
             $('#Alert-space-text').empty();
         },1500);
         //alert('녹화를 종료합니다.');
@@ -837,9 +837,9 @@ $('#glyphicon-record2').click(function() {
     //녹화중이 아니었다면 녹화를 시작한다.
     if (recorflag === 0) {
         $('#Alert-space-text').append("녹화가 시작됩니다.");
-        $('#Alert-space').css('-webkit-transform', 'translate(0px, 25%)');
+        $('#Alert-space').css('-webkit-transform', 'translate(0px, 40%)');
         setTimeout(function(){
-            $('#Alert-space').css('-webkit-transform', 'translate(0px, -25%)');
+            $('#Alert-space').css('-webkit-transform', 'translate(0px, -40%)');
             $('#Alert-space-text').empty();
         },1500);
         //alert('녹화를 시작합니다.');
@@ -949,9 +949,9 @@ $('#glyphicon-record2').click(function() {
     //이미 녹화중이었다면 종료한다.
     else{
         $('#Alert-space-text').append("녹화가 종료됩니다.");
-        $('#Alert-space').css('-webkit-transform', 'translate(0px, 25%)');
+        $('#Alert-space').css('-webkit-transform', 'translate(0px, 40%)');
         setTimeout(function(){
-            $('#Alert-space').css('-webkit-transform', 'translate(0px, -25%)');
+            $('#Alert-space').css('-webkit-transform', 'translate(0px, -40%)');
             $('#Alert-space-text').empty();
         },1500);
         //alert('녹화를 종료합니다.');
