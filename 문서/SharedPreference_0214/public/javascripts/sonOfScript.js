@@ -395,7 +395,7 @@ function initFriendsList(result){
                     if(data_.state === 'active'){
                         userInfo.setTargetUser(selectedName);
                         //location.href = 'http://210.118.64.172:8000';
-                        location.href = 'tjchat.com';
+                        location.href = 'http://tjchat.com';
                     }else {
                         alert(selectedName+'님의 방이 존재하지 않아서 입장이 불가합니다.');
                     }
@@ -432,7 +432,7 @@ function initFriendsList(result){
                     if(data_.state === 'active'){
                         userInfo.setTargetUser(selectedName);
                         //location.href = 'http://210.118.64.172:8000';
-                        location.href = 'tjchat.com';
+                        location.href = 'http://tjchat.com';
                     }else {
                         alert(selectedName+'님의 방이 존재하지 않아서 입장이 불가합니다.');
                     }
