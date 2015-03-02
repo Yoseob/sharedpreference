@@ -28,10 +28,11 @@ window.onresize = function resizeFooterHeight() {
             $('#footer').css('width','95%');
             $('#footer').css('margin-left','0');
             $('#footer').css('right','5%');
-            $('#footer').css('bottom','50px');
+            $('#footer').css('margin-bottom','50px');
             $('#Wvideos').css('height','calc(100% - 50px)');
             $('#Wvideos').css('width','100%');
             $('#Wvideos').css('margin-left','0');
+            $('#Wvideos').css('margin-bottom','50px');
             $('#Recorded-Video-container').css('width', '100%');
             $('#Recorded-Video-container').css('margin-left','0');
             $('#Recorded-Video-container').css('bottom', '50px');
