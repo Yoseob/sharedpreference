@@ -55,6 +55,7 @@ window.onresize = function resizeFooterHeight() {
         $('#Wvideos').css('height','100%');
         $('#Wvideos').css('width','calc(100% - 70px)');
         $('#Wvideos').css('margin-left','70px');
+       $('#Wvideos').css('margin-bottom','0px');
         $('#Recorded-Video-container').css('width', 'calc(100% - 70px)');
         $('#Recorded-Video-container').css('height', '100%');
         $('#Recorded-Video-container').css('margin-left','70px');
