@@ -28,7 +28,7 @@ html{
 #container #wrapper #Wvideos{
     /*width: calc(100% - 70px);*/
     width:100%;
-    margin-left:70px;
+    /*margin-left:70px;*/
     font-size: 0; /* to fix whitespace/scrollbars problem */
     height: 100%;
     position:absolute;
@@ -43,8 +43,9 @@ html{
     height: 20%;
     /*width: calc(95% - 70px);*/
     width:95%;
+    /*
     margin-left: calc(5% + 70px);
-    right:0;
+    right:0;*/
 }
 
 #footer #minivideos{
