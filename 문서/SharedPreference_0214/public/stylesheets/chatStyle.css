@@ -48,12 +48,18 @@ body {
     height: 5%;
     width: 100%;
 }
-#chatinput {
-    background: #ffffff;
-    height: 100%;
-    width: 100%;
-    color: black;
+@media (max-width: 400px){
+    #chatinput-space2{
+        height: 15%;
+        width: 100%;
+    }
 }
+#chatinput {
+     background: #ffffff;
+     height: 100%;
+     width: 100%;
+     color: black;
+ }
 #chatinput2 {
     background: #ffffff;
     height: 100%;
@@ -377,6 +383,19 @@ a:hover {
     background-color:#ffffff;
 
 }
+@media (max-width: 400px){
+    #results2{
+        font-size: 12px;
+        font-weight: bold;
+
+        padding: 15px;
+        text-align: left;
+        height: 80%;
+        width: 100%;
+        overflow: scroll;
+        background-color:#ffffff;
+    }
+}
 /************************************************drag & drop *******************************************/
 #results.hover { border: 10px dashed #0c0; }
 #results img {
@@ -514,6 +533,12 @@ progress:after { content: '%'; }
 #chat-top2 {
     height: 5%;
     background-color: #ffffff;
+}
+@media (max-width: 400px){
+    #chat-top2{
+        height: 5%;
+        background-color: #ffffff;
+    }
 }
 #start_button {
     top: 0;
