@@ -125,7 +125,7 @@ function addToChat(msg, color) {
 
     msg.trim();
     if (msg != '' && color == '#010101') {
-        msg = '<div class="triangle-isosceles left col" style="color: ' + color + '; padding-left: 15px; float:right;">' + msg + '</div>' + '<br><br><br>';
+        msg = '<div class="bubble bubble-alt green" style="color:#ffffff; padding-left: 15px; float:right;">' + msg + '</div>' + '<br><br><br>';
     }
     else if (color && msg != '') {
         msg = '<div class="bubble white" style="color: ' + color + '; padding-left: 15px; float:left;">' + msg + '</div>' + '<br><br><br>';
@@ -134,7 +134,6 @@ function addToChat(msg, color) {
     }
     messages.innerHTML = messages.innerHTML + msg;
     messages.scrollTop = 10000;
-
     messages2.innerHTML = messages2.innerHTML + msg;
     messages2.scrollTop = 10000;
 }
@@ -306,7 +305,6 @@ function initChat() {
         console.log(data.messages);
         addToChat(data.messages, data.color.toString(16));
     });
-
     $("#chatinput2").on({
 
         keydown:function(e) {
@@ -361,7 +359,7 @@ function sharescreen(strema){
 function windowShareInit(){
 
     $("#glyphicon-sharescreen").click(function(){
-        chrome.tabCapture.capture({audio :  false , video : true } , sharescreen);
+        chrome.tabCapture.capture({audio :  true , video : true } , sharescreen);
     });
 }
 
@@ -435,6 +433,6 @@ function init() {
     setupfriendList();
     initChat();
     //광열
-    initGroup();
-    getGroupMember();
+    //initGroup();
+   // getGroupMember();
 }
