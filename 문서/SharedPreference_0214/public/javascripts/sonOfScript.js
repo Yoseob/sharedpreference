@@ -26,7 +26,8 @@ window.onresize = function resizeFooterHeight() {
         setTimeout(function(){
             $('#footer').css('height',ClientWidth/4 + 'px');
             $('#footer').css('width','95%');
-            $('#footer').css('margin-left','5%');
+            $('#footer').css('margin-left','0');
+            $('#footer').css('right','5%');
             $('#footer').css('bottom','50px');
             $('#Wvideos').css('height','calc(100% - 50px)');
             $('#Wvideos').css('width','100%');
@@ -49,6 +50,7 @@ window.onresize = function resizeFooterHeight() {
     }else{
         $('#footer').css('height',ClientHeight/4+'px');
         $('#footer').css('bottom','0px');
+       $('#footer').css('right','0');
         $('#footer').css('width','calc(95% - 70px)');
         $('#footer').css('margin-left','calc(5% + 70px)');
         $('#footer').css('margin-bottom','0px');
