@@ -17,36 +17,8 @@ window.onresize = function resizeFooterHeight() {
         $('#footer').css('height',ClientHeight/4+'px');
     }*/
 
-    var ua = window.navigator.userAgent.toLowerCase();
     //모바일인지 아닌지 체크
-    if(/iphone/.test(ua) || /android/.test(ua) || /opera/.test(ua) || /bada/.test(ua)){
-        $('#sidebar-wrapper').css('left','-250px');
-        $('#sidebar-wrapper').css('display','none');
-        $('#bottombar-wrapper').css('display','block');
-        $('#bottombar-wrapper').css('bottom','0px');
-            $('#footer').css('height',ClientWidth/4 + 'px');
-            $('#footer').css('width','95%');
-            $('#footer').css('margin-left','5%');
-            $('#footer').css('bottom','50px');
-            $('#Wvideos').css('height','calc(100% - 50px)');
-            $('#Wvideos').css('width','100%');
-            $('#Wvideos').css('margin-left','0');
-            $('#Recorded-Video-container').css('width', '100%');
-            $('#Recorded-Video-container').css('margin-left','0');
-            $('#Recorded-Video-container').css('bottom', '50px');
-
-            $('#chatting-space').css('left', '-500px');
-            $('#chatting-space').css('display', 'none');
-            $('#Recorded-List-container').css('left', '-500px');
-            $('#Recorded-List-container').css('display', 'none');
-            $('#backhome').css('bottom', '50px');
-            $('#backhome').css('height', '7%');
-            $('#backhome').css('width', '7%');
-            $('#Alert-space-text').css('font-size', '10%');
-            $('#recordimg').css('height', '10%');
-            $('#recordimg').css('width', '10%');
-
-    }else if(ClientWidth <= '400'){
+   if(ClientWidth <= '400'){
         $('#sidebar-wrapper').css('left','-250px');
         $('#sidebar-wrapper').css('display','none');
         $('#bottombar-wrapper').css('display','block');
@@ -419,7 +391,8 @@ function initFriendsList(result){
 
                     if(data_.state === 'active'){
                         userInfo.setTargetUser(selectedName);
-                        location.href = 'http://210.118.64.172:8000';
+                        //location.href = 'http://210.118.64.172:8000';
+                        location.href = 'tjchat.com';
                     }else {
                         alert(selectedName+'님의 방이 존재하지 않아서 입장이 불가합니다.');
                     }

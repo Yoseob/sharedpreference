@@ -40,7 +40,9 @@ ul>li{
 }
 
 #sidebar-wrapper {
-    left: -130px;
+    /*left: -130px;*/
+    left: -250px;
+    display:none;
     top : 0px;
     width: 200px;
     background: #252525;
