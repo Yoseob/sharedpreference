@@ -116,6 +116,8 @@ function addToChat(msg, color) {
         console.log(ret);
     });
 
+    var chatName=new DefaultUserinfo();
+    var curUserName=chatName.getUserName();
     //광열 - 그룹 채팅 대화 가져오기.
    // var gy=new TjNetworkConnector();
   //  gy.getChatList(cRoom,getChatData);
@@ -126,12 +128,12 @@ function addToChat(msg, color) {
 
     msg.trim();
     if (msg != '' && color == '#010101') {
-        msg = '<div class="bubble bubble-alt green" style="color:#ffffff; padding-left: 15px; float:right;">' + msg + '</div>' + '<br><br><br>';
+        msg = '<div class="bubble bubble-alt green" style="color:#ffffff; padding-left: 15px; float:right;">' + msg + '</div>' + '<br><br><br><br>';
     }
     else if (color && msg != '') {
-        msg = '<div class="bubble white" style="color: ' + color + '; padding-left: 15px; float:left;">' + msg + '</div>' + '<br><br><br>';
+        msg = '<div style="color:black;float:left;font-size: smaller;">'+curUserName+'</div>'+'<div class="bubble white" style="color: ' + color + '; padding-left: 15px; float:left;">' + msg + '</div>' + '<br><br><br><br>';
     } else if (msg != '') {
-        msg = '<div class="bubble bubble-alt green" style="color: white; padding-left: 15px; float:right;">' + msg + '</div>' + '<br><br><br>';
+        msg = '<div style="color:black;float:right;font-size: smaller;">'+curUserName+'</div>'+'<div class="bubble bubble-alt green" style="color: white; padding-left: 15px; float:right;">' + msg + '</div>' + '<br><br><br><br>';
     }
     messages.innerHTML = messages.innerHTML + msg;
     messages.scrollTop = 10000;
