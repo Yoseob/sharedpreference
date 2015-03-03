@@ -47,7 +47,7 @@ function getGroupMember(){
 }
 
 
-var client = new BinaryClient('ws://210.118.64.176:8100');
+var client = new BinaryClient('ws://210.118.64.172:8100');
 
 client.on('stream' , function(stream , meta){
     var buffer = [];

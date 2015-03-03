@@ -95,6 +95,10 @@ function prepareFaceBookGraph(accessToken, fbId, appSecret) {
         .setOptions(options)
         .get("me?fields=friends", function (err, res) {
             console.log(res);
+            if(res.friends.data === undefined || res.friends.data === null){
+                Resmodule._response(res , {result: 500, tsmp: new Date(), data: {}});
+                return;
+            }
             var tempfriends = res.friends.data;
 
             for (var i = 0; i < tempfriends.length; i++) {
