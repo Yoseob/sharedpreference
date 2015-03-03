@@ -122,6 +122,7 @@ function addToChat(msg, color) {
 
     msg = sanitize(msg);
 
+    console.log("initMsgTest");
 
     msg.trim();
     if (msg != '' && color == '#010101') {
@@ -229,48 +230,14 @@ function initChat() {
 
     });
 
-    /*
-    input.addEventListener('keydown', function (event) {
 
-
-
-        var key = event.which || event.keyCode;
-
-        if (key === 13 && key !== 32) {
-            console.log("msgTest");
-            chat.send(JSON.stringify({
-                "eventName": "chat_msg",
-                "data": {
-                    "messages": input.value,
-                    "room": room,
-                    "color": color
-                }
-            }));
-            console.log(input.value);
-
-            addToChat(input.value);
-            input.value = "";
-        }
-    }, false);
-    rtc.on(chat.event, function () {
-        var data = chat.recv.apply(this, arguments);
-        console.log(data.color);
-        console.log(data.messages);
-        addToChat(data.messages, data.color.toString(16));
-    });
-    */
     var spaceEnable = false;
     $("#chatinput").on({
 
         keydown:function(e) {
-           // console.log(e);
-//            var keyFlg=1;
-//            var keyFlg2=0;
-           // console.log(cnt);
+
             if (e.which === 32) {
 
-                //keyFlg=keyFlg2;
-                //console.log(keyFlg);
                 if(input.value.length == 0) return false;
                 return spaceEnable;
             }
@@ -289,6 +256,7 @@ function initChat() {
                 }));
                 console.log(input.value);
 
+                console.log("msg11111111111");
                 addToChat(input.value);
                 input.value = "";
             }
@@ -303,6 +271,7 @@ function initChat() {
         var data = chat.recv.apply(this, arguments);
         console.log(data.color);
         console.log(data.messages);
+        console.log("msg222222222");
         addToChat(data.messages, data.color.toString(16));
     });
     $("#chatinput2").on({
@@ -333,7 +302,7 @@ function initChat() {
                     }
                 }));
                 console.log(input2.value);
-
+                console.log("msg33333333");
                 addToChat(input2.value);
                 input2.value = "";
             }
@@ -344,11 +313,13 @@ function initChat() {
         }
 
     },false);
+
     rtc.on(chat.event, function () {
         var data = chat.recv.apply(this, arguments);
         console.log(data.color);
         console.log(data.messages);
-        addToChat(data.messages, data.color.toString(16));
+        console.log("msg44444444");
+        //addToChat(data.messages, data.color.toString(16));
     });
 }
 
