@@ -372,7 +372,11 @@ function initFriendsList(result){
         li_.id = Friends[i].id;
         p_.textContent = Friends[i].name;
         img_.className = "profileimgs";
-        img_.src = Friends[i].url;
+
+        if(Friends[i].url === 'undefined')
+            img_.src = 'http://chennaifoodguide.in/themes/chennaifoodguide.in/images/no-profile-pic.png';
+        else
+            img_.src = Friends[i].url;
 
         li_.appendChild(p_);
         li_.appendChild(img_);
