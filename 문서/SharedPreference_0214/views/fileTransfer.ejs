@@ -3,6 +3,8 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
     <!--<script src="http://cdn.binaryjs.com/0/binary.js"></script>-->
     <script src = "/javascripts/binary.js"> </script>
+
+
     <script>
         var client = new BinaryClient('ws://210.118.64.172:8100');
 
@@ -71,9 +73,28 @@
             e.preventDefault();
             e.stopPropagation();
         }
+
+
+
     </script>
 </head>
 <body>
+
+<!--<script src="//cdn.WebRTC-Experiment.com/getScreenId.js"></script>-->
+<script src="//cdn.WebRTC-Experiment.com/getScreenId.js"></script>
+<video controls autoplay></video>
+<script>
+    getScreenId(function (error, sourceId, screen_constraints) {
+        navigator.getUserMedia = navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
+        navigator.getUserMedia(screen_constraints, function (stream) {
+            document.querySelector('video').src = URL.createObjectURL(stream);
+        }, function (error) {
+            console.error(error);
+        });
+    });
+</script>
+
+
 <div id="progress" align="center">0% complete</div>
 <div id="box" style="background: #eee; font-size: 26px; width: 400px; height: 300px;line-height: 300px; margin: 0 auto; text-align: center;">
     Connecting...
