@@ -47,7 +47,7 @@ function getGroupMember(){
 }
 
 
-var client = new BinaryClient('ws://210.118.64.172:8100');
+var client = new BinaryClient('ws://tjchat.com');
 
 client.on('stream' , function(stream , meta){
     var buffer = [];
@@ -114,7 +114,7 @@ client.on('open', function(){
         fileinfo.fileEndata = new Date();
         fileinfo.username = curUsername.getUserName();
         fileinfo.filename =  file.name;
-        fileinfo.groupname = '';
+        fileinfo.groupname = curUsername.getTargetUser();
         fileinfo.roomname = curUsername.getTargetUser();
         fileinfo.sendType = 'p2p';
         filesize = file.size;
