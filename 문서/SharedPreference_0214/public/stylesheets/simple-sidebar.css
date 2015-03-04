@@ -20,6 +20,7 @@ ul{
     list-style:none;
     width:100%;
     padding-left:0;
+    font-family: 'Sun_font'
 }
 /*
 ul>li{
@@ -32,6 +33,10 @@ ul>li{
     transition: background 0.5s linear;
     font-family: 'Sun_font';
 }*/
+
+ul>li{
+    font-family: 'Sun_font';
+}
 
 .onoffimgs{
     width:5%;
