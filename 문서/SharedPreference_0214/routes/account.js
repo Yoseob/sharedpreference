@@ -21,6 +21,7 @@ var myFaceBookAppSecret = '3629858ea14fe0e8eb61e368a9839559';
 var accessTokenKey = 'accessToken';
 
 var defaultResSet = {result : 400 , stmp : new Date , data : {}};
+
 router.route('/login.facebook').post(function (req, res) {
         var at = req.body.accessToken;
         if (at === undefined) {
@@ -56,7 +57,6 @@ router.route('/detail').post(function (req, res) {
     } else {
         result.result = 410;
         Resmodule._response(res ,result);
-
     }
 });
 function logoutProcess(sp_id , res){
@@ -74,13 +74,11 @@ function logoutProcess(sp_id , res){
                 Resmodule._response(res , defaultResSet);
             }
         });
-
     });
 }
 
 //그레프 API를 사용하기 위한 준비과정
 function prepareFaceBookGraph(accessToken, fbId, appSecret) {
-
 
     graph.setAccessToken(accessToken);
     graph.setAppSecret(appSecret);
@@ -113,8 +111,6 @@ function prepareFaceBookGraph(accessToken, fbId, appSecret) {
                     user.id = res.id;
 
                     updateUserFriendListWithFriendInfo(user, fbId);
-
-
                 });
             }
             console.log(friends);
@@ -128,7 +124,6 @@ function updateUserFriendListWithFriendInfo(friendInfo, myFbId) {
         collection.update({facebookId: myFbId}, {$addToSet: {friendlist: friendInfo}}, function (err, ret, obj) {
 
         });
-
     });
 }
 
