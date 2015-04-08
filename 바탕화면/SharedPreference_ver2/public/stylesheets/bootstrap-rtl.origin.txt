@@ -1,0 +1,3 @@
+Uri: http://ironsummitmedia.github.io/startbootstrap-sb-admin/css/bootstrap-rtl.min.css
+File Name: C:\Users\GwangYeolRyu\Desktop\webcopy\원앙\ironsummitmedia.github.io\startbootstrap-sb-admin\css\bootstrap-rtl.css
+Content Type: text/css
