@@ -8,22 +8,12 @@ var port =  80;
 app.set('port', port);
 var server = http.createServer(app);
 var webrtc = require('webrtc.io').listen(server);
-//sex
-//ssswwww
 
-
-
-//var io = require('socket.io').listen(server);
-// Start Binary.js server
 var BinaryServer = require('binaryjs').BinaryServer;
-//
 var bs = BinaryServer({port: 8100 , host : '210.118.64.172'});
 var roomName;
 var self;
 
-
-
-//what is up to date
 bs.on('connection', function(client){
     // Incoming stream from browsers
     client.on('close' ,function(stream){
@@ -126,10 +116,6 @@ webrtc.rtc.on('chat_msg', function (data, socket) {
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-
-/**
- * Event listener for HTTP server "error" event.
- */
 
 
 function onError(error) {
