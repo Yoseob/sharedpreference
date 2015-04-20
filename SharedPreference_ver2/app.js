@@ -29,7 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use('/room', mainView); // sub 적어주고 다른거 돌리면 됨
+app.use('/room', mainView); //
 app.use('/roomlist', JoinRoom2);
 app.use('/', LoginView);
 app.use('/chatting', Chatting);
