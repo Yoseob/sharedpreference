@@ -29,25 +29,25 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use('/', mainView); // sub 적어주고 다른거 돌리면 됨
+app.use('/room', mainView); //
 app.use('/roomlist', JoinRoom2);
-app.use('/login', LoginView);
+app.use('/', LoginView);
 app.use('/chatting', Chatting);
 app.use('/account', Account);
 app.use('/group', Group);
 app.use('/friends/', Friends);
 app.use('/file' , testFileTransger);
 // catch 404 and forward to error handler
+
+
+
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
 
-// error handlers
 
-// development error handler
-// will print stacktrace
 if (app.get('env') === 'development') {
     app.use(function (err, req, res, next) {
         res.status(err.status || 500);
@@ -58,8 +58,7 @@ if (app.get('env') === 'development') {
     });
 }
 
-// production error handler
-// no stacktraces leaked to user
+
 app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {

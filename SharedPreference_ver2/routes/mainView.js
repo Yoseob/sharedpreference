@@ -7,6 +7,8 @@ var dbConnector = require('../dataBaseInterface.js');
 var db = dbConnector.getDataBase();
 var ObjectId = require('mongodb').ObjectID;
 /* GET home page. */
+
+
 router.get('/', function (req, res) {
     console.log(req.body);
 
