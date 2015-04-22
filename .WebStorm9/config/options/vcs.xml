@@ -14,4 +14,7 @@
     </option>
     <option name="cloneParentDir" value="$USER_HOME$/바탕화면/SharedPreference_ver2" />
   </component>
+  <component name="HgGlobalSettings">
+    <option name="myHgExecutable" value="hg" />
+  </component>
 </application>
